@@ -1,3 +1,4 @@
+<!---Jsp which displays the home page of the site and lists products that are sold--->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -6,6 +7,8 @@
 <title>Spice R Us</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!---CSS--->
 <style>
 * {
   box-sizing: border-box;
@@ -14,6 +17,7 @@
 body {
   font-family: "Lucida Console", "Courier New", monospace;
 }
+/*header*/
 header {
   background-color: orange;
   padding: 5px;
@@ -22,7 +26,7 @@ header {
   color: red;
 }
 
-
+/*navigation bar*/
 nav {
   float: left;
   width: 70%;
@@ -59,6 +63,7 @@ login{
   background: #ccc;
   padding: 10px;
 }
+/*container to hold the rest of the page*/
 article {
   float: left;
   padding: 20px;
@@ -66,12 +71,14 @@ article {
   background-color: #f1f1f1;
 
 }
+/*title (product/recipes etc)*/
 tit {
 float: left;
 width: 55%;
 background-color: grey;
 padding: 20px;
 }
+/*container to hold products*/
 prod {
 float: left;
 width: 250px;
@@ -80,17 +87,20 @@ background-color: grey;
 margin: 20px 20px 20px 20px;
 text-align: center;
 }
+/*product image*/
 prodimg {
 float: left;
 text-align: center;
 margin: 20px 20px 0px 20px;
 }
+/*product name*/
 prodnm {
 float: left;
 width: 100%;
 text-align: center;
 font-size: 20px;
 }
+/*product price*/
 prodpr {
 float: left;
 text-align: center;
@@ -98,6 +108,7 @@ width: 100%;
 font-size: 10px;
 }
 
+/*sort and filter*/
 find {
 float:left;
 width: 45%;
@@ -105,6 +116,7 @@ background-color: grey;
 list-style-type: none;
 padding: 6px;
 }
+/*footer with pagination*/
 footer {
   text-align: center;
 }
@@ -147,24 +159,24 @@ section::after {
 <section>
   <nav>
     <ul>
-      <li><a href="/products">Products</a></li>
-      <li><a href="/recipes">Recipes</a></li>
+      <li><a href="/products">Products</a></li><!---link to products page (current page)--->
+      <li><a href="/recipes">Recipes</a></li><!---link to recipe page--->
     </ul>
   </nav>
-  <login><ul><li><a href="#">Login</a></li></ul></login>
+  <login><ul><li><a href="#">Login</a></li></ul></login><!---link to login (doesn't exist yet)--->
   <article>
-    <find>
+    <find><!---will be used to sort and filter (might need to be changed from link)--->
       <li><a href="#">Sort</a></li>
       <li><a href="#">Filter</a></li>
     </find>
-    <tit>Products</tit>
-
+    <tit>Products</tit><!---lists products--->
+	
     <c:forEach items="${spices}" var="spice">
     	<a href="/product=${spice.id}"><prod><prodimg><img src="${spice.id}.jpg" width="200" height="200"></prodimg><prodnm>${spice.name}</prodnm><prodpr>£${spice.price}</prodpr></prod></a> 
     </c:forEach>
 
   </article>
-  <footer>
+  <footer><!---pagination (just an idea needs to be implemented)--->
 	<div class="pagination">
   		<a href="#">&laquo;</a>
   		<a href="#">1</a>

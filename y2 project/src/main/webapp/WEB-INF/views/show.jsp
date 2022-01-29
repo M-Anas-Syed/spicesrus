@@ -1,3 +1,4 @@
+<!---Simple jsp to test if the data was saving and showing correctly--->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -9,9 +10,7 @@
 <body>
 	<c:forEach items="${spices}" var="spice">
 	<p>Name: ${spice.id}, price:  ${spice.price} 
-		<a href="/terminate?agent=${agent.id}">[terminate]</a>
-		<a href="/reports?agent=${agent.id}">[see reports]</a></p>
 	</c:forEach>
-	<p><a href="/newAgent">[Create Agent]</a></p>
+
 </body>
 </html>
