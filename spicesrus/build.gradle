@@ -4,14 +4,7 @@ plugins {
 	id 'java'
 }
 
-<<<<<<< HEAD:y2 project/build.gradle
-apply plugin: 'eclipse'
-
-
-group = 'co2103'
-=======
 group = 'com.example'
->>>>>>> draft1:spicesrus/build.gradle
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
