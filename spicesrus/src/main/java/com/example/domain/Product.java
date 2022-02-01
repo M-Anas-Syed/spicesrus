@@ -1,4 +1,8 @@
+<<<<<<< HEAD:y2 project/src/main/java/spiceshop/y2project/domain/Product.java
 package spiceshop.y2project.domain;
+=======
+package com.example.domain;
+>>>>>>> draft1:spicesrus/src/main/java/com/example/domain/Product.java
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package spiceshop.y2project;
+package com.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -6,19 +6,19 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import spiceshop.y2project.domain.Product;
-import spiceshop.y2project.repo.ProductRepository;
+import com.example.domain.Product;
+import com.example.repo.ProductRepository;
 
 
 
 @SpringBootApplication
-public class SpiceRUsApplication implements ApplicationRunner {
+public class SpicesrusApplication implements ApplicationRunner {
 	
 	@Autowired
 	private ProductRepository repo;
 	
 	public static void main(String[] args) {
-		SpringApplication.run(SpiceRUsApplication.class, args);
+		SpringApplication.run(SpicesrusApplication.class, args);
 	}
 
 	@Override
