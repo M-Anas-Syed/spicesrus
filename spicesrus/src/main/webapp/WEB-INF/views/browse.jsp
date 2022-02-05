@@ -37,6 +37,7 @@
         position: sticky;
         top: 0;
         border-bottom: 1px goldenrod solid;
+        z-index: 2;
       }
 
       .headerlinks {
@@ -159,6 +160,7 @@
       }
 
       .sortsection{
+        display: flex;
         border-top: 1px #e1e1e1 solid;
         border-bottom: 1px #e1e1e1 solid;
         padding: 5px 0;
@@ -177,7 +179,42 @@
         opacity: 0.6;
       }
 
+      .sorting{
+        position: relative;
+        display: inline-block;
+      }
 
+      .sortoptions{
+        display: none;
+        position: absolute;
+        min-width: 130px;
+        background: ghostwhite;
+        text-decoration: none;
+        color: black;
+        z-index: 5;
+        border-radius: 0 10px 10px 10px;
+      }
+
+      .sortbtn{
+        background: white;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .sortselect{
+        display: block;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: black;
+        font-weight: 300;
+      }
+
+      .sortselect:hover{
+        background: lightgrey;
+      }
+
+      .show{
+        display:block;
+      }
 
       /*title (product/recipes etc)*/
       tit {
@@ -329,7 +366,16 @@
         <div class="products">
           <div class="sortsection">
             <!---will be used to sort and filter (might need to be changed from link)--->
-            <a class="sortnfilter" href="#">Sort</a>
+            <div class="sorting">
+              <a class="sortnfilter" href="#">Sort</a>
+              <div id="sortoptions" class="sortoptions">
+                <a class="sortselect" href="/">Name: Ascending</a>
+                <a class="sortselect" href="/products/descending">Name: Descending</a>
+                <a class="sortselect" href="/products/hl">Price: High to Low</a>
+                <a class="sortselect" href="/products/lh">Price: Low to High</a>
+              </div>
+            </div>
+
             <a class="sortnfilter" href="#">Filter</a>
           </div>
           <!--<tit>Products</tit>-->
@@ -371,4 +417,30 @@
 
   </body>
 
+  <script>
+
+    const opt = document.querySelector(".sorting");
+
+    opt.addEventListener("click", function(){
+      document.getElementById("sortoptions").classList.add("show");
+      opt.classList.add("sortbtn");
+    });
+    //document.getElementById("sortoptions").classList.toggle("show");
+    
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.sortnfilter')) {
+        var dropdowns = document.getElementsByClassName("sortoptions");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+            opt.classList.remove("sortbtn");
+          }
+        }
+      }
+    } 
+  </script>
   </html>

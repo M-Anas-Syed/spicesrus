@@ -1,10 +1,13 @@
 package com.example;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Sort;
 
 import com.example.domain.Product;
 import com.example.repo.ProductRepository;
@@ -24,7 +27,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		Product p = new Product();
-		p.setPrice(2);
+		p.setPrice(4);
 		p.setName("Tumeric");
 		repo.save(p);
 		
@@ -34,9 +37,13 @@ public class SpicesrusApplication implements ApplicationRunner {
 		repo.save(p);
 		
 		p = new Product();
-		p.setPrice(2);
+		p.setPrice(6);
 		p.setName("Corriander");
 		repo.save(p);
+		
+		System.out.println("*************************");
+		System.out.println(p);
+		
 
 	}
 
