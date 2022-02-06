@@ -226,7 +226,7 @@
 
       /*container to hold products*/
       prod {
-        /*float: left;*/
+        float: left;
         display: block;
         width: 250px;
         height: auto;
@@ -243,9 +243,7 @@
       
       .prodlist{
         margin: 35px 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        display: inline-block;
       }
 
       .prodinfo{
