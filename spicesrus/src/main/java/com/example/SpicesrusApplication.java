@@ -29,26 +29,31 @@ public class SpicesrusApplication implements ApplicationRunner {
 		Product p = new Product();
 		p.setPrice(4);
 		p.setName("Tumeric");
+		p.setOrigin("Asia");
 		repo.save(p);
 		
 		p = new Product();
 		p.setPrice(6);
 		p.setName("Chilli Powder");
+		p.setOrigin("South America");
 		repo.save(p);
 		
 		p = new Product();
 		p.setPrice(3);
 		p.setName("Ginger");
+		p.setOrigin("Asia");
 		repo.save(p);
 		
 		p = new Product();
 		p.setPrice(2);
 		p.setName("Cinnamon");
+		p.setOrigin("Asia");
 		repo.save(p);
 		
 		p = new Product();
 		p.setPrice(8);
 		p.setName("Paprika");
+		p.setOrigin("South America");
 		repo.save(p);
 		
 		System.out.println("*************************");
