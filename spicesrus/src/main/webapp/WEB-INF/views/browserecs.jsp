@@ -187,13 +187,13 @@
     padding: 20px;
   }
 
-  /*container to hold products*/
+  /*container to hold recipes*/
   rec {
     /*float: left;*/
     display: block;
     width: 250px;
     height: auto;
-    background-color: white;
+    background-color: black;
     margin: 20px 0;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
@@ -218,16 +218,15 @@
     text-decoration: none;
   }
 
-  /*product image*/
-  prodimg {
+  /*recipe image*/
+  recimg {
     /*float: left;*/
     display: block;
     text-align: center;
     /*margin: 20px 20px 0px 20px;*/
-    padding: 30px;
   }
 
-  /*product name*/
+  /*recipe name*/
   recnm {
     /*float: left;*/
     width: 100%;
@@ -301,7 +300,7 @@
 </header>
 
 <section>
-  <---<nav>
+  <!--<nav>
     <ul>
       <li><a href="/products">Products</a></li>
       <li><a href="/recipes">Recipes</a></li>
@@ -315,12 +314,12 @@
       <a class="sortnfilter" href="#">Filter</a>
     </div>
           <div class="reclist">
-            <c:forEach items="${recipes}" var="recipe">
-		<a href="/recipe=${recipe.recipe_id}">
+            <c:forEach items="${dishes}" var="dish">
+		<a href="/recipe=${dish.id}">
                 <rec>
-                  <recimg><img src="<c:url value='/media/r${recipe.recipe_id}.jpg'/>" width="200" height="200"></recimg>
+                  <recimg><img src="<c:url value='/media/r${dish.id}.jpg'/>" width="250" height="220"></recimg>
                   <div class="recinfo">
-                    <recnm>${recipe.name}</recnm>
+                    <recnm>${dish.name}</recnm>
                   </div>
                 </rec>
             </c:forEach>
