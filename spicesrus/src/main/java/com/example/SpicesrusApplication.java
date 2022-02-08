@@ -34,31 +34,38 @@ public class SpicesrusApplication implements ApplicationRunner {
 		Recipe r = new Recipe();
 		p.setPrice(4);
 		p.setName("Tumeric");
-		p.setOrigin("Asia");
-		productrepo.save(p);
-		
-		p = new Product();
-		p.setPrice(6);
-		p.setName("Chilli Powder");
-		p.setOrigin("South America");
-		productrepo.save(p);
-		
-		p = new Product();
-		p.setPrice(3);
-		p.setName("Ginger");
-		p.setOrigin("Asia");
+		p.setRegion("Asia");
+		p.setDescription("Tumeric is overwhelmingly earthy and bitter, almost musky, with a bit of peppery spice. A spoonful or two is enough to tinge an entire soup, pot of rice, or spice rub a vibrant shade of yellow-orange.");
 		productrepo.save(p);
 		
 		p = new Product();
 		p.setPrice(2);
-		p.setName("Cinnamon");
-		p.setOrigin("Asia");
+		p.setName("Cumin");
+		p.setRegion("Asia");
 		productrepo.save(p);
 		
 		p = new Product();
-		p.setPrice(8);
-		p.setName("Paprika");
-		p.setOrigin("South America");
+		p.setPrice(6);
+		p.setName("Corriander");
+		p.setRegion("Asia");
+		productrepo.save(p);
+		
+		p = new Product();
+		p.setPrice(10);
+		p.setName("Piper guineense");
+		p.setRegion("Africa");
+		productrepo.save(p);
+		
+		p = new Product();
+		p.setPrice(10);
+		p.setName("Caraway");
+		p.setRegion("Europe");
+		productrepo.save(p);
+		
+		p = new Product();
+		p.setPrice(7);
+		p.setName("Pink Pepper");
+		p.setRegion("South America");
 		productrepo.save(p);
 		
 		

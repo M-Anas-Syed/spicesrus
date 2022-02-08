@@ -1,5 +1,7 @@
 <!---Jsp which displays the home page of the site and lists products that are sold--->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 
   <!DOCTYPE html>
   <html lang="en">
@@ -202,7 +204,7 @@
 
       .sortselect{
         display: block;
-        padding: 5px 10px;
+        padding: 10px;
         text-decoration: none;
         color: black;
         font-weight: 300;
@@ -216,6 +218,51 @@
         display:block;
       }
 
+      .filterbox{
+        display: none; 
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+
+      .filter{
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 40%;
+      }
+
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .filterlabels{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 35px;
+        justify-content: space-between;
+        font-weight: 300;
+      }
+
       /*title (product/recipes etc)*/
       tit {
         float: left;
@@ -226,7 +273,7 @@
 
       /*container to hold products*/
       prod {
-        float: left;
+        /*float: left;*/
         display: block;
         width: 250px;
         height: auto;
@@ -243,7 +290,11 @@
       
       .prodlist{
         margin: 35px 0;
-        display: inline-block;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 60px;
       }
 
       .prodinfo{
@@ -365,7 +416,7 @@
           <div class="sortsection">
             <!---will be used to sort and filter (might need to be changed from link)--->
             <div class="sorting">
-              <a class="sortnfilter" href="#">Sort</a>
+              <a id="sort" class="sortnfilter" href="#">Sort</a>
               <div id="sortoptions" class="sortoptions">
                 <a class="sortselect" href="/">Name: Ascending</a>
                 <a class="sortselect" href="/products/descending">Name: Descending</a>
@@ -374,7 +425,25 @@
               </div>
             </div>
 
-            <a class="sortnfilter" href="#">Filter</a>
+            <a id="filter" class="sortnfilter" href="#">Filter</a>
+            <div class="filterbox">
+              <div class="filter">
+                <span class="close">&times;</span>
+                <p style="font-size: 25px; font-weight: 400;">Filter by Region</p>
+                <form:form action="/products" method="GET">
+                  <div class="filterlabels">
+                    <div ><input class="filteroptions" type="checkbox" name="asia" ><label>Asia</label></div>
+                    <div ><input class="filteroptions" type="checkbox" name="africa" ><label>Africa</label></div>
+                    <div ><input class="filteroptions" type="checkbox" name="europe" ><label>Europe</label></div>
+                    <div ><input class="filteroptions" type="checkbox" name="oceania" ><label>Oceania</label></div>
+                    <div ><input class="filteroptions" type="checkbox" name="northamerica" ><label>North America</label></div>
+                    <div ><input class="filteroptions" type="checkbox" name="southamerica" ><label>South America</label></div>
+                    <input type="submit" value="Apply"/>
+                  </div>
+                </form:form>
+              </div>
+
+            </div>
           </div>
           <!--<tit>Products</tit>-->
           <!---lists products--->
@@ -382,10 +451,10 @@
             <c:forEach items="${spices}" var="spice">
               <a href="/product=${spice.id}">
                 <prod>
-                  <prodimg><img src="<c:url value='/media/${spice.id}.jpg'/>" width="200" height="200"></prodimg>
+                  <prodimg><img src="<c:url value='/media/${spice.id}.png'/>" width="200" height="200"></prodimg>
                   <div class="prodinfo">
                     <prodnm>${spice.name}</prodnm>
-                    <prodpr>�${spice.price}</prodpr>
+                    <prodpr>£${spice.price}</prodpr>
                   </div>
                 </prod>
               </a>
@@ -425,20 +494,51 @@
     });
     //document.getElementById("sortoptions").classList.toggle("show");
     
-
+    const sortlist = document.getElementById("sort");
     // Close the dropdown menu if the user clicks outside of it
+    // window.onclick = function(event) {
+    //   if (!event.target.matches('#sort')) {
+    //     var dropdowns = document.querySelector("#sortoptions");
+    //     if (dropdowns.classList.contains('show')) {
+    //         dropdowns.classList.remove('show');
+    //         opt.classList.remove("sortbtn");
+    //     }
+    //   }
+    // }
+    
+
+
+    var modal = document.querySelector(".filterbox");
+
+    // Get the button that opens the modal
+    var btn = document.querySelector("#filter");
+
+    // Get the <span> element that closes the modal
+    var span = document.querySelector(".close");
+
+    // When the user clicks the button, open the modal 
+     btn.onclick = function() {
+       modal.style.display = "block";
+     }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    //When the user clicks anywhere outside of the modal, close it
+
     window.onclick = function(event) {
-      if (!event.target.matches('.sortnfilter')) {
-        var dropdowns = document.getElementsByClassName("sortoptions");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+      if (!event.target.matches('#sort')) {
+        var dropdowns = document.querySelector("#sortoptions");
+        if (dropdowns.classList.contains('show')) {
+            dropdowns.classList.remove('show');
             opt.classList.remove("sortbtn");
-          }
         }
       }
-    } 
+    }
   </script>
   </html>
