@@ -35,6 +35,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		p.setPrice(4);
 		p.setName("Tumeric");
 		p.setRegion("Asia");
+		p.setDescription("Tumeric is overwhelmingly earthy and bitter, almost musky, with a bit of peppery spice. A spoonful or two is enough to tinge an entire soup, pot of rice, or spice rub a vibrant shade of yellow-orange.");
 		productrepo.save(p);
 		
 		p = new Product();

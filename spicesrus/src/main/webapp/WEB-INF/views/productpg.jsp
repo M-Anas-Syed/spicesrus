@@ -143,229 +143,48 @@
         background: #ccc;
         padding: 10px;
       }
-
-      /*container to hold the rest of the page*/
-      article {
-        float: left;
-        padding: 20px;
-        width: 100%;
-        background-color: #f1f1f1;
-
-      }
-
       
-
-      .products {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 60px 0;
+      section {
+      	padding: 50px
+      	}
+      
+      productimage{
+		float: left;
+      	display: block;
+		width: 50%;
+		height: auto;
+		margin: 20px 0;
+		text-align: center;
       }
-
-      .sortsection{
-        display: flex;
-        border-top: 1px #e1e1e1 solid;
-        border-bottom: 1px #e1e1e1 solid;
-        padding: 5px 0;
-      }
-
-      .sortnfilter {
-        color: black;
-        text-decoration: none;
-        transition: opacity 200ms ease-in-out;
-        font-size: 20px;
-        font-weight: 400;
-        margin: 0 10px;
-      }
-
-      .sortnfilter:hover{
-        opacity: 0.6;
-      }
-
-      .sorting{
-        position: relative;
-        display: inline-block;
-      }
-
-      .sortoptions{
-        display: none;
-        position: absolute;
-        min-width: 130px;
-        background: ghostwhite;
-        text-decoration: none;
-        color: black;
-        z-index: 5;
-        border-radius: 0 10px 10px 10px;
-      }
-
-      .sortbtn{
-        background: white;
-        border-radius: 10px 10px 0 0;
-      }
-
-      .sortselect{
-        display: block;
-        padding: 10px;
-        text-decoration: none;
-        color: black;
-        font-weight: 300;
-      }
-
-      .sortselect:hover{
-        background: lightgrey;
-      }
-
-      .show{
-        display:block;
-      }
-
-      .filterbox{
-        display: none; 
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-      }
-
-      .filter{
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 40%;
-      }
-
-      .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-      }
-
-      .close:hover,
-      .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-      }
-
-      .filterlabels{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 35px;
-        justify-content: space-between;
-        font-weight: 300;
-      }
-
-      /*title (product/recipes etc)*/
-      tit {
+      .productimg{
+      	border-style: solid;
+      	border-width: 2px;
+      	border-color: black;
+      }	
+      name{
         float: left;
-        width: 55%;
-        background-color: grey;
-        padding: 20px;
+      	font-size:75px;
+      	width: 50%;
       }
-
-      /*container to hold products*/
-      prod {
-        /*float: left;*/
-        display: block;
-        width: 250px;
-        height: auto;
-        background-color: white;
-        margin: 20px 0;
-        text-align: center;
-        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-        transition: all .15s ease-in-out;
+      price{
+        float: left;
+        font-size: 30px;
+        width: 50%;
       }
-
-      prod:hover{
-        transform: scale(1.08);
+      	
+      descr{
+        float: left;
+        width: 30%;
       }
       
-      .prodlist{
-        margin: 35px 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 60px;
-      }
-
-      .prodinfo{
-        background: #e9ecef;
-        padding: 5px;
-        color: black;
-        text-decoration: none;
-      }
-
-      /*product image*/
-      prodimg {
-        /*float: left;*/
-        display: block;
-        text-align: center;
-        /*margin: 20px 20px 0px 20px;*/
-        padding: 30px;
-      }
-
-      /*product name*/
-      prodnm {
-        /*float: left;*/
-        width: 100%;
-        text-align: center;
-        font-size: 20px;
-      }
-
-      /*product price*/
-      prodpr {
-        /*float: left;*/
-        text-align: center;
-        width: 100%;
-        font-size: 10px;
-      }
-
-      /*sort and filter*/
-      find {
-        float: left;
-        width: 45%;
-        background-color: grey;
-        list-style-type: none;
-        padding: 6px;
+      buy{
+      	float:left;
+      	width:50%
       }
 
       /*footer with pagination*/
       footer {
         text-align: center;
-      }
-
-      .pagination {
-        /*display: inline-block;*/
-        text-align: center;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-
-      .pagination a {
-        color: black;
-        /*float: left;*/
-        padding: 8px 16px;
-        text-decoration: none;
-        /*bottom: 0;*/
-        display: inline-block;
-      }
-
-      .pagination a.active {
-        background-color: #4CAF50;
-        color: white;
-      }
-
-      .pagination a:hover:not(.active) {
-        background-color: #ddd;
       }
 
       section::after {
@@ -397,33 +216,13 @@
     </header>
 
     <section>
-          <!---lists products--->
-          <div class="prodlist">
-                <prod>
-                  <prodimg><img src="<c:url value='/media/${spice.id}.png'/>" width="200" height="200"></prodimg>
-                  <div class="prodinfo">
-                    <prodnm>${spice.name}</prodnm>
-                    <prodpr>£${spice.price}</prodpr>
-                  </div>
-                </prod>
-              </a>
-          </div>
-
-        </div>
-
-        <!---pagination (just an idea needs to be implemented)--->
-        <div class="pagination">
-          <a href="#">&laquo;</a>
-          <a href="#">1</a>
-          <a class="active" href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-          <a href="#">6</a>
-          <a href="#">&raquo;</a>
-        </div>
-      
-
+        <productimage>  
+	       <img class = productimg src="<c:url value='/media/${spice.id}.png'/>" width="500" height="500">
+	    </productimage>
+	       <name>${spice.name}</name>
+	       <price>£${spice.price}</price>
+	       <descr>${spice.description}</descr>
+	       <buy><button type="button">Add to basket</button></buy>
     </section>
     <footer>
 
@@ -432,61 +231,5 @@
 
   </body>
 
-  <script>
-
-    const opt = document.querySelector(".sorting");
-
-    opt.addEventListener("click", function(){
-      document.getElementById("sortoptions").classList.add("show");
-      opt.classList.add("sortbtn");
-    });
-    //document.getElementById("sortoptions").classList.toggle("show");
-    
-    const sortlist = document.getElementById("sort");
-    // Close the dropdown menu if the user clicks outside of it
-    // window.onclick = function(event) {
-    //   if (!event.target.matches('#sort')) {
-    //     var dropdowns = document.querySelector("#sortoptions");
-    //     if (dropdowns.classList.contains('show')) {
-    //         dropdowns.classList.remove('show');
-    //         opt.classList.remove("sortbtn");
-    //     }
-    //   }
-    // }
-    
-
-
-    var modal = document.querySelector(".filterbox");
-
-    // Get the button that opens the modal
-    var btn = document.querySelector("#filter");
-
-    // Get the <span> element that closes the modal
-    var span = document.querySelector(".close");
-
-    // When the user clicks the button, open the modal 
-     btn.onclick = function() {
-       modal.style.display = "block";
-     }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    //When the user clicks anywhere outside of the modal, close it
-
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-      if (!event.target.matches('#sort')) {
-        var dropdowns = document.querySelector("#sortoptions");
-        if (dropdowns.classList.contains('show')) {
-            dropdowns.classList.remove('show');
-            opt.classList.remove("sortbtn");
-        }
-      }
-    }
-  </script>
+  
   </html>

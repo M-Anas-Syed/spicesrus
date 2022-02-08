@@ -13,6 +13,7 @@ public class Product {
 	private String name;
 	private int price;
 	private String region;
+	private String description;
 	
 	public int getId() {
 		return product_id;
@@ -22,11 +23,13 @@ public class Product {
 		return name;
 	}
 	
-	
 	public int getPrice() {
 		return price;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -39,6 +42,10 @@ public class Product {
 		return region;
 	}
 
+	public void setDescription(String desc) {
+		description = desc;
+	}
+	
 	public void setRegion(String region) {
 		this.region = region;
 	}
