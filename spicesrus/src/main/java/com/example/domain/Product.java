@@ -12,7 +12,7 @@ public class Product {
 	private int product_id;
 	private String name;
 	private int price;
-	private String origin;
+	private String region;
 	
 	public int getId() {
 		return product_id;
@@ -22,9 +22,6 @@ public class Product {
 		return name;
 	}
 	
-	public String getOrigin() {
-		return origin;
-	}
 	
 	public int getPrice() {
 		return price;
@@ -37,14 +34,21 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
-	public void setOrigin(String origin) {
-		this.origin = origin;
+
+	public String getRegion() {
+		return region;
 	}
-	
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [product_id=" + product_id + ", name=" + name + ", price=" + price + ", origin=" + origin + "]";
+		return "Product [product_id=" + product_id + ", name=" + name + ", price=" + price + ", region=" + region + "]";
 	}
+	
+	
+	
 
 }
