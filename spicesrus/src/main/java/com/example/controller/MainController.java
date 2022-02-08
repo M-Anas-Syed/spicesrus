@@ -2,15 +2,18 @@ package com.example.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.domain.Product;
 import com.example.repo.ProductRepository;
 import com.example.repo.RecipeRepository;
 
@@ -93,5 +96,11 @@ public class MainController {
 		return "browserecs";
 	}
 	
+	@RequestMapping("/product={spice}")
+	public String individualproduct(Model model, @PathVariable int spice) {
+		Optional<Product> product = productrepo.findById(spice);
+		model.addAttribute("spice", product.get());
+		return "productpg";
+	}
 	
 }

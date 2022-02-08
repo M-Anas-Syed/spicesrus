@@ -397,68 +397,16 @@
     </header>
 
     <section>
-      <!--
-  <nav>
-    <ul>
-      <li><a href="/products">Products</a></li>
-      <li><a href="/recipes">Recipes</a></li>
-    </ul>
-  </nav>-->
-
-      <!--<login>
-        <ul>
-          <li><a href="#">Login</a></li>
-        </ul>
-      </login>-->
-
-      <!---link to login (doesn't exist yet)--->
-        <div class="products">
-          <div class="sortsection">
-            <!---will be used to sort and filter (might need to be changed from link)--->
-            <div class="sorting">
-              <a id="sort" class="sortnfilter" href="#">Sort</a>
-              <div id="sortoptions" class="sortoptions">
-                <a class="sortselect" href="/">Name: Ascending</a>
-                <a class="sortselect" href="/products/descending">Name: Descending</a>
-                <a class="sortselect" href="/products/hl">Price: High to Low</a>
-                <a class="sortselect" href="/products/lh">Price: Low to High</a>
-              </div>
-            </div>
-
-            <a id="filter" class="sortnfilter" href="#">Filter</a>
-            <div class="filterbox">
-              <div class="filter">
-                <span class="close">&times;</span>
-                <p style="font-size: 25px; font-weight: 400;">Filter by Region</p>
-                <form:form action="/products" method="GET">
-                  <div class="filterlabels">
-                    <div ><input class="filteroptions" type="checkbox" name="asia" ><label>Asia</label></div>
-                    <div ><input class="filteroptions" type="checkbox" name="africa" ><label>Africa</label></div>
-                    <div ><input class="filteroptions" type="checkbox" name="europe" ><label>Europe</label></div>
-                    <div ><input class="filteroptions" type="checkbox" name="oceania" ><label>Oceania</label></div>
-                    <div ><input class="filteroptions" type="checkbox" name="northamerica" ><label>North America</label></div>
-                    <div ><input class="filteroptions" type="checkbox" name="southamerica" ><label>South America</label></div>
-                    <input type="submit" value="Apply"/>
-                  </div>
-                </form:form>
-              </div>
-
-            </div>
-          </div>
-          <!--<tit>Products</tit>-->
           <!---lists products--->
           <div class="prodlist">
-            <c:forEach items="${spices}" var="spice">
-              <a href="/product=${spice.id}">
                 <prod>
                   <prodimg><img src="<c:url value='/media/${spice.id}.png'/>" width="200" height="200"></prodimg>
                   <div class="prodinfo">
                     <prodnm>${spice.name}</prodnm>
-                    <prodpr>Â£${spice.price}</prodpr>
+                    <prodpr>£${spice.price}</prodpr>
                   </div>
                 </prod>
               </a>
-            </c:forEach>
           </div>
 
         </div>
