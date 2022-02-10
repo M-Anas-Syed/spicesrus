@@ -14,6 +14,7 @@ public class Product {
 	private String name;
 	private int price;
 	private String region;
+	private int spicelvl;
 	private String description;
 	
 	public int getId() {
@@ -30,6 +31,10 @@ public class Product {
 	
 	public String getDescription() {
 		return description;
+	}
+	
+	public int getSpicelvl() {
+		return spicelvl;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -49,6 +54,9 @@ public class Product {
 	
 	public void setRegion(String region) {
 		this.region = region;
+	}
+	public void setSpicelvl(int lvl) {
+		spicelvl = lvl;
 	}
 
 	@Override

@@ -220,6 +220,9 @@
 	       <img class = productimg src="<c:url value='/media/${spice.id}.png'/>" width="500" height="500">
 	    </productimage>
 	       <name>${spice.name}</name>
+	       <c:forEach begin="0" end="${spice.spicelvl}" varStatus="loop">
+    			<img src="<c:url value='/media/spice.png'/>" width="20" height="50">
+			</c:forEach>
 	       <price>£${spice.price}</price>
 	       <descr>${spice.description}</descr>
 	       <buy><button type="button">Add to basket</button></buy>

@@ -35,6 +35,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		p.setPrice(4);
 		p.setName("Tumeric");
 		p.setRegion("Asia");
+		p.setSpicelvl(0);
 		p.setDescription("Tumeric is overwhelmingly earthy and bitter, almost musky, with a bit of peppery spice. A spoonful or two is enough to tinge an entire soup, pot of rice, or spice rub a vibrant shade of yellow-orange.");
 		productrepo.save(p);
 		
@@ -42,30 +43,35 @@ public class SpicesrusApplication implements ApplicationRunner {
 		p.setPrice(2);
 		p.setName("Cumin");
 		p.setRegion("Asia");
+		p.setSpicelvl(2);
 		productrepo.save(p);
 		
 		p = new Product();
 		p.setPrice(6);
 		p.setName("Corriander");
 		p.setRegion("Asia");
+		p.setSpicelvl(1);
 		productrepo.save(p);
 		
 		p = new Product();
 		p.setPrice(10);
 		p.setName("Piper guineense");
 		p.setRegion("Africa");
+		p.setSpicelvl(5);
 		productrepo.save(p);
 		
 		p = new Product();
 		p.setPrice(10);
 		p.setName("Caraway");
 		p.setRegion("Europe");
+		p.setSpicelvl(3);
 		productrepo.save(p);
 		
 		p = new Product();
 		p.setPrice(7);
 		p.setName("Pink Pepper");
 		p.setRegion("South America");
+		p.setSpicelvl(2);
 		productrepo.save(p);
 		
 		
