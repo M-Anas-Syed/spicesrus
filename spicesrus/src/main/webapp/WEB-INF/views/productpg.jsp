@@ -1,35 +1,37 @@
 <!---Jsp which displays the home page of the site and lists products that are sold--->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-    <!DOCTYPE html>
-    <html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
 
-    <head>
-      <title>Spice R Us</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;500&display=swap" rel="stylesheet">
+  <head>
+    <title>Spice R Us</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-      <!---CSS--->
-      <style>
-        * {
-          box-sizing: border-box;
-        }
 
-        body {
-          font-family: 'Oswald', sans-serif;
-          margin: 0;
-          padding: 0;
-          background: #fff7d8;
-        }
+    <!---CSS--->
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-        /*header*/
-        header {
-          /*background-color: orange;
+      body {
+        font-family: 'Oswald', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #fff7d8;
+      }
+
+      /*header*/
+      header {
+        /*background-color: orange;
         padding: 5px;
         text-align: center;
         font-size: 40px;
@@ -302,8 +304,6 @@
           </div>
         </div>
 
-
-
       </section>
       <footer style="background-color: #f7bf4f;">
         <div style="display: flex;max-width: 1000px;margin: 0 auto;padding: 50px;justify-content: space-between;">
@@ -332,8 +332,6 @@
           </div>
         </div>
       </footer>
-  
-
 
     </body>
     <script>
