@@ -229,6 +229,19 @@
           text-align: center;
         }
 
+        .footertext {
+          color: black;
+          text-decoration: none;
+          font-size: 20px;
+          font-weight: 300;
+          padding: 5px;
+        }
+
+        .footertext:hover {
+          color: white;
+        }
+
+
         section::after {
           content: "";
           display: table;
@@ -292,9 +305,34 @@
 
 
       </section>
-      <footer>
-
+      <footer style="background-color: #f7bf4f;">
+        <div style="display: flex;max-width: 1000px;margin: 0 auto;padding: 50px;justify-content: space-between;">
+          <div>
+            <a style="display: block;width: 25%;" href="/">
+              <img class="logo" src="<c:url value='/media/footerlogo.png'/>" alt="spiceruslogo">
+            </a>
+          </div>
+          <div
+            style="display: flex;flex-direction: column;position: absolute;width: 200px;left: 0;right: 0;margin-left: auto;margin-right: auto;">
+            <a class="footertext" href="/products">Products</a>
+            <a class="footertext" href="/recipes">Recipes</a>
+          </div>
+          <div style="border-radius: 50%;background: lightgoldenrodyellow;height: fit-content;">
+            <a id="totop" style="padding: 5px;" href="/">
+              <img style="width: 35px;" src="<c:url value='/media/arrowup.svg'/>" alt="back to top">
+            </a>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 25px;margin-bottom: 0px;padding-bottom: 20px;">Based in Leicester</p>
+          <div style="position: relative;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d77482.18830696869!2d-1.201139813366151!3d52.636160630891354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487742ab49b76c73%3A0x9a151d2a6fb49cb8!2sLeicester!5e0!3m2!1sen!2suk!4v1644351844085!5m2!1sen!2suk"
+              width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
       </footer>
+  
 
 
     </body>
@@ -323,6 +361,15 @@
         quantity.value = num;
 
       })
+
+      //Button to scroll to the top
+      var btn = document.querySelector('#totop');
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: 0 }, '300');
+      });
+
     </script>
 
     </html>
