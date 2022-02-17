@@ -13,7 +13,9 @@ public class Product {
 	private String name;
 	private int price;
 	private String region;
+	private int spicelvl;
 	private String description;
+	private String flavours;
 	
 	public int getId() {
 		return product_id;
@@ -30,6 +32,10 @@ public class Product {
 	public String getDescription() {
 		return description;
 	}
+	
+	public int getSpicelvl() {
+		return spicelvl;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -41,6 +47,14 @@ public class Product {
 	public String getRegion() {
 		return region;
 	}
+	
+	public String getFlavours() {
+		return flavours;
+	}
+
+	public void setFlavours(String flav) {
+		flavours = flav;
+	}
 
 	public void setDescription(String desc) {
 		description = desc;
@@ -48,6 +62,9 @@ public class Product {
 	
 	public void setRegion(String region) {
 		this.region = region;
+	}
+	public void setSpicelvl(int lvl) {
+		spicelvl = lvl;
 	}
 
 	@Override
