@@ -19,7 +19,8 @@
       * {
         box-sizing: border-box;
       }
-
+      
+      a { text-decoration: none;}
       body {
         font-family: 'Oswald', sans-serif;
         margin: 0;
@@ -329,6 +330,12 @@
         font-size: 10px;
       }
 
+      prodflav {
+	text-align: center;
+        width: 100%;
+        font-size: 10px;
+      }
+
       /*sort and filter*/
       find {
         float: left;
@@ -454,7 +461,8 @@
                   <prodimg><img src="<c:url value='/media/${spice.id}.png'/>" width="200" height="200"></prodimg>
                   <div class="prodinfo">
                     <prodnm>${spice.name}</prodnm>
-                    <prodpr>£${spice.price}</prodpr>
+                    <prodpr>£${spice.price}</prodpr><br>
+		    <prodflav>Flavours: ${spice.flavours}</prodflav>
                   </div>
                 </prod>
               </a>
