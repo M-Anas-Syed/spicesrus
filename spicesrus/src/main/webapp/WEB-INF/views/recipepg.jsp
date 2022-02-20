@@ -171,15 +171,41 @@
         font-size: 20px;
         width: 60%;
       }
-      	
-      descr{
+      serving{
         float: left;
+        font-size: 20px;
         width: 60%;
       }
+      	
+      item{
+        <!-- float: left; -->
+        width: auto;
+        font-size: 15px;
+      }
       
-      buy{
+      steps{
+      	float: left;
+        width: auto;
+        background-color: white;
+        padding: 10px;
+        border: 10px;
+      }
+      
+      ingredients{
+        float: left;
+        width: auto;
+        background-color: white;
+        padding: 10px;
+        border: 10px
+      }
+      	
+      sectiontitle{
+      	text-decoration: underline;
       	float:left;
-      	width:60%
+      	width:auto;
+      	min-width:60%;
+      	font-size: 18px;
+      	padding: 20px 0px 0px 0px;
       }
 
       /*footer with pagination*/
@@ -220,10 +246,21 @@
 	       <img class = productimg src="<c:url value='/media/r${recipe.id}.jpg'/>" width="400" height="400">
 	    </productimage>
 	       <name>${recipe.name}</name>
-	       <time>${recipe.time}</time>
-		   <c:forEach items="${recipe.steps}" var="step">
-              <br><step>${step.step}</step><br>
+	       <time>${recipe.time}<br></time>
+	       <serving>Serves: ${recipe.serving}</serving>
+	       <ingredients>
+	       <sectiontitle>Ingredients</sectiontitle>
+	       	<c:forEach items="${recipe.ingredients}" var="ingredient">
+             	<item><br>${ingredient.ingredient}</item>
            </c:forEach>
+           </ingredients>        
+        
+		   <steps>
+		   <sectiontitle>Steps</sectiontitle>
+		   <c:forEach items="${recipe.steps}" var="step">
+             	<item><br>${step.step}<br></item>
+           </c:forEach>
+           </steps>
     </section>
     <footer>
 

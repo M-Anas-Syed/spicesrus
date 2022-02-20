@@ -10,9 +10,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Sort;
 
+import com.example.domain.Ingredient;
 import com.example.domain.Product;
 import com.example.domain.Recipe;
 import com.example.domain.Step;
+import com.example.repo.IngredientRepository;
 import com.example.repo.ProductRepository;
 import com.example.repo.RecipeRepository;
 import com.example.repo.StepRepository;
@@ -28,6 +30,8 @@ public class SpicesrusApplication implements ApplicationRunner {
 	private RecipeRepository reciperepo;
 	@Autowired
 	private StepRepository steprepo;
+	@Autowired
+	private IngredientRepository ingredientrepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpicesrusApplication.class, args);
@@ -39,6 +43,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		Product p = new Product();
 		Recipe r = new Recipe();
 		Step s = new Step();
+		Ingredient i = new Ingredient();
 		p.setPrice(4);
 		p.setName("Tumeric");
 		p.setRegion("Asia");
@@ -92,6 +97,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		r.setName("Lasagne");
 		r.setAccess("Accountless");
 		r.setTime("1 hour and 40 minutes");
+		r.setServing(6);
 		reciperepo.save(r);
 		
 		s = new Step();
@@ -107,14 +113,78 @@ public class SpicesrusApplication implements ApplicationRunner {
 		s.setRecipe(r);
 		steprepo.save(s);
 		
-		
-		
-		
-		
-		System.out.println("*************************");
-		System.out.println(p);
-		
-
+		i = new Ingredient();
+		i.setIngredient("1 tbsp olive oil");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("1 onion, diced");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("1 carrot, diced");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("1 celery stalk, diced");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("2 garlic cloves, finely sliced");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("250g beef mince");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("250g pork mince");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("1 tbsp tomato purée");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("400g tin chopped tomatoes");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("200ml beef stock");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("200ml red wine");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("1 tsp Worcestershire sauce");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("9-12 lasagne sheets (depending on the size of your baking dish");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("50g Parmesan, grated");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("150g pack mozzarella, shredded");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("50g butter");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("50g plain flour");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
+		i = new Ingredient();
+		i.setIngredient("550ml semi-skimmed milk");
+		i.setRecipe(r);
+		ingredientrepo.save(i);
 	}
 
 }
