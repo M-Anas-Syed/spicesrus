@@ -272,26 +272,6 @@
       </nav>
     </header>
 
-    <section>
-        <productimage>  
-	       <img class = productimg src="<c:url value='/media/${spice.id}.png'/>" width="500" height="500">
-	    </productimage>
-	       <name>${spice.name}</name>
-	       <c:forEach begin="1" end="${spice.spicelvl}" varStatus="loop">
-    				<img src="<c:url value='/media/spice.png'/>" width="20" height="50">
-		   </c:forEach>
-	       <price>£${spice.price}</price>
-	       <descr>Flavours: ${spice.flavours}</descr>
-	       <descr>${spice.description}</descr>
-	       <buy><button type="button">Add to basket</button></buy>
-    </section>
-    <footer>
-
-    </footer>
-
-
-  </body>
-
       <section>
         <div class="projectsection">
           <productimage>
@@ -302,7 +282,7 @@
             <name>${spice.name}</name>
 
             <div>
-              <c:forEach begin="0" end="${spice.spicelvl}" varStatus="loop">
+              <c:forEach begin="1" end="${spice.spicelvl}" varStatus="loop">
                 <img src="<c:url value='/media/spice.png'/>" width="20" height="50">
               </c:forEach>
             </div>
@@ -310,6 +290,7 @@
             <price>
               <img src="<c:url value='/media/pound_black.svg'/>" alt="pound">${spice.price}
             </price>
+            <descr>Flavours: ${spice.flavours}</descr>
             <descr>${spice.description}</descr>
             <p class="quantitylabel">Quantity(g):</p>
             <div>
