@@ -184,28 +184,29 @@
       }
       
       steps{
+      	margin-top: 20px;
       	float: left;
         width: auto;
         background-color: white;
-        padding: 10px;
+        padding: 5px 20px;
         border: 10px;
       }
       
       ingredients{
+      	margin-top: 20px;
         float: left;
         width: auto;
         background-color: white;
-        padding: 10px;
+        padding: 5px 20px;
         border: 10px
       }
       	
       sectiontitle{
       	text-decoration: underline;
       	float:left;
-      	width:auto;
-      	min-width:60%;
+      	width:100%;
       	font-size: 18px;
-      	padding: 20px 0px 0px 0px;
+      	padding: 20px 20px 0px 0px;
       }
 
       /*footer with pagination*/
