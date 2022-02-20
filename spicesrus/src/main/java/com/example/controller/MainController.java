@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.domain.Product;
+import com.example.domain.Recipe;
 import com.example.repo.ProductRepository;
 import com.example.repo.RecipeRepository;
 
@@ -103,4 +104,10 @@ public class MainController {
 		return "productpg";
 	}
 	
+	@RequestMapping("/recipe={rec}")
+	public String individualrecipe(Model model, @PathVariable int rec) {
+		Optional<Recipe> recipe = reciperepo.findById(rec);
+		model.addAttribute("recipe", recipe.get());
+		return "recipepg";
+	}
 }

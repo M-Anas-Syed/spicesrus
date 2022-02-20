@@ -16,6 +16,7 @@ public class Product {
 	private String region;
 	private int spicelvl;
 	private String description;
+	private String flavours;
 	
 	public int getId() {
 		return product_id;
@@ -36,6 +37,7 @@ public class Product {
 	public int getSpicelvl() {
 		return spicelvl;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -46,6 +48,14 @@ public class Product {
 
 	public String getRegion() {
 		return region;
+	}
+	
+	public String getFlavours() {
+		return flavours;
+	}
+
+	public void setFlavours(String flav) {
+		flavours = flav;
 	}
 
 	public void setDescription(String desc) {

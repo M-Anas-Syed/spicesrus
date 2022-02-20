@@ -269,8 +269,28 @@
           <!--
           <a class="logoutbutton" href="#">Logout</a>
         -->
-        </nav>
-      </header>
+      </nav>
+    </header>
+
+    <section>
+        <productimage>  
+	       <img class = productimg src="<c:url value='/media/${spice.id}.png'/>" width="500" height="500">
+	    </productimage>
+	       <name>${spice.name}</name>
+	       <c:forEach begin="1" end="${spice.spicelvl}" varStatus="loop">
+    				<img src="<c:url value='/media/spice.png'/>" width="20" height="50">
+		   </c:forEach>
+	       <price>£${spice.price}</price>
+	       <descr>Flavours: ${spice.flavours}</descr>
+	       <descr>${spice.description}</descr>
+	       <buy><button type="button">Add to basket</button></buy>
+    </section>
+    <footer>
+
+    </footer>
+
+
+  </body>
 
       <section>
         <div class="projectsection">

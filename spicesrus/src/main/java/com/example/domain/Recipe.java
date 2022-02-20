@@ -1,8 +1,13 @@
 package com.example.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 //Product entity with necessary getters and setters
 @Entity
@@ -12,6 +17,12 @@ public class Recipe {
 	private int recipe_id;
 	private String name;
 	private String access;
+	private String time;
+	private int serving;
+	@OneToMany(mappedBy="recipe") 
+	private List<Step> steps;
+	@OneToMany(mappedBy="recipe") 
+	private List<Ingredient> ingredients;
 	
 	public int getId(){
 		return recipe_id;
@@ -22,6 +33,30 @@ public class Recipe {
 	}
 	public String getAccess(){
 		return access;
+	}
+	public String getTime(){
+		return time;
+	}
+	public int getServing(){
+		return serving;
+	}
+	public List<Step> getSteps(){
+		return steps;
+	}
+	public List<Ingredient> getIngredients(){
+		return ingredients;
+	}
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+	public void setSteps(List<Step> steps) {
+		this.steps = steps;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public void setServing(int serving) {
+		this.serving = serving;
 	}
 	public void setName(String name) {
 		this.name = name;
