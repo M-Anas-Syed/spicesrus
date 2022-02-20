@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,10 @@ import org.springframework.data.domain.Sort;
 
 import com.example.domain.Product;
 import com.example.domain.Recipe;
+import com.example.domain.Step;
 import com.example.repo.ProductRepository;
 import com.example.repo.RecipeRepository;
+import com.example.repo.StepRepository;
 
 
 
@@ -23,6 +26,8 @@ public class SpicesrusApplication implements ApplicationRunner {
 	private ProductRepository productrepo;
 	@Autowired
 	private RecipeRepository reciperepo;
+	@Autowired
+	private StepRepository steprepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpicesrusApplication.class, args);
@@ -30,8 +35,10 @@ public class SpicesrusApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		List<Step> steps=new ArrayList<Step>();
 		Product p = new Product();
 		Recipe r = new Recipe();
+		Step s = new Step();
 		p.setPrice(4);
 		p.setName("Tumeric");
 		p.setRegion("Asia");
@@ -84,7 +91,24 @@ public class SpicesrusApplication implements ApplicationRunner {
 		r = new Recipe();
 		r.setName("Lasagne");
 		r.setAccess("Accountless");
+		r.setTime("1 hour and 40 minutes");
 		reciperepo.save(r);
+		
+		s = new Step();
+		s.setStep("1. In a large pan, heat the olive oil over a low heat. Fry the onion, carrot, celery and garlic for 5 mins, or until softened. Add the mince and fry on a medium heat until golden. Turn up the heat, pour in the wine and bubble until reduced. Stir in the tomato purée, chopped tomatoes and stock. Add in the Worcestershire sauce and simmer for 15 mins, or until the liquid has reduced. Season.");
+		s.setRecipe(r);
+		steprepo.save(s);
+		s = new Step();
+		s.setStep("2. Meanwhile, make the white sauce. Melt the butter in a small saucepan over a low heat and add the flour. Whisk until combined and cook on low for 1-2 mins. Remove from the heat and gradually whisk in the milk until you have a loose sauce. Season. Return to a gentle heat and whisk constantly until the sauce thickens.");
+		s.setRecipe(r);
+		steprepo.save(s);
+		s = new Step();
+		s.setStep("3. Preheat the oven to gas 6, 200°C, fan 180°C. Layer up the lasagne in a baking dish, starting with a third each of the ragu, then the pasta, then the white sauce. Repeat twice. Top with the Parmesan and mozzarella then bake in the oven for 40-45 mins, until piping hot and crisp and bubbling on top. Serve immediately.");
+		s.setRecipe(r);
+		steprepo.save(s);
+		
+		
+		
 		
 		
 		System.out.println("*************************");
