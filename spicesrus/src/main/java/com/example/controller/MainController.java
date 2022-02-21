@@ -85,16 +85,51 @@ public class MainController {
 	}
 	
 	@RequestMapping("/products/lh")
-	public String lowtohigh(Model model) {
+	public String rlowtohigh(Model model) {
 		model.addAttribute("spices", productrepo.findAll(Sort.by("price")));
 		return "browseprods";
 	}
 	
+	@RequestMapping("/recipes/descending")
+	public String rdescending(Model model) {
+		model.addAttribute("dishes", reciperepo.findAll(Sort.by("name").descending()));
+		return "browserecs";
+	}
+	
+	@RequestMapping("/recipes/hl")
+	public String rhightolow(Model model) {
+		model.addAttribute("dishes", reciperepo.findAll(Sort.by("difficulty").descending()));
+		return "browserecs";
+	}
+	
+	@RequestMapping("/recipes/lh")
+	public String lowtohigh(Model model) {
+		model.addAttribute("dishes", reciperepo.findAll(Sort.by("difficulty")));
+		return "browserecs";
+	}
+	
 	//show the recipes page
 	@RequestMapping("/recipes")
-	public String recipes(Model model) {
-		model.addAttribute("dishes", reciperepo.findAll());
-		return "browserecs";
+	public String homepage(Model model, String indian, String italian) {
+		String x;
+		List<String> cuisine = new ArrayList<String>();
+
+		if(indian != null) {
+			cuisine.add("indian");
+		}
+		if(italian != null) {
+			cuisine.add("italian");
+		}
+		if(!cuisine.isEmpty()) {
+			model.addAttribute("dishes", reciperepo.findByCuisine(cuisine));
+			x = "browserecs";
+		}
+		else{
+			model.addAttribute("dishes", reciperepo.findAll(Sort.by("name")));
+			x = "browserecs";
+		}
+
+		return x;
 	}
 	
 	@RequestMapping("/product={spice}")

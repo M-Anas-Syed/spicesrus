@@ -1,5 +1,6 @@
 <!---Copy of browse jsp without product information, which will need to be updated when recipes are added to project--->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
   <!DOCTYPE html>
   <html lang="en">
@@ -179,6 +180,135 @@
         opacity: 0.6;
       }
 
+      .sorting{
+        position: relative;
+        display: inline-block;
+      }
+
+      .sortoptions{
+        display: none;
+        position: absolute;
+        min-width: 130px;
+        background: ghostwhite;
+        text-decoration: none;
+        color: black;
+        z-index: 5;
+        border-radius: 0 10px 10px 10px;
+      }
+
+      .sortbtn{
+        background: white;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .sortselect{
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+        font-weight: 300;
+      }
+
+      .sortselect:hover{
+        background: lightgrey;
+      }
+
+      .show{
+        display:block;
+      }
+
+      .filterbox{
+        display: none; 
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+
+      .filter{
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 40%;
+      }
+
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .filterlabels{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 35px;
+        justify-content: space-between;
+        font-weight: 300;
+      }
+
+
+      /*title (product/recipes etc)*/
+      tit {
+        float: left;
+        width: 55%;
+        background-color: grey;
+        padding: 20px;
+      }
+
+      /*container to hold recipes*/
+      rec {
+        /*float: left;*/
+        display: block;
+        width: 250px;
+        height: auto;
+        background-color: black;
+        margin: 20px 0;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+        transition: all .15s ease-in-out;
+      }
+
+      rec:hover {
+        transform: scale(1.08);
+      }
+
+      .reclist {
+        margin: 35px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .recinfo {
+        background: #e9ecef;
+        padding: 5px;
+        color: black;
+        text-decoration: none;
+      }
+
+      /*recipe image*/
+      recimg {
+        /*float: left;*/
+        display: block;
+        text-align: center;
+        /*margin: 20px 20px 0px 20px;*/
+      }
 
 
       /*title (product/recipes etc)*/
@@ -333,8 +463,31 @@
       <div class="recipes">
         <div class="sortsection">
           <!---will be used to sort and filter (might need to be changed from link)--->
-          <a class="sortnfilter" href="#">Sort</a>
-          <a class="sortnfilter" href="#">Filter</a>
+          <div class="sorting">
+              <a id="sort" class="sortnfilter" href="#">Sort</a>
+              <div id="sortoptions" class="sortoptions">
+                <a class="sortselect" href="/recipes">Name: Ascending</a>
+                <a class="sortselect" href="/recipes/descending">Name: Descending</a>
+                <a class="sortselect" href="/recipes/hl">Difficulty: High to Low</a>
+                <a class="sortselect" href="/recipes/lh">Difficulty: Low to High</a>
+              </div>
+            </div>
+          <a id="filter" class="sortnfilter" href="#">Filter</a>
+            <div class="filterbox">
+              <div class="filter">
+                <span class="close">&times;</span>
+                <p style="font-size: 25px; font-weight: 400;">Filter by Cuisine</p>
+                <form:form action="/recipes" method="GET">
+                  <div class="filterlabels">
+                    <div ><input class="filteroptions" type="checkbox" name="indian" ><label>Indian</label></div>
+                    <div ><input class="filteroptions" type="checkbox" name="italian" ><label>Italian</label></div>
+                    <input type="submit" value="Apply"/>
+                  </div>
+                </form:form>
+              </div>
+
+            </div>
+
         </div>
         <div class="reclist">
           <c:forEach items="${dishes}" var="dish">
@@ -403,6 +556,46 @@
       e.preventDefault();
       $('html, body').animate({ scrollTop: 0 }, '300');
     });
-  </script>
 
+
+    const opt = document.querySelector(".sorting");
+
+    opt.addEventListener("click", function(){
+      document.getElementById("sortoptions").classList.add("show");
+      opt.classList.add("sortbtn");
+    });
+
+    var modal = document.querySelector(".filterbox");
+
+    // Get the button that opens the modal
+    var btn = document.querySelector("#filter");
+
+    // Get the <span> element that closes the modal
+    var span = document.querySelector(".close");
+
+    // When the user clicks the button, open the modal 
+     btn.onclick = function() {
+       modal.style.display = "block";
+     }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    //When the user clicks anywhere outside of the modal, close it
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+      if (!event.target.matches('#sort')) {
+        var dropdowns = document.querySelector("#sortoptions");
+        if (dropdowns.classList.contains('show')) {
+            dropdowns.classList.remove('show');
+            opt.classList.remove("sortbtn");
+        }
+      }
+    }
+  </script>
   </html>
