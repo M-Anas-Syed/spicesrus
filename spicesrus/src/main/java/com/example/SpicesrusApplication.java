@@ -98,6 +98,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		r.setAccess("Accountless");
 		r.setTime("1 hour and 40 minutes");
 		r.setServing(6);
+		r.setDifficulty(1);
 		r.setCuisine("Italian");
 		reciperepo.save(r);
 		
@@ -193,6 +194,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		r.setServing(6);
 		r.setTime("1 hour");
 		r.setCuisine("Indian");
+		r.setDifficulty(2);
 		reciperepo.save(r);
 		
 		s = new Step();

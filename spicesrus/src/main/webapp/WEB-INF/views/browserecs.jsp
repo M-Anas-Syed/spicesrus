@@ -417,10 +417,10 @@
           <div class="sorting">
               <a id="sort" class="sortnfilter" href="#">Sort</a>
               <div id="sortoptions" class="sortoptions">
-                <a class="sortselect" href="#">Name: Ascending</a>
-                <a class="sortselect" href="#">Name: Descending</a>
-                <a class="sortselect" href="#">Difficulty: High to Low</a>
-                <a class="sortselect" href="#">Difficulty: Low to High</a>
+                <a class="sortselect" href="/recipes">Name: Ascending</a>
+                <a class="sortselect" href="/recipes/descending">Name: Descending</a>
+                <a class="sortselect" href="/recipes/hl">Difficulty: High to Low</a>
+                <a class="sortselect" href="/recipes/lh">Difficulty: Low to High</a>
               </div>
             </div>
           <a id="filter" class="sortnfilter" href="#">Filter</a>
