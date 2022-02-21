@@ -290,8 +290,6 @@
             <price>
               <img src="<c:url value='/media/pound_black.svg'/>" alt="pound">${spice.price}
             </price>
-            <descr>Flavours: ${spice.flavours}</descr>
-            <descr>${spice.description}</descr>
             <p class="quantitylabel">Quantity(g):</p>
             <div>
               <form:form action="/select">
@@ -302,6 +300,10 @@
               </form:form>
             </div>
             <buy><button type="button">Add to basket</button></buy>
+            <descr>Flavours: ${spice.flavours}</descr>
+            <descr>${spice.description}</descr>
+            <descr>History: ${spice.history}</descr>
+
           </div>
         </div>
 
