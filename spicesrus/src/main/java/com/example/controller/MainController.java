@@ -92,9 +92,26 @@ public class MainController {
 	
 	//show the recipes page
 	@RequestMapping("/recipes")
-	public String recipes(Model model) {
-		model.addAttribute("dishes", reciperepo.findAll());
-		return "browserecs";
+	public String homepage(Model model, String indian, String italian) {
+		String x;
+		List<String> cuisine = new ArrayList<String>();
+
+		if(indian != null) {
+			cuisine.add("indian");
+		}
+		if(italian != null) {
+			cuisine.add("italian");
+		}
+		if(!cuisine.isEmpty()) {
+			model.addAttribute("dishes", reciperepo.findByCuisine(cuisine));
+			x = "browserecs";
+		}
+		else{
+			model.addAttribute("dishes", reciperepo.findAll());
+			x = "browserecs";
+		}
+
+		return x;
 	}
 	
 	@RequestMapping("/product={spice}")

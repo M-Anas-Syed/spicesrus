@@ -19,6 +19,7 @@ public class Recipe {
 	private String access;
 	private String time;
 	private int serving;
+	private String cuisine;
 	@OneToMany(mappedBy="recipe") 
 	private List<Step> steps;
 	@OneToMany(mappedBy="recipe") 
@@ -39,6 +40,9 @@ public class Recipe {
 	}
 	public int getServing(){
 		return serving;
+	}
+	public String getCuisine(){
+		return cuisine;
 	}
 	public List<Step> getSteps(){
 		return steps;
@@ -63,5 +67,8 @@ public class Recipe {
 	}
 	public void setAccess(String access) {
 		this.access = access;
+	}
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
 	}
 }
