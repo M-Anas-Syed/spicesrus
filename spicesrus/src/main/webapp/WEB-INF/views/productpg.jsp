@@ -178,13 +178,15 @@
 
         .quantitylabel{
           font-size: 25px;
-          margin-bottom: 0;
+          margin: 0;
+          font-weight: 300;
         }
 
         name {
           float: left;
           font-size: 75px;
           width: 50%;
+          font-weight: 300;
         }
 
         price {
@@ -192,6 +194,7 @@
           right: 0;
           position: absolute;
           margin: 30px;
+          font-weight: 300;
         }
 
         descr {
@@ -202,25 +205,94 @@
         .minusbutton{
           text-decoration: none;
           border: none;
-          background: black;
-          color: white;
+          background: #F0F0F0;
+          color: black;
           font-weight: 400;
+          font-size: 22px;
+          border-right: 1px solid lightgrey;
+          padding: 0px 15px;
         }
 
         .plusbutton{
           text-decoration: none;
           border: none;
-          background: black;
-          color: white;
+          background: #F0F0F0;
+          color: black;
           font-weight: 400;
+          font-size: 22px;
+          border-left: 1px solid lightgray;
+          padding: 0 15px;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        #quantity::-webkit-outer-spin-button,
+        #quantity::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Firefox */
+        #quantity[type=number] {
+          -moz-appearance: textfield;
         }
 
         #quantity{
-          width: 10%;
+          width: 80px;
           text-align: center;
           border: none;
+          font-size: 16px;
+          background: #F0F0F0;
+          font-weight: 700;
         }
 
+        .quantitydiv{
+          width: fit-content;
+          margin: 0 auto;
+          background: #F0F0F0;
+          padding: 7px 0px;
+          display: flex;
+          border-radius: 5px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        }
+
+        /* #addtobasket{
+          border: none;
+          color: white;
+          padding: 10px 20px;
+          font-size: 18px;
+          border-radius: 5px;
+          text-transform: capitalize;
+          letter-spacing: -1px;
+          background: green;
+        } */
+
+        
+        
+        
+        #addtobasket {background-image: linear-gradient(to right, #06beb6 0%, #48b1bf  51%, #06beb6  100%)}
+        #addtobasket {
+            padding: 15px 25px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+            border: none;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          }
+
+          #addtobasket:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+         
+         
+         
         buy {
           float: left;
           width: 50%
@@ -242,6 +314,10 @@
         .footertext:hover {
           color: white;
         }
+
+        .basket{
+        width: 30px;
+      }
 
 
         section::after {
@@ -265,7 +341,12 @@
               <li class="navoptions"><a href="/recipes">Recipes</a></li>
             </ul>
           </div>
-          <a class="loginbutton" href="#">Login</a>
+          <div style="display: flex;gap: 20px;">
+            <a class="loginbutton" href="#">Login</a>
+            <a href="/basket">
+              <img class="basket" src="<c:url value='/media/basket.svg'/>" alt="">
+            </a>
+          </div>
           <!--
           <a class="logoutbutton" href="#">Logout</a>
         -->
@@ -292,16 +373,21 @@
             </price>
             <descr>Flavours: ${spice.flavours}</descr>
             <descr>${spice.description}</descr>
-            <p class="quantitylabel">Quantity(g):</p>
             <div>
-              <form:form action="/select">
-                <button class="minusbutton" id="decrement" type="button">-</button>
-                <input id="quantity" type="text" value="0">
-                <button class="plusbutton" id="increment" type="button">+</button>
-    
-              </form:form>
+              <form action="/addToBasket" method="POST" >
+                <div style="display: flex; justify-content: space-evenly;">
+                  <p class="quantitylabel">Qty(grams):</p>
+                  <div class="quantitydiv">
+                    <button class="minusbutton" id="decrement" type="button">-</button>
+                    <input type="hidden" value="${spice.id}" path="id" name="id">
+                    <input id="quantity" type="number" value="100" min="50" path="quantity" name="quantity"></input>
+                    <button class="plusbutton" id="increment" type="button">+</button>
+                  </div>
+                  <button id="addtobasket" type="submit">Add to basket</button>
+                </div>
+              </form> 
             </div>
-            <buy><button type="button">Add to basket</button></buy>
+            
           </div>
         </div>
 
