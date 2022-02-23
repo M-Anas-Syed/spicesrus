@@ -15,6 +15,12 @@ import com.example.domain.Product;
 import com.example.domain.Recipe;
 import com.example.domain.Step;
 import com.example.repo.IngredientRepository;
+import com.example.domain.Basket;
+import com.example.domain.BasketItem;
+import com.example.domain.Product;
+import com.example.domain.Recipe;
+import com.example.repo.BasketItemRepository;
+import com.example.repo.BasketRepository;
 import com.example.repo.ProductRepository;
 import com.example.repo.RecipeRepository;
 import com.example.repo.StepRepository;
@@ -32,6 +38,10 @@ public class SpicesrusApplication implements ApplicationRunner {
 	private StepRepository steprepo;
 	@Autowired
 	private IngredientRepository ingredientrepo;
+	@Autowired
+	private BasketItemRepository itemrepo;
+	@Autowired
+	private BasketRepository basketrepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpicesrusApplication.class, args);
@@ -39,7 +49,11 @@ public class SpicesrusApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+
 		List<Step> steps=new ArrayList<Step>();
+		
+		
+		
 		Product p = new Product();
 		Recipe r = new Recipe();
 		Step s = new Step();
@@ -103,7 +117,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		reciperepo.save(r);
 		
 		s = new Step();
-		s.setStep("1. In a large pan, heat the olive oil over a low heat. Fry the onion, carrot, celery and garlic for 5 mins, or until softened. Add the mince and fry on a medium heat until golden. Turn up the heat, pour in the wine and bubble until reduced. Stir in the tomato purée, chopped tomatoes and stock. Add in the Worcestershire sauce and simmer for 15 mins, or until the liquid has reduced. Season.");
+		s.setStep("1. In a large pan, heat the olive oil over a low heat. Fry the onion, carrot, celery and garlic for 5 mins, or until softened. Add the mince and fry on a medium heat until golden. Turn up the heat, pour in the wine and bubble until reduced. Stir in the tomato purï¿½e, chopped tomatoes and stock. Add in the Worcestershire sauce and simmer for 15 mins, or until the liquid has reduced. Season.");
 		s.setRecipe(r);
 		steprepo.save(s);
 		s = new Step();
@@ -111,7 +125,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		s.setRecipe(r);
 		steprepo.save(s);
 		s = new Step();
-		s.setStep("3. Preheat the oven to gas 6, 200°C, fan 180°C. Layer up the lasagne in a baking dish, starting with a third each of the ragu, then the pasta, then the white sauce. Repeat twice. Top with the Parmesan and mozzarella then bake in the oven for 40-45 mins, until piping hot and crisp and bubbling on top. Serve immediately.");
+		s.setStep("3. Preheat the oven to gas 6, 200ï¿½C, fan 180ï¿½C. Layer up the lasagne in a baking dish, starting with a third each of the ragu, then the pasta, then the white sauce. Repeat twice. Top with the Parmesan and mozzarella then bake in the oven for 40-45 mins, until piping hot and crisp and bubbling on top. Serve immediately.");
 		s.setRecipe(r);
 		steprepo.save(s);
 		
@@ -144,7 +158,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		i.setRecipe(r);
 		ingredientrepo.save(i);
 		i = new Ingredient();
-		i.setIngredient("1 tbsp tomato purée");
+		i.setIngredient("1 tbsp tomato purï¿½e");
 		i.setRecipe(r);
 		ingredientrepo.save(i);
 		i = new Ingredient();
@@ -187,7 +201,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		i.setIngredient("550ml semi-skimmed milk");
 		i.setRecipe(r);
 		ingredientrepo.save(i);
-		
+
 		r = new Recipe();
 		r.setName("Murgh Kari");
 		r.setAccess("Accountless");
