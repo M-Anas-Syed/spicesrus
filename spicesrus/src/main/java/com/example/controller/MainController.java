@@ -103,4 +103,10 @@ public class MainController {
 		return "productpg";
 	}
 	
+	//Return search result
+	@RequestMapping("/Search/CORP_NAME={product}")
+	public String searchResult(Model model) {
+		return "Search";
+	}
+	
 }

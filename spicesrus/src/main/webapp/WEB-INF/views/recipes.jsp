@@ -23,6 +23,97 @@
     padding: 0;
     background: #fff7d8;
   }
+   /*Search bar*/
+      S.search {padding: 30px 0;}
+
+        form {
+            position: relative;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        input, button {
+            border: none;
+            outline: none;
+        }
+
+        input {
+            width: 100%;
+            height: 42px;
+            padding-left: 13px;
+        }
+
+        button {
+            height: 42px;
+            width: 42px;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        .bar input, .bar2 button {
+            border-radius: 3px;
+        }
+        .bar input {
+            background: #F9F0DA;
+        }
+        .bar button {
+            height: 26px;
+            width: 50px;
+            top: 8px;
+            right: 8px;
+            background: #F15B42;
+        }
+        .bar button:before {
+            content: "Search";
+            font-size: 13px;
+            color: #F9F0DA;
+        }
+/*search bar*/
+	S.search {padding: 30px 0;}
+
+    form {
+    	position: relative;
+        width: 300px;
+        margin: 0 auto;
+	}
+
+      input, button {
+      	border: none;
+      	outline: none;
+      }
+      
+      input {
+      	width: 100%;
+      	height: 42px;
+      	padding-left 13px;
+      }
+      
+      button {
+      	height: 42px;
+      	width: 42px;
+      	cursor: pointer;
+      	position: absolute;
+      }
+      .bar input, .bar button {
+      	border-radius: 3px;
+      }
+      .bar input {
+      	background: #F9F0DA;
+      }
+      .bar button {
+      	height: 26px;
+      	width: 26px;
+      	top: 8px;
+      	right: 8px;
+      	background: #F15B42;
+      }
+      .bar button:before {
+      	content: "\f105";
+      	font-family: FontAwesome;
+      	color: #F9F0DA;
+      	font-size: 20px;
+      	font-weight: bold;
+      }
 
   /*header*/
   header {
@@ -40,7 +131,6 @@
   }
 
   .headerlinks {
-    position: absolute;
     width: 200px;
     left: 0;
     right: 0;
@@ -293,6 +383,12 @@
         <li class="navoptions"><a href="/recipes">Recipes</a></li>
       </ul>
     </div>
+	<S class="bar">
+        <form action="Search.jsp">
+       		<input type="text" name="CORP_NAME" id="CORP_NAME" "/>
+       		<button type="submit" onclick="Search.jsp"></button>
+       	</form>
+    </S>
     <a class="loginbutton" href="#">Login</a>
     <!--
       <a class="logoutbutton" href="#">Logout</a>
