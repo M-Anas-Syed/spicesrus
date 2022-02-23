@@ -196,7 +196,7 @@
 
         descr {
           text-align: justify;
-          margin: 20px 0;
+          margin: 20px 0px 0px 0px;
         } 
 
         .minusbutton{
