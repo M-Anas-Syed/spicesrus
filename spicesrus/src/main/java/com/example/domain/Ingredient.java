@@ -15,6 +15,7 @@ public class Ingredient {
 	private String ingredient;
 	@ManyToOne(fetch=FetchType.LAZY)  
 	private Recipe recipe; 
+	private String ingredientURL;
 	
 	public int getId() {
 		return id;
@@ -30,6 +31,11 @@ public class Ingredient {
 	}  
 	public void setRecipe(Recipe recipe){  
 		this.recipe = recipe;  
+	}
+	public String getIngredientURL() {
+		return ingredientURL;
+	}
+	public void setIngredientURL(String ingredientURL) {
+		this.ingredientURL = ingredientURL;
 	}  
-
 }

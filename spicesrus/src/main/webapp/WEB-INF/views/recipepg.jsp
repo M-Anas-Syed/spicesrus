@@ -252,7 +252,7 @@
 	       <ingredients>
 	       <sectiontitle>Ingredients</sectiontitle>
 	       	<c:forEach items="${recipe.ingredients}" var="ingredient">
-             	<item><br>${ingredient.ingredient}</item>
+             	<item><br><a href=${ingredient.ingredientURL}>${ingredient.ingredient}</a></item>
            </c:forEach>
            </ingredients>        
         

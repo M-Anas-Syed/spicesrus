@@ -244,14 +244,17 @@ public class SpicesrusApplication implements ApplicationRunner {
 		ingredientrepo.save(i);
 		i = new Ingredient();
 		i.setIngredient("1 teaspoon ground cumin");
+		i.setIngredientURL("http://localhost:8080/product=2");
 		i.setRecipe(r);
 		ingredientrepo.save(i);
 		i = new Ingredient();
 		i.setIngredient("1 teaspoon ground turmeric");
+		i.setIngredientURL("http://localhost:8080/product=1");
 		i.setRecipe(r);
 		ingredientrepo.save(i);
 		i = new Ingredient();
 		i.setIngredient("1 teaspoon ground coriander");
+		i.setIngredientURL("http://localhost:8080/product=3");
 		i.setRecipe(r);
 		ingredientrepo.save(i);
 		i = new Ingredient();
