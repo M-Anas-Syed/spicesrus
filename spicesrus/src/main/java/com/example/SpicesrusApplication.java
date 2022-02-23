@@ -67,6 +67,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		p.setSpicelvl(0);
 		p.setDescription("Tumeric is overwhelmingly earthy and bitter, almost musky, with a bit of peppery spice. A spoonful or two is enough to tinge an entire soup, pot of rice, or spice rub a vibrant shade of yellow-orange.");
 		p.setFlavours("warm, bitter, pepper-like");
+		
 		productrepo.save(p);
 		
 		p = new Product();
@@ -75,14 +76,16 @@ public class SpicesrusApplication implements ApplicationRunner {
 		p.setRegion("Asia");
 		p.setSpicelvl(0);
 		p.setFlavours("slightly sweet, warming flavour with a nutty element");
+		p.setHistory("Likely originating in Central Asia, Southwestern Asia, or the Eastern Mediterranean, cumin has been in use as a spice for thousands of years. Cumin was a significant spice for the Minoans in ancient Crete. The ancient Greeks kept cumin at the dining table in its own container (much as pepper is frequently kept today), and this practice continues in Morocco. In India, it has been used for millennia as a traditional ingredient in innumerable recipes and forms the basis of many other spice blends.");
 		productrepo.save(p);
 		
 		p = new Product();
 		p.setPrice(6);
-		p.setName("Corriander");
+		p.setName("Coriander");
 		p.setRegion("Asia");
 		p.setSpicelvl(0);
 		p.setFlavours("refreshing, tart, and citrusy");
+		p.setHistory("Coriander was mentioned in the Bible, and the seeds have been found in ruins dating back to 5000 B.C. Its name comes from the Greek word koris, meaning a stink bug. This is likely a reference to the strong aroma given off by the cilantro plant leaves when they are bruised.");
 		productrepo.save(p);
 		
 		p = new Product();
@@ -99,6 +102,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		p.setRegion("Europe");
 		p.setSpicelvl(0);
 		p.setFlavours("nutty, bittersweet sharpness with a hint of citrus, pepper, and anise (mild liquorice)");
+		p.setHistory("Caraway was mentioned by the early Greek botanist Pedanius Dioscorides as a herb and tonic. It was later mentioned in the Roman Apicius as an ingredient in recipes. Caraway was known in the Arab world as karauya, and cultivated in Morocco");
 		productrepo.save(p);
 		
 		p = new Product();
@@ -107,6 +111,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		p.setRegion("South America");
 		p.setSpicelvl(1);
 		p.setFlavours("sweet fruity flavour with added heat");
+		p.setHistory("Unrelated to actual peppercorns, pink peppercorns originated in Peru, where they had a heavy influence on the local cuisine and culture.");
 		productrepo.save(p);
 		
 		

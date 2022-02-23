@@ -1,6 +1,7 @@
 
 package com.example.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,6 +18,8 @@ public class Product {
 	private int spicelvl;
 	private String description;
 	private String flavours;
+	@Column(length=1000)
+	private String history;
 	
 	public int getId() {
 		return product_id;
@@ -45,7 +48,15 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
+	public void setHistory(String history) {
+		this.history = history;
+	}
 
+	public String getHistory() {
+		return history;
+	}
+	
 	public String getRegion() {
 		return region;
 	}

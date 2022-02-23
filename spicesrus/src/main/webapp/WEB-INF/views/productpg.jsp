@@ -199,7 +199,7 @@
 
         descr {
           text-align: justify;
-          margin: 20px 0;
+          margin: 20px 0px 0px 0px;
         } 
 
         .minusbutton{
@@ -371,8 +371,11 @@
             <price>
               <img src="<c:url value='/media/pound_black.svg'/>" alt="pound">${spice.price}
             </price>
+
             <descr>Flavours: ${spice.flavours}</descr>
             <descr>${spice.description}</descr>
+            <descr>History: ${spice.history}</descr>
+            
             <div>
               <form action="/addToBasket" method="POST" >
                 <div style="display: flex; justify-content: space-evenly;">
@@ -387,7 +390,8 @@
                 </div>
               </form> 
             </div>
-            
+
+
           </div>
         </div>
 
