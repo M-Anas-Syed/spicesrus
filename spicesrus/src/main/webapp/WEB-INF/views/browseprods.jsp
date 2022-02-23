@@ -388,6 +388,9 @@
         top: 0;
       }
 
+      .basket{
+        width: 30px;
+      }
 
 
       section::after {
@@ -411,7 +414,12 @@
             <li class="navoptions"><a href="/recipes">Recipes</a></li>
           </ul>
         </div>
-        <a class="loginbutton" href="#">Login</a>
+        <div style="display: flex;gap: 20px;">
+          <a class="loginbutton" href="#">Login</a>
+          <a href="/basket">
+            <img class="basket" src="<c:url value='/media/basket.svg'/>" alt="">
+          </a>
+        </div>
         <!--
           <a class="logoutbutton" href="#">Logout</a>
         -->
