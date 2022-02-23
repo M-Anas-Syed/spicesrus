@@ -19,6 +19,10 @@ import com.example.domain.Basket;
 import com.example.domain.BasketItem;
 import com.example.domain.Product;
 import com.example.domain.Recipe;
+import com.example.domain.Basket;
+import com.example.domain.BasketItem;
+import com.example.domain.Product;
+import com.example.domain.Recipe;
 import com.example.repo.BasketItemRepository;
 import com.example.repo.BasketRepository;
 import com.example.repo.ProductRepository;
@@ -50,8 +54,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
-		List<Step> steps=new ArrayList<Step>();
-		
+		List<Step> steps=new ArrayList<Step>();		
 		
 		
 		Product p = new Product();
