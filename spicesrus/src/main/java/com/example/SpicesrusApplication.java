@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Sort;
 
+import com.example.domain.Basket;
+import com.example.domain.BasketItem;
 import com.example.domain.Product;
 import com.example.domain.Recipe;
+import com.example.repo.BasketItemRepository;
+import com.example.repo.BasketRepository;
 import com.example.repo.ProductRepository;
 import com.example.repo.RecipeRepository;
 
@@ -23,6 +28,10 @@ public class SpicesrusApplication implements ApplicationRunner {
 	private ProductRepository productrepo;
 	@Autowired
 	private RecipeRepository reciperepo;
+	@Autowired
+	private BasketItemRepository itemrepo;
+	@Autowired
+	private BasketRepository basketrepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpicesrusApplication.class, args);
@@ -30,6 +39,9 @@ public class SpicesrusApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		
+		
+		
 		Product p = new Product();
 		Recipe r = new Recipe();
 		p.setPrice(4);
@@ -80,6 +92,18 @@ public class SpicesrusApplication implements ApplicationRunner {
 		r.setAccess("Accountless");
 		reciperepo.save(r);
 		
+		
+//		Basket b = new Basket();
+//		
+//		BasketItem i = new BasketItem();
+//		i.setProduct(p);
+//		i.setQuantity(5);
+//		itemrepo.save(i);
+//		
+//		b.setItems(new ArrayList<>());
+//		b.getItems().add(i);
+//		
+//		basketrepo.save(b);
 		
 		System.out.println("*************************");
 		System.out.println(p);
