@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,11 +58,28 @@ public class BasketController {
 		return "redirect:/products";
 	}
 	
+	@PostMapping("/quickBuy")
+	public String quickBuy(String id, int quantity) {
+		
+		Basket basket1 = new Basket();
+		BasketItem items = new BasketItem();
+		items.setQuantity(quantity);
+		items.setProduct(productrepo.findById(Integer.parseInt(id)).get());
+		
+		int tPrice = (productrepo.findById(Integer.parseInt(id)).get().getPrice() * quantity)/100; 
+		items.setTotal_price(tPrice);
+		itemrepo.save(items);
+		
+		basket1.getItems().add(items);
+		basketrepo.save(basket1);
+		
+		return "redirect:/products";
+	}
+	
 	@RequestMapping("deleteitem")
 	public String deleteItem(@RequestParam int id) {
 		itemrepo.delete(itemrepo.findById(id).get());
 		return "redirect:/basket";
 	}
-	
 	
 }
