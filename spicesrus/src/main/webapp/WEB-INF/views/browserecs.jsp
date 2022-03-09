@@ -428,6 +428,20 @@
         width: 30px;
       }
 
+      .totalitems{
+          margin: 0;
+          position: absolute;
+          top: -12px;
+          right: -12px;
+          color: white;
+          background: black;
+          border-radius: 50%;
+          width: 18px;
+          height: 18px;
+          font-size: 12px;
+          text-align: center;
+      }
+
       section::after {
         content: "";
         display: table;
@@ -451,8 +465,9 @@
         </div>
         <div style="display: flex;gap: 20px;">
           <a class="loginbutton" href="#">Login</a>
-          <a href="/basket">
+          <a style="position: relative;" href="/basket">
             <img class="basket" src="<c:url value='/media/basket.svg'/>" alt="">
+            <p class="totalitems">${totalitems}</p>
           </a>
         </div>
         <!--
