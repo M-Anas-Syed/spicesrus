@@ -209,6 +209,24 @@
       	padding: 20px 20px 0px 0px;
       }
 
+      .basket{
+        width: 30px;
+      }
+
+      .totalitems{
+          margin: 0;
+          position: absolute;
+          top: -12px;
+          right: -12px;
+          color: white;
+          background: black;
+          border-radius: 50%;
+          width: 18px;
+          height: 18px;
+          font-size: 12px;
+          text-align: center;
+      }
+
       /*footer with pagination*/
       footer {
         text-align: center;
@@ -235,7 +253,13 @@
             <li class="navoptions"><a href="/recipes">Recipes</a></li>
           </ul>
         </div>
-        <a class="loginbutton" href="#">Login</a>
+        <div style="display: flex;gap: 20px;">
+          <a class="loginbutton" href="#">Login</a>
+          <a style="position: relative;" href="/basket">
+            <img class="basket" src="<c:url value='/media/basket.svg'/>" alt="">
+            <p class="totalitems">${totalitems}</p>
+          </a>
+        </div>
         <!--
           <a class="logoutbutton" href="#">Logout</a>
         -->
