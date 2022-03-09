@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.domain.Product;
 import com.example.domain.Recipe;
+import com.example.repo.BasketItemRepository;
 import com.example.repo.ProductRepository;
 import com.example.repo.RecipeRepository;
 
@@ -27,6 +28,8 @@ public class MainController {
 	private ProductRepository productrepo;
 	@Autowired
 	private RecipeRepository reciperepo;
+	@Autowired
+	private BasketItemRepository itemrepo;
 	
 	//redirects customer to site home page if not specified
 	@RequestMapping(value = "/")
@@ -61,10 +64,12 @@ public class MainController {
 		
 		if(!region.isEmpty()) {
 			model.addAttribute("spices", productrepo.findByRegion(region));
+			model.addAttribute("totalitems", itemrepo.count());
 			x = "browseprods";
 		}
 		else {
 			model.addAttribute("spices", productrepo.findAll(Sort.by("name")));
+			model.addAttribute("totalitems", itemrepo.count());
 			x = "browseprods";
 		}
 
@@ -72,39 +77,45 @@ public class MainController {
 	}
 	
 	
-	@RequestMapping("/products/descending")
+	@RequestMapping("/descending")
 	public String descending(Model model) {
 		model.addAttribute("spices", productrepo.findAll(Sort.by("name").descending()));
+		model.addAttribute("totalitems", itemrepo.count());
 		return "browseprods";
 	}
 	
-	@RequestMapping("/products/hl")
+	@RequestMapping("/hl")
 	public String hightolow(Model model) {
 		model.addAttribute("spices", productrepo.findAll(Sort.by("price").descending()));
+		model.addAttribute("totalitems", itemrepo.count());
 		return "browseprods";
 	}
 	
-	@RequestMapping("/products/lh")
+	@RequestMapping("/lh")
 	public String rlowtohigh(Model model) {
 		model.addAttribute("spices", productrepo.findAll(Sort.by("price")));
+		model.addAttribute("totalitems", itemrepo.count());
 		return "browseprods";
 	}
 	
 	@RequestMapping("/recipes/descending")
 	public String rdescending(Model model) {
 		model.addAttribute("dishes", reciperepo.findAll(Sort.by("name").descending()));
+		model.addAttribute("totalitems", itemrepo.count());
 		return "browserecs";
 	}
 	
 	@RequestMapping("/recipes/hl")
 	public String rhightolow(Model model) {
 		model.addAttribute("dishes", reciperepo.findAll(Sort.by("difficulty").descending()));
+		model.addAttribute("totalitems", itemrepo.count());
 		return "browserecs";
 	}
 	
 	@RequestMapping("/recipes/lh")
 	public String lowtohigh(Model model) {
 		model.addAttribute("dishes", reciperepo.findAll(Sort.by("difficulty")));
+		model.addAttribute("totalitems", itemrepo.count());
 		return "browserecs";
 	}
 	
@@ -122,10 +133,12 @@ public class MainController {
 		}
 		if(!cuisine.isEmpty()) {
 			model.addAttribute("dishes", reciperepo.findByCuisine(cuisine));
+			model.addAttribute("totalitems", itemrepo.count());
 			x = "browserecs";
 		}
 		else{
 			model.addAttribute("dishes", reciperepo.findAll(Sort.by("name")));
+			model.addAttribute("totalitems", itemrepo.count());
 			x = "browserecs";
 		}
 
@@ -136,6 +149,7 @@ public class MainController {
 	public String individualproduct(Model model, @PathVariable int spice) {
 		Optional<Product> product = productrepo.findById(spice);
 		model.addAttribute("spice", product.get());
+		model.addAttribute("totalitems", itemrepo.count());
 		return "productpg";
 	}
 	
@@ -143,6 +157,7 @@ public class MainController {
 	public String individualrecipe(Model model, @PathVariable int rec) {
 		Optional<Recipe> recipe = reciperepo.findById(rec);
 		model.addAttribute("recipe", recipe.get());
+		model.addAttribute("totalitems", itemrepo.count());
 		return "recipepg";
 	}
 }

@@ -319,6 +319,19 @@
         width: 30px;
       }
 
+      .totalitems{
+          margin: 0;
+          position: absolute;
+          top: -12px;
+          right: -12px;
+          color: white;
+          background: black;
+          border-radius: 50%;
+          width: 18px;
+          height: 18px;
+          font-size: 12px;
+          text-align: center;
+      }
 
         section::after {
           content: "";
@@ -343,8 +356,9 @@
           </div>
           <div style="display: flex;gap: 20px;">
             <a class="loginbutton" href="#">Login</a>
-            <a href="/basket">
+            <a style="position: relative;" href="/basket">
               <img class="basket" src="<c:url value='/media/basket.svg'/>" alt="">
+              <p class="totalitems">${totalitems}</p>
             </a>
           </div>
           <!--
@@ -369,14 +383,14 @@
             </div>
 
             <price>
-              <img src="<c:url value='/media/pound_black.svg'/>" alt="pound">${spice.price}
+              <img src="<c:url value='/media/pound_black.svg'/>" alt="pound">${spice.price} <span style="font-size: 15px;">(per 100g)</span>
             </price>
 
             <descr>Flavours: ${spice.flavours}</descr>
             <descr>${spice.description}</descr>
             <descr>History: ${spice.history}</descr>
             
-            <div>
+            <div style="margin: 40px 0;">
               <form action="/addToBasket" method="POST" >
                 <div style="display: flex; justify-content: space-evenly;">
                   <p class="quantitylabel">Qty(grams):</p>
