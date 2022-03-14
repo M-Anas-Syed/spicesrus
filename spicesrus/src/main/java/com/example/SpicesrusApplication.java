@@ -2,6 +2,7 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -236,6 +237,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		s.setRecipe(r);
 		steprepo.save(s);
 		
+		Optional<Product> product = productrepo.findById(2);
 		i = new Ingredient();
 		i.setIngredient("2 pounds skinless, boneless chicken breast halves");
 		i.setRecipe(r);
@@ -266,17 +268,19 @@ public class SpicesrusApplication implements ApplicationRunner {
 		ingredientrepo.save(i);
 		i = new Ingredient();
 		i.setIngredient("1 teaspoon ground cumin");
-		i.setIngredientURL("http://localhost:8080/product=2");
+		i.setProduct(product.get());
 		i.setRecipe(r);
 		ingredientrepo.save(i);
+		product = productrepo.findById(1);
 		i = new Ingredient();
 		i.setIngredient("1 teaspoon ground turmeric");
-		i.setIngredientURL("http://localhost:8080/product=1");
+		i.setProduct(product.get());
 		i.setRecipe(r);
 		ingredientrepo.save(i);
+		product = productrepo.findById(3);
 		i = new Ingredient();
 		i.setIngredient("1 teaspoon ground coriander");
-		i.setIngredientURL("http://localhost:8080/product=3");
+		i.setProduct(product.get());
 		i.setRecipe(r);
 		ingredientrepo.save(i);
 		i = new Ingredient();

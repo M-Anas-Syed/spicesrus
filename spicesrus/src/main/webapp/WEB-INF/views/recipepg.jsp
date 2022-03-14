@@ -148,7 +148,7 @@
       	padding: 50px
       	}
       
-      productimage{
+      recipeimage{
 		float: left;
       	display: block;
 		width: 40%;
@@ -156,7 +156,7 @@
 		margin: 20px 0;
 		text-align: center;
       }
-      .productimg{
+      .recipeimg{
       	border-style: solid;
       	border-width: 2px;
       	border-color: black;
@@ -226,6 +226,74 @@
           font-size: 12px;
           text-align: center;
       }
+      
+              /*container to hold products*/
+        .prod {
+          float: left;
+          display: block;
+          width: 250px;
+          height: auto;
+          background-color: white;
+          margin: 20px 0;
+          text-align: center;
+          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+          transition: all .15s ease-in-out;
+          position: relative;
+        }
+
+        .prod:hover {
+          transform: scale(1.08);
+        }
+
+        .prodlist {
+          margin: 35px 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 60px;
+        }
+
+        .prodinfo {
+          background: #e9ecef;
+          padding: 5px;
+          color: black;
+          text-decoration: none;
+        }
+
+        /*product image*/
+        prodimg {
+          /*float: left;*/
+          display: block;
+          text-align: center;
+          /*margin: 20px 20px 0px 20px;*/
+          padding: 30px;
+        }
+
+        /*product name*/
+        prodnm {
+          /*float: left;*/
+          width: 100%;
+          text-align: center;
+          font-size: 20px;
+        }
+
+        /*product price*/
+        prodpr {
+          font-size: 20px;
+          display: flex;
+          justify-content: center;
+          font-weight: 300;
+        }
+
+        prodflav {
+          text-align: center;
+          width: 80%;
+          font-size: 12px;
+          display: block;
+          margin: 10px auto;
+          font-weight: 300;
+        }
 
       /*footer with pagination*/
       footer {
@@ -267,16 +335,16 @@
     </header>
 
     <section>
-        <productimage>  
-	       <img class = productimg src="<c:url value='/media/r${recipe.id}.jpg'/>" width="400" height="400">
-	    </productimage>
+        <recipeimage>  
+	       <img class = recipeimg src="<c:url value='/media/r${recipe.id}.jpg'/>" width="400" height="400">
+	    </recipeimage>
 	       <name>${recipe.name}</name>
 	       <time>${recipe.time}<br></time>
 	       <serving>Serves: ${recipe.serving}</serving>
 	       <ingredients>
 	       <sectiontitle>Ingredients</sectiontitle>
 	       	<c:forEach items="${recipe.ingredients}" var="ingredient">
-             	<item><br><a href=${ingredient.ingredientURL}>${ingredient.ingredient}</a></item>
+             	<item><br>${ingredient.ingredient}</item>
            </c:forEach>
            </ingredients>        
         
@@ -286,6 +354,34 @@
              	<item><br>${step.step}<br></item>
            </c:forEach>
            </steps>
+           <c:forEach items="${recipe.ingredients}" var="ingredient">
+           		<c:if test="${not empty ingredient.product}">
+             	<div>
+                	<a href="/product=${ingredient.product.id}">
+                  	<div class="prod">
+                    	<prodimg><img src="<c:url value='/media/${ingredient.product.id}.png'/>" width="200" height="200"></prodimg>
+                    	<form action="quickBuy" method="POST">
+                      	<input type="hidden" value="${ingredient.product.id}" path="id" name="id">
+                      	<input type="hidden" value="100" path="quantity" name="quantity">
+                      	<button class="quickbuy" type="submit">
+                        	<img src="<c:url value='/media/add_cart.svg'/>" alt="Add to cart" width="20" height="20">
+                      	</button>
+                    	</form>
+                    	<div class="prodinfo">
+                      	<div>
+                        	<prodnm>${ingredient.product.name}</prodnm>
+                        	<prodpr>
+                          	<img src="<c:url value='/media/pound_black.svg'/>" width="15" height="20"
+                            	style="margin: 5px 0;">
+                          	${ingredient.product.price}
+                        	</prodpr>
+                      	</div>
+                    	</div>
+                  	</div>
+                	</a>
+              	</div>	
+           	 </c:if>
+        </c:forEach>  
     </section>
     <footer>
 
