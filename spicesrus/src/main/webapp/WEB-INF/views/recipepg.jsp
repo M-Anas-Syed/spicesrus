@@ -184,11 +184,11 @@
       }
       
       steps{
-      	margin-top: 20px;
+      	margin: 20px;
       	float: left;
         width: auto;
         background-color: white;
-        padding: 5px 20px;
+        padding: 20px 20px;
         border: 10px;
       }
       
@@ -206,7 +206,7 @@
       	float:left;
       	width:100%;
       	font-size: 18px;
-      	padding: 20px 20px 0px 0px;
+      	padding: 0px 20px 0px 0px;
       }
 
       .basket{
@@ -353,8 +353,9 @@
 	       <ingredients>
 	       <sectiontitle>Ingredients</sectiontitle>
 	       	<c:forEach items="${recipe.ingredients}" var="ingredient">
-             	<item><br>${ingredient.ingredient}</item>
+             	<item><br><input type="checkbox"> ${ingredient.ingredient}</item>
            </c:forEach>
+
            </ingredients>        
         
 		   <steps>
