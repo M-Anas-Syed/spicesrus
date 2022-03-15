@@ -2,6 +2,7 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -125,7 +126,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		reciperepo.save(r);
 		
 		s = new Step();
-		s.setStep("1. In a large pan, heat the olive oil over a low heat. Fry the onion, carrot, celery and garlic for 5 mins, or until softened. Add the mince and fry on a medium heat until golden. Turn up the heat, pour in the wine and bubble until reduced. Stir in the tomato pur�e, chopped tomatoes and stock. Add in the Worcestershire sauce and simmer for 15 mins, or until the liquid has reduced. Season.");
+		s.setStep("1. In a large pan, heat the olive oil over a low heat. Fry the onion, carrot, celery and garlic for 5 mins, or until softened. Add the mince and fry on a medium heat until golden. Turn up the heat, pour in the wine and bubble until reduced. Stir in the tomato puree, chopped tomatoes and stock. Add in the Worcestershire sauce and simmer for 15 mins, or until the liquid has reduced. Season.");
 		s.setRecipe(r);
 		steprepo.save(s);
 		s = new Step();
@@ -133,7 +134,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		s.setRecipe(r);
 		steprepo.save(s);
 		s = new Step();
-		s.setStep("3. Preheat the oven to gas 6, 200�C, fan 180�C. Layer up the lasagne in a baking dish, starting with a third each of the ragu, then the pasta, then the white sauce. Repeat twice. Top with the Parmesan and mozzarella then bake in the oven for 40-45 mins, until piping hot and crisp and bubbling on top. Serve immediately.");
+		s.setStep("3. Preheat the oven to gas 6, 200C, fan 180C. Layer up the lasagne in a baking dish, starting with a third each of the ragu, then the pasta, then the white sauce. Repeat twice. Top with the Parmesan and mozzarella then bake in the oven for 40-45 mins, until piping hot and crisp and bubbling on top. Serve immediately.");
 		s.setRecipe(r);
 		steprepo.save(s);
 		
@@ -166,7 +167,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		i.setRecipe(r);
 		ingredientrepo.save(i);
 		i = new Ingredient();
-		i.setIngredient("1 tbsp tomato pur�e");
+		i.setIngredient("1 tbsp tomato puree");
 		i.setRecipe(r);
 		ingredientrepo.save(i);
 		i = new Ingredient();
@@ -236,6 +237,7 @@ public class SpicesrusApplication implements ApplicationRunner {
 		s.setRecipe(r);
 		steprepo.save(s);
 		
+		Optional<Product> product;
 		i = new Ingredient();
 		i.setIngredient("2 pounds skinless, boneless chicken breast halves");
 		i.setRecipe(r);
@@ -264,19 +266,22 @@ public class SpicesrusApplication implements ApplicationRunner {
 		i.setIngredient("1 tablespoon curry powder");
 		i.setRecipe(r);
 		ingredientrepo.save(i);
+		product = productrepo.findById(2);
 		i = new Ingredient();
 		i.setIngredient("1 teaspoon ground cumin");
-		i.setIngredientURL("http://localhost:8080/product=2");
+		i.setProduct(product.get());
 		i.setRecipe(r);
 		ingredientrepo.save(i);
+		product = productrepo.findById(1);
 		i = new Ingredient();
 		i.setIngredient("1 teaspoon ground turmeric");
-		i.setIngredientURL("http://localhost:8080/product=1");
+		i.setProduct(product.get());
 		i.setRecipe(r);
 		ingredientrepo.save(i);
+		product = productrepo.findById(3);
 		i = new Ingredient();
 		i.setIngredient("1 teaspoon ground coriander");
-		i.setIngredientURL("http://localhost:8080/product=3");
+		i.setProduct(product.get());
 		i.setRecipe(r);
 		ingredientrepo.save(i);
 		i = new Ingredient();

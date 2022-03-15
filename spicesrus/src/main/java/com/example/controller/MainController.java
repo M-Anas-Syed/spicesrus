@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.domain.Ingredient;
 import com.example.domain.Product;
 import com.example.domain.Recipe;
 import com.example.repo.BasketItemRepository;
+import com.example.repo.IngredientRepository;
 import com.example.repo.ProductRepository;
 import com.example.repo.RecipeRepository;
 
@@ -30,6 +32,8 @@ public class MainController {
 	private RecipeRepository reciperepo;
 	@Autowired
 	private BasketItemRepository itemrepo;
+	@Autowired
+	private IngredientRepository ingredientrepo;
 	
 	//redirects customer to site home page if not specified
 	@RequestMapping(value = "/")
@@ -148,8 +152,11 @@ public class MainController {
 	@RequestMapping("/product={spice}")
 	public String individualproduct(Model model, @PathVariable int spice) {
 		Optional<Product> product = productrepo.findById(spice);
+		Iterable<Integer> linkrecipes = ingredientrepo.findRecipesByProduct(spice);
+		Iterable<Recipe> recipes = reciperepo.findAllById(linkrecipes);
 		model.addAttribute("spice", product.get());
 		model.addAttribute("totalitems", itemrepo.count());
+		model.addAttribute("recipes", recipes);
 		return "productpg";
 	}
 	

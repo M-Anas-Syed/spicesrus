@@ -266,6 +266,100 @@
           background: green;
         } */
 
+              /*container to hold recipes*/
+      rec {
+        /*float: left;*/
+        display: block;
+        width: 250px;
+        height: auto;
+        background-color: black;
+        margin: 20px 0;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+        transition: all .15s ease-in-out;
+      }
+
+      rec:hover {
+        transform: scale(1.08);
+      }
+
+      .reclist {
+        margin: 35px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .recinfo {
+        background: #e9ecef;
+        padding: 5px;
+        color: black;
+        text-decoration: none;
+      }
+
+      /*recipe image*/
+      recimg {
+        /*float: left;*/
+        display: block;
+        text-align: center;
+        /*margin: 20px 20px 0px 20px;*/
+      }
+
+
+      /*title (product/recipes etc)*/
+      tit {
+        float: left;
+        width: 55%;
+        background-color: grey;
+        padding: 20px;
+      }
+
+      /*container to hold recipes*/
+      rec {
+        /*float: left;*/
+        display: block;
+        width: 250px;
+        height: auto;
+        background-color: black;
+        margin: 20px 0;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+        transition: all .15s ease-in-out;
+      }
+
+      rec:hover {
+        transform: scale(1.08);
+      }
+
+      .reclist {
+        margin: 35px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .recinfo {
+        background: #e9ecef;
+        padding: 5px;
+        color: black;
+        text-decoration: none;
+      }
+
+      /*recipe image*/
+      recimg {
+        /*float: left;*/
+        display: block;
+        text-align: center;
+        /*margin: 20px 20px 0px 20px;*/
+      }
+
+      /*recipe name*/
+      recnm {
+        /*float: left;*/
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+      }
         
         
         
@@ -404,12 +498,23 @@
                 </div>
               </form> 
             </div>
-
+			
 
           </div>
         </div>
-
+        <div class="reclist">
+          <c:forEach items="${recipes}" var="dish">
+            <a href="/recipe=${dish.id}">
+              <rec>
+                <recimg><img src="<c:url value='/media/r${dish.id}.jpg'/>" width="250" height="220"></recimg>
+                <div class="recinfo">
+                  <recnm>${dish.name}</recnm>
+                </div>
+              </rec>
+          </c:forEach>
+        </div>
       </section>
+             
       <footer style="background-color: #f7bf4f;">
         <div style="display: flex;max-width: 1000px;margin: 0 auto;padding: 50px;justify-content: space-between;">
           <div>
