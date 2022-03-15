@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,9 +19,11 @@ public class Ingredient {
 	private int id;
 	private String ingredient;
 	@ManyToOne(fetch=FetchType.LAZY)  
+	@JoinColumn(name="recipe_id")
 	private Recipe recipe; 
 	private String ingredientURL;
-	@OneToOne(optional = true)
+	@OneToOne(optional=true)
+	@JoinColumn(name="product_id")
 	private Product product;
 	
 	public int getId() {

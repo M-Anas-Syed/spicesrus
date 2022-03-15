@@ -227,6 +227,15 @@
           text-align: center;
       }
       
+      products{
+      float:left;
+      padding:20px;
+      text-align:center;
+      text-decoration:underline;
+      font-size:30px;
+      width:100%;
+      }
+      
               /*container to hold products*/
         .prod {
           float: left;
@@ -238,7 +247,7 @@
           text-align: center;
           box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
           transition: all .15s ease-in-out;
-          position: relative;
+          display: inline-block;
         }
 
         .prod:hover {
@@ -354,6 +363,8 @@
              	<item><br>${step.step}<br></item>
            </c:forEach>
            </steps>
+           <products>
+           Links to the spices in this recipe
            <c:forEach items="${recipe.ingredients}" var="ingredient">
            		<c:if test="${not empty ingredient.product}">
              	<div>
@@ -379,9 +390,10 @@
                     	</div>
                   	</div>
                 	</a>
-              	</div>	
+               	</div>	
            	 </c:if>
-        </c:forEach>  
+        </c:forEach>
+        </products>  
     </section>
     <footer>
 
