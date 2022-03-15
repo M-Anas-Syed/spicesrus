@@ -1,5 +1,6 @@
 package com.example.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,9 +18,8 @@ public class BasketItem {
 	private Product product;
 	private int quantity;
 	private int total_price;
-	
-	
-	
+
+
 	public int getTotal_price() {
 		return total_price;
 	}

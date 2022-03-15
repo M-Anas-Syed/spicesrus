@@ -394,12 +394,12 @@
 
       .basketitems{
         max-width: 1000px;
-        margin: 40px auto;
         padding: 40px 0;
         background: white;
         border-radius: 10px;
         border-top: 3px solid;
         border-bottom: 3px solid;
+        padding-top: 0;
       }
 
       .item{
@@ -411,7 +411,7 @@
       }
 
       h2{
-          font-size: 40px;
+          font-size: 30px;
           font-weight: 200;
       }
 
@@ -420,6 +420,17 @@
       }
 
       .itemquantity{
+        display: flex;
+        font-size: 25px;
+        font-weight: 300;
+        background: #F0F0F0;
+        padding: 7px 0px;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        height: fit-content;
+      }
+
+      .basketitemquantity{
         display: flex;
         font-size: 25px;
         font-weight: 300;
@@ -441,6 +452,17 @@
           padding: 0px 15px;
         }
 
+        .basketminusbtn{
+          text-decoration: none;
+          border: none;
+          background: #F0F0F0;
+          color: black;
+          font-weight: 400;
+          font-size: 18px;
+          border-right: 1px solid lightgrey;
+          padding: 0px 10px;
+        }
+
         .plusbutton{
             text-decoration: none;
             border: none;
@@ -450,6 +472,17 @@
             font-size: 22px;
             border-left: 1px solid lightgray;
             padding: 0 15px;
+        }
+
+        .basketplusbtn{
+          text-decoration: none;
+          border: none;
+          background: #F0F0F0;
+          color: black;
+          font-weight: 400;
+          font-size: 18px;
+          border-left: 1px solid lightgray;
+          padding: 0 10px;
         }
 
         /* Chrome, Safari, Edge, Opera */
@@ -478,11 +511,11 @@
       }
 
       .baskettitle{
-        text-align: center;
+        text-align: left;
         font-size: 50px;
         font-weight: 200;
         margin: 20px auto;
-        max-width: 1000px;
+        max-width: 600px;
         margin-top: 40px;
       }
 
@@ -493,6 +526,50 @@
         text-transform: uppercase full-width;
         color: lightgray;
         letter-spacing: -5px;
+      }
+
+      .checkout{
+        width: 350px;
+        padding: 15px 25px;
+        background: white;
+        border-radius: 10px;
+        border-top: 3px solid;
+        border-bottom: 3px solid;
+      }
+
+      .checkoutinfo{
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .checkoutbtn{
+        text-decoration: none;
+        color: white;
+        background: black;
+        width: 100%;
+        display: block;
+        text-align: center;
+        padding: 10px;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 18px;
+        transition: background-color 300ms ease-in-out;
+        border: none;
+      }
+
+      .checkoutbtn:hover{
+        color: black;
+        background-color: white;
+      }
+
+      .continueshopbtn{
+        text-decoration: none;
+        color: white;
+        background: #20B2AA;
+        padding: 10px 50px;
+        font-weight: 300;
+        font-size: 20px;
       }
 
       section::after {
@@ -530,40 +607,93 @@
 
     <section>
         <h1 class="baskettitle">Basket</h1>
-        <div class="basketitems">
-            <c:forEach items="${basket}" var="basket">
-                <c:forEach items="${basket.items}" var="item">
-                    <div class="item">
-                        <div style="display: flex;">
-                            <img src="<c:url value='/media/${item.product.id}.png'/>" width="200px" height="200px" alt="">
-                            <div class="iteminfo">
-                                <h2>${item.product.name}</h2>
-                                <div style="display: flex;font-size: 20px;font-weight: 300;">
-                                    Price: 
-                                    <img src="<c:url value='/media/pound_black.svg'/>" alt="pound">
-                                    <p style="font-size: 20px;margin: 0;">${item.total_price}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="display: flex;justify-content: center;flex-direction: column;">
-                            <p style="text-align: center;font-weight: 300;font-size: 20px;">Quantity(grams)</p>
-                            <div class="itemquantity">
-                                <button class="minusbutton" id="decrement" type="button">-</button>
-                                <input type="hidden" value="${spice.id}" path="id" name="id">
-                                <input id="quantity" type="number" value="${item.quantity}" min="50" path="quantity" name="quantity"></input>
-                                <button class="plusbutton" id="increment" type="button">+</button>
-                            </div>
-                        </div>
-                        <div style="display: flex;flex-direction: column;justify-content: space-evenly;">
-                            <a href="/deleteitem?id=${item.getProduct_id()}"><img class="delete" src="<c:url value='/media/delete.svg'/>"></a>
-                        </div>
-                    </div>
-                </c:forEach>
-            </c:forEach>
-            <div style="display: none;" class="emptybasket">
-                <h1 style="font-weight: 300;">Your Basket is Empty</h1>
+        <div style="display: flex;justify-content: space-evenly;">
+
+          <div style="margin: 40px 0;">
+            <div class="basketitems">
+              <c:forEach items="${basket}" var="basket">
+                  <c:forEach items="${basket.items}" var="item">
+                      <div class="item">
+                          <div style="display: flex; width: 300px;margin-right: 50px;">
+                              <img src="<c:url value='/media/${item.product.id}.png'/>" width="125px" height="125px" alt="">
+                              <div class="iteminfo">
+                                  <h2>${item.product.name}</h2>
+                                  <div style="display: flex;font-size: 17px;font-weight: 300;">
+                                      Price: 
+                                      <img src="<c:url value='/media/pound_black.svg'/>" alt="pound" style="width: 15px;">
+                                      <span class="itemprice" style="display: none;">${item.product.price}</span>
+                                      <p class="productprice" style="font-size: 17px;margin: 0;">${item.total_price}</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div style="display: flex;justify-content: center;flex-direction: column;margin-right: 100px;">
+                              <p style="text-align: center;font-weight: 300;font-size: 20px;">Quantity(grams)</p>
+                              <div class="itemquantity">
+                                  <button class="basketminusbtn" id="decrement" type="button">-</button>
+                                  <input type="hidden" value="${spice.id}" path="id" name="id">
+                                  <input id="quantity" type="number" value="${item.quantity}" min="50" path="quantity" name="quantity"></input>
+                                  <button class="basketplusbtn" id="increment" type="button">+</button>
+                              </div>
+                          </div>
+                          <div style="display: flex;flex-direction: column;justify-content: space-evenly;">
+                              <a href="/deleteitem?id=${item.getProduct_id()}"><img class="delete" src="<c:url value='/media/delete.svg'/>"></a>
+                          </div>
+                      </div>
+                  </c:forEach>
+              </c:forEach>
+              <div style="display: none;" class="emptybasket">
+                  <h1 style="font-weight: 300;">Your Basket is Empty</h1>
+              </div>
             </div>
+            <div style="margin: 40px auto;width: fit-content;">
+              <a class="continueshopbtn" href="/products">Continue Shopping</a>
+            </div>
+          </div>
+
+          <form action="checkoutpage" method="POST">
+            <div id="checkpanel" style="position: sticky; top: 100px; height: fit-content;margin: 40px 0;">
+              <div class="checkout">
+                <h2 style="text-align: center;border-bottom: 1px solid;padding-bottom: 30px;">Order Summary</h2>
+                <div>
+                  <div class="checkoutinfo">
+                    <p style="font-weight: 300;">Items: </p>
+                    <input style="display: none;" name="totalitems" path="totalitems" id="totalitems" type="text">
+                    <p id="itemsnum"></p>
+                  </div>
+                  <div class="checkoutinfo">
+                    <p style="font-weight: 300;">Subtotal: </p>
+                    <div style="display: flex;">
+                      <img src="<c:url value='/media/pound_black.svg'/>" alt="pound" style="width: 15px;">
+                      <input style="display: none;" name="subtotal" path="subtotal" id="subtinput" type="text">
+                      <p id="subtotal"></p>
+                    </div>
+                    
+                  </div>
+                  <div class="checkoutinfo">
+                    <p style="font-weight: 300;">Delivery: </p>
+                    <div style="display: flex;">
+                      <img src="<c:url value='/media/pound_black.svg'/>" alt="pound" style="width: 15px;">
+                      <p id="delivery">3.50</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="checkoutinfo" style="border-top: 1px solid;padding: 30px;padding-bottom: 0;margin: 20px 0;">
+                  <h3 style="font-weight: 300;font-size: 25px;margin: 0;">Total</h3>
+                  <div style="display: flex;">
+                    <img src="<c:url value='/media/pound_black.svg'/>" alt="pound" style="width: 15px;">
+                    <input style="display: none;" name="total" path="total" id="totalinput" type="text">
+                    <p id="total" style="margin: 10px 0;"></p>
+                  </div>
+                </div>
+              </div>
+              <div style="margin: 40px 0;">
+                <button type="submit" class="checkoutbtn">Checkout</button>
+              </div>
+            </div>
+          </form>
+
         </div>
+
 
     </section>
     <footer style="background-color: #f7bf4f;">
@@ -598,6 +728,8 @@
     const minus = document.querySelectorAll("#decrement");
     const plus = document.querySelectorAll("#increment");
     const quantity = document.querySelectorAll("#quantity");
+    let prodprice = document.getElementsByClassName('productprice');
+    const originalprice = document.getElementsByClassName('itemprice');
 
     //Function to decrement the quantity value
     minus.forEach(mbtn => {
@@ -607,6 +739,7 @@
                 let num = parseInt(quantity[mnumIndex].value);
                 num -= 5;
                 quantity[mnumIndex].value = num;
+                prodprice[mnumIndex].innerHTML = (parseFloat(originalprice[mnumIndex].innerHTML)*parseFloat(quantity[mnumIndex].value))/100;
             }
             if (parseInt(quantity[mnumIndex].value) < 0) {
                 quantity[mnumIndex].value = 0;
@@ -621,7 +754,7 @@
             let num = parseInt(quantity[pnumIndex].value);
             num += 5;
             quantity[pnumIndex].value = num;
-
+            prodprice[pnumIndex].innerHTML = (parseFloat(originalprice[pnumIndex].innerHTML)*parseFloat(quantity[pnumIndex].value))/100;
         })
     })
 
@@ -636,9 +769,40 @@
 
     //check to see if basket is empty
     let emptybasket = document.querySelector(".basketitems").children.length;
+    let checkoutpanel = document.getElementById('checkpanel');
+
     if (emptybasket == 1){
         document.querySelector(".emptybasket").style.display = "";
+        checkoutpanel.style.display = 'none';
     }
+
+    //Total items
+    let totalitems = document.getElementById('itemsnum');
+    totalitems.innerHTML = document.getElementsByClassName('item').length;
+    document.getElementById('totalitems').value = document.getElementsByClassName('item').length;
+
+    //Subtotal
+    let subtotal = document.getElementById('subtotal');
+
+    let pprice = document.getElementsByClassName('productprice');
+
+    let total = 0;
+
+    for(let i of pprice){
+      total += parseInt(i.innerHTML);
+    }
+    
+    subtotal.innerHTML = total;
+    document.getElementById('subtinput').value = total;
+
+    //Total
+    let totalprice = document.getElementById('total');
+    let subt = parseFloat(document.getElementById('subtotal').innerHTML);
+    let deliverych = parseFloat(document.getElementById('delivery').innerHTML);
+
+    totalprice.innerHTML = subt+deliverych;
+    document.getElementById('totalinput').value = subt+deliverych;
+
   </script>
 
   </html>

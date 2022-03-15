@@ -43,17 +43,35 @@ public class BasketController {
 	@PostMapping("/addToBasket")
 	public String addBasket(@RequestParam("id") String id, @RequestParam("quantity") int quantity) {
 		
-		Basket basket1 = new Basket();
-		BasketItem items = new BasketItem();
-		items.setQuantity(quantity);
-		items.setProduct(productrepo.findById(Integer.parseInt(id)).get());
+		if(basketrepo.count() == 0) {
+			Basket basket1 = new Basket();
+			
+			BasketItem items = new BasketItem();
+			items.setQuantity(quantity);
+			items.setProduct(productrepo.findById(Integer.parseInt(id)).get());
+			
+			int tPrice = (productrepo.findById(Integer.parseInt(id)).get().getPrice() * quantity)/100; 
+			items.setTotal_price(tPrice);
+			itemrepo.save(items);
+			
+			basket1.getItems().add(items);
+			basketrepo.save(basket1);
+		}else {
+			Iterable<Basket> b = basketrepo.findAll();
+			Basket basket2 = b.iterator().next();
+			
+			BasketItem items = new BasketItem();
+			items.setQuantity(quantity);
+			items.setProduct(productrepo.findById(Integer.parseInt(id)).get());
+			
+			int tPrice = (productrepo.findById(Integer.parseInt(id)).get().getPrice() * quantity)/100; 
+			items.setTotal_price(tPrice);
+			itemrepo.save(items);
+			
+			basket2.getItems().add(items);
+			basketrepo.save(basket2);
+		}
 		
-		int tPrice = (productrepo.findById(Integer.parseInt(id)).get().getPrice() * quantity)/100; 
-		items.setTotal_price(tPrice);
-		itemrepo.save(items);
-		
-		basket1.getItems().add(items);
-		basketrepo.save(basket1);
 		
 		return "redirect:/products";
 	}
@@ -61,17 +79,34 @@ public class BasketController {
 	@PostMapping("/quickBuy")
 	public String quickBuy(String id, int quantity) {
 		
-		Basket basket1 = new Basket();
-		BasketItem items = new BasketItem();
-		items.setQuantity(quantity);
-		items.setProduct(productrepo.findById(Integer.parseInt(id)).get());
-		
-		int tPrice = (productrepo.findById(Integer.parseInt(id)).get().getPrice() * quantity)/100; 
-		items.setTotal_price(tPrice);
-		itemrepo.save(items);
-		
-		basket1.getItems().add(items);
-		basketrepo.save(basket1);
+		if(basketrepo.count() == 0) {
+			Basket basket1 = new Basket();
+			
+			BasketItem items = new BasketItem();
+			items.setQuantity(quantity);
+			items.setProduct(productrepo.findById(Integer.parseInt(id)).get());
+			
+			int tPrice = (productrepo.findById(Integer.parseInt(id)).get().getPrice() * quantity)/100; 
+			items.setTotal_price(tPrice);
+			itemrepo.save(items);
+			
+			basket1.getItems().add(items);
+			basketrepo.save(basket1);
+		}else {
+			Iterable<Basket> b = basketrepo.findAll();
+			Basket basket2 = b.iterator().next();
+			
+			BasketItem items = new BasketItem();
+			items.setQuantity(quantity);
+			items.setProduct(productrepo.findById(Integer.parseInt(id)).get());
+			
+			int tPrice = (productrepo.findById(Integer.parseInt(id)).get().getPrice() * quantity)/100; 
+			items.setTotal_price(tPrice);
+			itemrepo.save(items);
+			
+			basket2.getItems().add(items);
+			basketrepo.save(basket2);
+		}
 		
 		return "redirect:/products";
 	}
