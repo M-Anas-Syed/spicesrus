@@ -384,11 +384,11 @@
       </ul>
     </div>
 	<S class="bar">
-        <form action="Search.jsp">
-       		<input type="text" name="CORP_NAME" id="CORP_NAME" "/>
-       		<button type="submit" onclick="Search.jsp"></button>
-       	</form>
-    </S>
+       		<form action="recipes?RSearch={NAME}">
+       			<input type="text" name="RSearch" id="RSearch" "/>
+       			<button type="submit" ></button>
+       		</form>
+        </S>
     <a class="loginbutton" href="#">Login</a>
     <!--
       <a class="logoutbutton" href="#">Logout</a>

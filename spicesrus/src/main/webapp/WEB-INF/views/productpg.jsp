@@ -252,10 +252,10 @@
             <li class="navoptions"><a href="/recipes">Recipes</a></li>
           </ul>
         <S class="bar">
-       		<form action="Search.jsp">
-       			<input type="text" name="CORP_NAME" id="CORP_NAME" "/>
-       			<button type="submit" onclick="Search.jsp"></button>
-       		</form>
+       		<form:form action="/products/PSearch={NAME}" method="GET">
+       			<input type="text" name="NAME">
+       			<input type="submit" />
+       		</form:form>
         </S>
         </div>
         <a class="loginbutton" href="#">Login</a>

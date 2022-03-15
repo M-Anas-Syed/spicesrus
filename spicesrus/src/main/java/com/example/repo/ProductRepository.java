@@ -17,4 +17,7 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 	
 	@Query(value="select * from product p where p.region in :region", nativeQuery=true)
 	List<Product> findByRegion(@Param("region") List<String> region);
+	
+	@Query(value="select * from product n where n.name like %:%", nativeQuery=true)
+	 List<Product> findByName(@Param("name") String name);
 }

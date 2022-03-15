@@ -102,10 +102,17 @@ public class MainController {
 		return "productpg";
 	}
 	
-	//Return search result
-	@RequestMapping("/Search/CORP_NAME={product}")
-	public String searchResult(Model model) {
-		return "Search";
+	//Return search result for products
+	@RequestMapping("/products?PSearch={NAME}")
+	public String PsearchResult(Model model, @PathVariable String NAME) {
+		model.addAttribute("spices", productrepo.findByName(NAME));
+		return "browseprods";
+	}
+	//Return search result for recipes
+	@RequestMapping("/recipe?RSearch={NAME}")
+	public String RsearchResult(Model model, @PathVariable String NAME) {
+		model.addAttribute("spices", productrepo.findByName(NAME));
+		return "browserecs";
 	}
 	
 }
