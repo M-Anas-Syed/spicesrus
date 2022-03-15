@@ -20,13 +20,47 @@ public class Basket {
 	@Id
 	@GeneratedValue
 	private int basketId;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true )
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn
 	private List<BasketItem> items = new ArrayList<>();
+	private float subtotal;
+	private float total;
+	private Integer totalitems;
 	
+
+	public int getTotalitems() {
+		return totalitems;
+	}
+
+	public void setTotalitems(int totalitems) {
+		this.totalitems = totalitems;
+	}
+
+	public float getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(float subtotal) {
+		this.subtotal = subtotal;
+	}
+
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Basket [basketId=" + basketId + ", items=" + items + "]";
+		return "Basket [basketId=" + basketId + ", items=" + items + ", subtotal=" + subtotal + ", total=" + total
+				+ ", totalitems=" + totalitems + "]";
 	}
 
 	public int getBasketId() {
