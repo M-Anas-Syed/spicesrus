@@ -145,6 +145,7 @@ public class MainController {
 		}
 		else if(RSearch!=null) {
 			model.addAttribute("dishes", reciperepo.findByName(RSearch));
+			model.addAttribute("totalitems", itemrepo.count());
 			x = "browserecs";
 		}
 		else{
