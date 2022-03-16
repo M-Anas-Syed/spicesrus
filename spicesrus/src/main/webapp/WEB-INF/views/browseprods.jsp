@@ -46,6 +46,7 @@
           z-index: 2;
         }
 
+
         .headerlinks {
           position: absolute;
           width: 200px;
@@ -54,6 +55,7 @@
           margin-left: auto;
           margin-right: auto;
         }
+
 
         .logo {
           width: 100%;
@@ -124,6 +126,7 @@
           box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
         }
 
+
         .logoutbutton {
           text-decoration: none;
           color: white;
@@ -157,29 +160,29 @@
 
         }
 
+	.products {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px 0;
+      }
 
 
-        .products {
-          max-width: 1000px;
-          margin: 0 auto;
-          padding: 60px 0;
-        }
+      .sortsection{
+        border-top: 1px #e1e1e1 solid;
+        border-bottom: 1px #e1e1e1 solid;
+        padding: 5px 0;
+      }
 
-        .sortsection {
-          display: flex;
-          border-top: 1px #e1e1e1 solid;
-          border-bottom: 1px #e1e1e1 solid;
-          padding: 5px 0;
-        }
+      .sortnfilter {
+      	float:left;
+        color: black;
+        text-decoration: none;
+        transition: opacity 200ms ease-in-out;
+        font-size: 20px;
+        font-weight: 400;
+        margin: 0 10px;
+      }
 
-        .sortnfilter {
-          color: black;
-          text-decoration: none;
-          transition: opacity 200ms ease-in-out;
-          font-size: 20px;
-          font-weight: 400;
-          margin: 0 10px;
-        }
 
         .sortnfilter:hover {
           opacity: 0.6;
@@ -377,7 +380,6 @@
           color: white;
         }
 
-
         .pagination {
           /*display: inline-block;*/
           text-align: center;
@@ -467,6 +469,7 @@
             </a>
           </div>
           <!--
+
           <a class="logoutbutton" href="#">Logout</a>
         -->
         </nav>
@@ -521,6 +524,12 @@
                 </form:form>
               </div>
             </div>
+            <div style="float:right;">
+            <form:form action="/products" method="GET">
+       			<input type="text" name="PSearch"/>
+       			<input type="submit" value="search"/>
+       		</form:form>
+       		</div>
           </div>
           <!--<tit>Products</tit>-->
           <!---lists products--->

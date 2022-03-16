@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.domain.Ingredient;
 import com.example.domain.Product;
@@ -43,7 +42,7 @@ public class MainController {
 	
 	//shows the home page (products page)
 	@GetMapping("/products")
-	public String homepage(Model model, String asia, String africa, String europe, String oceania, String northamerica, String southamerica) {
+	public String homepage(Model model, String asia, String africa, String europe, String oceania, String northamerica, String southamerica, String PSearch) {
 		String x;
 		List<String> region = new ArrayList<String>();
 
@@ -69,6 +68,10 @@ public class MainController {
 		if(!region.isEmpty()) {
 			model.addAttribute("spices", productrepo.findByRegion(region));
 			model.addAttribute("totalitems", itemrepo.count());
+			x = "browseprods";
+		}
+		else if(PSearch!=null) {
+			model.addAttribute("spices", productrepo.findByName(PSearch));
 			x = "browseprods";
 		}
 		else {
@@ -125,7 +128,7 @@ public class MainController {
 	
 	//show the recipes page
 	@RequestMapping("/recipes")
-	public String homepage(Model model, String indian, String italian) {
+	public String homepage(Model model, String indian, String italian, String RSearch) {
 		String x;
 		List<String> cuisine = new ArrayList<String>();
 
@@ -138,6 +141,10 @@ public class MainController {
 		if(!cuisine.isEmpty()) {
 			model.addAttribute("dishes", reciperepo.findByCuisine(cuisine));
 			model.addAttribute("totalitems", itemrepo.count());
+			x = "browserecs";
+		}
+		else if(RSearch!=null) {
+			model.addAttribute("dishes", reciperepo.findByName(RSearch));
 			x = "browserecs";
 		}
 		else{
@@ -159,7 +166,7 @@ public class MainController {
 		model.addAttribute("recipes", recipes);
 		return "productpg";
 	}
-	
+
 	@RequestMapping("/recipe={rec}")
 	public String individualrecipe(Model model, @PathVariable int rec) {
 		Optional<Recipe> recipe = reciperepo.findById(rec);
@@ -167,4 +174,7 @@ public class MainController {
 		model.addAttribute("totalitems", itemrepo.count());
 		return "recipepg";
 	}
+
+
+
 }

@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;500&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
     <!---CSS--->
     <style>
       * {
@@ -42,6 +43,7 @@
         z-index: 2;
       }
 
+
       .headerlinks {
         position: absolute;
         width: 200px;
@@ -50,6 +52,7 @@
         margin-left: auto;
         margin-right: auto;
       }
+
 
       .logo {
         width: 100%;
@@ -168,6 +171,7 @@
       }
 
       .sortnfilter {
+	float:left;
         color: black;
         text-decoration: none;
         transition: opacity 200ms ease-in-out;
@@ -463,6 +467,7 @@
             <li class="navoptions"><a href="/recipes">Recipes</a></li>
           </ul>
         </div>
+
         <div style="display: flex;gap: 20px;">
           <a class="loginbutton" href="#">Login</a>
           <a style="position: relative;" href="/basket">
@@ -473,6 +478,7 @@
         <!--
       <a class="logoutbutton" href="#">Logout</a>
     -->
+
       </nav>
     </header>
 
@@ -511,7 +517,12 @@
               </div>
 
             </div>
-
+	    <div style="float:right;">
+                <form:form action="/recipes" method="GET">
+       			<input type="text" name="RSearch"/>
+       			<input type="submit" value="search"/>
+       		</form:form>
+       	    </div>
         </div>
         <div class="reclist">
           <c:forEach items="${dishes}" var="dish">
