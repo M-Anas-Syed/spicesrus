@@ -34,7 +34,7 @@ public class MainController {
 	
 	//shows the home page (products page)
 	@GetMapping("/products")
-	public String homepage(Model model, String asia, String africa, String europe, String oceania, String northamerica, String southamerica) {
+	public String homepage(Model model, String asia, String africa, String europe, String oceania, String northamerica, String southamerica, String PSearch) {
 		String x;
 		List<String> region = new ArrayList<String>();
 
@@ -59,6 +59,10 @@ public class MainController {
 		
 		if(!region.isEmpty()) {
 			model.addAttribute("spices", productrepo.findByRegion(region));
+			x = "browseprods";
+		}
+		else if(PSearch!=null) {
+			model.addAttribute("spices", productrepo.findByName(PSearch));
 			x = "browseprods";
 		}
 		else {
@@ -102,12 +106,6 @@ public class MainController {
 		return "productpg";
 	}
 	
-	//Return search result for products
-	@RequestMapping("/products?PSearch={NAME}")
-	public String PsearchResult(Model model, @PathVariable String NAME) {
-		model.addAttribute("spices", productrepo.findByName(NAME));
-		return "browseprods";
-	}
 	//Return search result for recipes
 	@RequestMapping("/recipe?RSearch={NAME}")
 	public String RsearchResult(Model model, @PathVariable String NAME) {
