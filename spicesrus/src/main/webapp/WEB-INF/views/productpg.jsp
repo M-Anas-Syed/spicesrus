@@ -551,13 +551,13 @@
 
       //Function to decrement the quantity value
       minus.addEventListener('click', function () {
-        if (parseInt(quantity.value) > 0) {
+        if (parseInt(quantity.value) > 50) {
           let num = parseInt(quantity.value);
           num -= 5;
           quantity.value = num;
         }
-        if (parseInt(quantity.value) < 0) {
-          quantity.value = 0;
+        if (parseInt(quantity.value) < 50) {
+          quantity.value = 50;
         }
       })
 

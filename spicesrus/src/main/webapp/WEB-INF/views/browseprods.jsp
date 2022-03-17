@@ -552,7 +552,7 @@
                         <prodpr>
                           <img src="<c:url value='/media/pound_black.svg'/>" width="15" height="20"
                             style="margin: 5px 0;">
-                          ${spice.price}
+                          ${spice.price}<span style="font-size: 16px;"> (per 100g)</span>
                         </prodpr>
                       </div>
                       <prodflav>Flavours: ${spice.flavours}</prodflav>
