@@ -12,7 +12,7 @@ import com.example.repo.BasketRepository;
 import com.example.repo.ProductRepository;
 
 @Controller
-public class Checkout {
+public class CheckoutController {
 
 	@Autowired
 	private BasketRepository basketrepo;
@@ -22,13 +22,13 @@ public class Checkout {
 	private BasketItemRepository itemrepo;
 	
 	@RequestMapping("/checkoutpage")
-	public String checkout(Model model, String totalitems,String subtotal, String total) {
+	public String checkout(Model model, String totalitems,Float subtotal, Float total) {
 		
 		Iterable<Basket> b = basketrepo.findAll();
 		Basket basket3 = b.iterator().next();
 		
-		basket3.setSubtotal(Float.parseFloat(subtotal));
-		basket3.setTotal(Float.parseFloat(total));
+		basket3.setSubtotal(subtotal);
+		basket3.setTotal(total);
 		basket3.setTotalitems(Integer.parseInt(totalitems));
 		
 		basketrepo.save(basket3);

@@ -735,76 +735,76 @@
                 <h1 class="baskettitle">Checkout</h1>
                 <div style="display: flex;justify-content: space-evenly;">
                     <div style="margin: 40px 0;border-radius: 10px;overflow: hidden;">
-                            <button class="accordion">Customer Details</button>
-                            <div class="panel" style="max-height:478px;">
-                                <div style="width: 600px;padding:20px;">
-                                    <div class="custdetails">
-                                        <label class="checkoutlabels">*First Name:</label>
-                                        <input class="custinput" type="text"></input>
-                                    </div>
-                                    <div class="custdetails">
-                                        <label class="checkoutlabels">*Last Name:</label>
-                                        <input class="custinput" type="text"></input>
-                                    </div>
-                                    <div class="custdetails">
-                                        <label class="checkoutlabels">*Email:</label>
-                                        <input class="custinput" type="text"></input>
-                                    </div>
-                                    <div class="custdetails">
-                                        <label class="checkoutlabels">*Phone:</label>
-                                        <input class="custinput" type="text"></input>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="accordion">Delivery Information</button>
-                            <div class="panel">
-                                <div style="width: 600px;padding:20px;">
-                                    <div class="custdetails">
-                                        <label class="checkoutlabels">*Address line 1:</label>
-                                        <input class="custinput" type="text"></input>
-                                    </div>
-                                    <div class="custdetails">
-                                        <label class="checkoutlabels">Address line 2:</label>
-                                        <input class="custinput" type="text"></input>
-                                    </div>
-                                    <div class="custdetails">
-                                        <label class="checkoutlabels">*City:</label>
-                                        <input class="custinput" type="text"></input>
-                                    </div>
-                                    <div class="custdetails" style="display: flex;justify-content: space-between;flex-direction: row;">
-                                        <label>*Postcode:</label>
-                                        <input class="custinput" style="width: 35%;" type="text"></input>
-                                        <label>*Country:</label>
-                                        <input class="custinput" style="width: 35%;" type="text"></input>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="accordion">Card Details</button>
-                            <div class="panel">
-                                <div style="width: 600px;padding:20px;">
-                                    <div class="custdetails">
-                                        <label class="checkoutlabels">*Card Number:</label>
-                                        <input class="custinput" type="text"></input>
-                                    </div>
-                                    <div class="custdetails">
-                                        <label class="checkoutlabels">*Cardholder Name:</label>
-                                        <input class="custinput" type="text"></input>
-                                    </div>
-                                    <div style="display: flex;justify-content: space-between;padding: 10px 30px;font-size: 18px;font-weight: 400;">
-                                        <label style="margin-right: 5px;">*Expiry:</label>
-                                        <div style="max-width: fit-content;">
-                                            <input style="width: 20%;" placeholder="MM" min="1" max="12" type="number">
-                                            <input style="width: 30%;" placeholder="YYYY" min="2022" max="2030" type="number"></input>
+                                <button class="accordion">Customer Details</button>
+                                <div class="panel" style="max-height:478px;">
+                                    <div style="width: 600px;padding:20px;">
+                                        <div class="custdetails">
+                                            <label class="checkoutlabels">*First Name:</label>
+                                            <input class="custinput" type="text"></input>
                                         </div>
-                                        <label style="margin-right: 5px;">*CVV:</label>
-                                        <input class="custinput" style="width: 35%;padding: 0;font-size: 15px;" type="text"></input>
+                                        <div class="custdetails">
+                                            <label class="checkoutlabels">*Last Name:</label>
+                                            <input class="custinput" type="text"></input>
+                                        </div>
+                                        <div class="custdetails">
+                                            <label class="checkoutlabels">*Email:</label>
+                                            <input class="custinput" type="text"></input>
+                                        </div>
+                                        <div class="custdetails">
+                                            <label class="checkoutlabels">*Phone:</label>
+                                            <input class="custinput" type="text"></input>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div style="margin: 40px auto;width: 50%;display: flex;justify-content: space-between;gap:20px;">
-                                <a class="cancelbtn" href="/basket">Cancel</a>
-                                <button type="submit" class="paybtn">Pay</button>
-                            </div>
+                                <button class="accordion">Delivery Information</button>
+                                <div class="panel">
+                                    <div style="width: 600px;padding:20px;">
+                                        <div class="custdetails">
+                                            <label class="checkoutlabels">*Address line 1:</label>
+                                            <input class="custinput" type="text"></input>
+                                        </div>
+                                        <div class="custdetails">
+                                            <label class="checkoutlabels">Address line 2:</label>
+                                            <input class="custinput" type="text"></input>
+                                        </div>
+                                        <div class="custdetails">
+                                            <label class="checkoutlabels">*City:</label>
+                                            <input class="custinput" type="text"></input>
+                                        </div>
+                                        <div class="custdetails" style="display: flex;justify-content: space-between;flex-direction: row;">
+                                            <label>*Postcode:</label>
+                                            <input class="custinput" style="width: 35%;" type="text"></input>
+                                            <label>*Country:</label>
+                                            <input class="custinput" style="width: 35%;" type="text"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="accordion">Card Details</button>
+                                <div class="panel">
+                                    <div style="width: 600px;padding:20px;">
+                                        <div class="custdetails">
+                                            <label class="checkoutlabels">*Card Number:</label>
+                                            <input class="custinput" type="text"></input>
+                                        </div>
+                                        <div class="custdetails">
+                                            <label class="checkoutlabels">*Cardholder Name:</label>
+                                            <input class="custinput" type="text"></input>
+                                        </div>
+                                        <div style="display: flex;justify-content: space-between;padding: 10px 30px;font-size: 18px;font-weight: 400;">
+                                            <label style="margin-right: 5px;">*Expiry:</label>
+                                            <div style="max-width: fit-content;">
+                                                <input style="width: 20%;" placeholder="MM" min="1" max="12" type="number">
+                                                <input style="width: 30%;" placeholder="YYYY" min="2022" max="2030" type="number"></input>
+                                            </div>
+                                            <label style="margin-right: 5px;">*CVV:</label>
+                                            <input class="custinput" style="width: 35%;padding: 0;font-size: 15px;" type="text"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin: 40px auto;width: 50%;display: flex;justify-content: space-between;gap:20px;">
+                                    <a class="cancelbtn" href="/basket">Cancel</a>
+                                    <button type="submit" class="paybtn">Pay</button>
+                                </div>
                     </div>
 
                     <div id="checkpanel" style="position: sticky; top: 100px; height: fit-content;margin: 40px 0;">

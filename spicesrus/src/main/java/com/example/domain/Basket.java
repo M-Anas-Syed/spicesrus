@@ -20,7 +20,7 @@ public class Basket {
 	@Id
 	@GeneratedValue
 	private int basketId;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn
 	private List<BasketItem> items = new ArrayList<>();
 	private float subtotal;

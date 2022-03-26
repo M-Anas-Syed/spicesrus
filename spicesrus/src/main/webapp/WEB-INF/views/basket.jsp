@@ -417,6 +417,8 @@
 
       .iteminfo{
         margin: 0 20px;
+        position: relative;
+        width: 95px;
       }
 
       .itemquantity{
@@ -526,6 +528,7 @@
         text-transform: uppercase full-width;
         color: lightgray;
         letter-spacing: -5px;
+        padding: 30px 100px;
       }
 
       .checkout{
@@ -556,6 +559,7 @@
         font-size: 18px;
         transition: background-color 300ms ease-in-out;
         border: none;
+        cursor: pointer;
       }
 
       .checkoutbtn:hover{
@@ -620,6 +624,7 @@
                                   <h2>${item.product.name}</h2>
                                   <div style="display: flex;font-size: 17px;font-weight: 300;">
                                       Price: 
+                                      <span style="font-size: 12px;position: absolute;bottom: -10px;">(selected amount)</span>
                                       <img src="<c:url value='/media/pound_black.svg'/>" alt="pound" style="width: 15px;">
                                       <span class="itemprice" style="display: none;">${item.product.price}</span>
                                       <p class="productprice" style="font-size: 17px;margin: 0;">${item.total_price}</p>
@@ -650,8 +655,8 @@
             </div>
           </div>
 
-          <form action="checkoutpage" method="POST">
-            <div id="checkpanel" style="position: sticky; top: 100px; height: fit-content;margin: 40px 0;">
+          <form id="checkpanel" action="checkoutpage" method="POST">
+            <div style="position: sticky; top: 100px; height: fit-content;margin: 40px 0;">
               <div class="checkout">
                 <h2 style="text-align: center;border-bottom: 1px solid;padding-bottom: 30px;">Order Summary</h2>
                 <div>
@@ -731,6 +736,27 @@
     let prodprice = document.getElementsByClassName('productprice');
     const originalprice = document.getElementsByClassName('itemprice');
 
+    //Subtotal
+    let subtotal = document.getElementById('subtotal');
+
+    let pprice = document.getElementsByClassName('productprice');
+
+    let total = 0;
+    for(let i of pprice){
+      total += parseFloat(i.innerHTML);
+    }
+
+    subtotal.innerHTML = total.toFixed(2);
+    document.getElementById('subtinput').value = total.toFixed(2);
+
+    //Total
+    let totalprice = document.getElementById('total');
+    let subt = parseFloat(document.getElementById('subtotal').innerHTML);
+    let deliverych = parseFloat(document.getElementById('delivery').innerHTML);
+
+    totalprice.innerHTML = (total+deliverych).toFixed(2);
+    document.getElementById('totalinput').value = (total+deliverych).toFixed(2);
+
     //Function to decrement the quantity value
     minus.forEach(mbtn => {
         mbtn.addEventListener('click', function () {
@@ -740,10 +766,23 @@
                 num -= 5;
                 quantity[mnumIndex].value = num;
                 prodprice[mnumIndex].innerHTML = (parseFloat(originalprice[mnumIndex].innerHTML)*parseFloat(quantity[mnumIndex].value))/100;
+
             }
             if (parseInt(quantity[mnumIndex].value) < 0) {
                 quantity[mnumIndex].value = 0;
             }
+
+            total = 0;
+
+            for(let i of document.getElementsByClassName('productprice')){
+              total += parseFloat(i.innerHTML);
+            }
+
+            subtotal.innerHTML = total.toFixed(2);
+            document.getElementById('subtinput').value = total.toFixed(2);
+
+            totalprice.innerHTML = (total+deliverych).toFixed(2);
+            document.getElementById('totalinput').value = (total+deliverych).toFixed(2);
         })
     })
 
@@ -755,6 +794,18 @@
             num += 5;
             quantity[pnumIndex].value = num;
             prodprice[pnumIndex].innerHTML = (parseFloat(originalprice[pnumIndex].innerHTML)*parseFloat(quantity[pnumIndex].value))/100;
+
+            total = 0;
+            
+            for(let i of document.getElementsByClassName('productprice')){
+              total += parseFloat(i.innerHTML);
+            }
+
+            subtotal.innerHTML = total.toFixed(2);
+            document.getElementById('subtinput').value = total.toFixed(2);
+
+            totalprice.innerHTML = (total+deliverych).toFixed(2);
+            document.getElementById('totalinput').value = (total+deliverych).toFixed(2);
         })
     })
 
@@ -774,34 +825,13 @@
     if (emptybasket == 1){
         document.querySelector(".emptybasket").style.display = "";
         checkoutpanel.style.display = 'none';
+        document.querySelector('.baskettitle').style.textAlign = "center";
     }
 
     //Total items
     let totalitems = document.getElementById('itemsnum');
     totalitems.innerHTML = document.getElementsByClassName('item').length;
     document.getElementById('totalitems').value = document.getElementsByClassName('item').length;
-
-    //Subtotal
-    let subtotal = document.getElementById('subtotal');
-
-    let pprice = document.getElementsByClassName('productprice');
-
-    let total = 0;
-
-    for(let i of pprice){
-      total += parseInt(i.innerHTML);
-    }
-    
-    subtotal.innerHTML = total;
-    document.getElementById('subtinput').value = total;
-
-    //Total
-    let totalprice = document.getElementById('total');
-    let subt = parseFloat(document.getElementById('subtotal').innerHTML);
-    let deliverych = parseFloat(document.getElementById('delivery').innerHTML);
-
-    totalprice.innerHTML = subt+deliverych;
-    document.getElementById('totalinput').value = subt+deliverych;
 
   </script>
 
