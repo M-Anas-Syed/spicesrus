@@ -361,10 +361,10 @@
         prodflav {
           text-align: center;
           width: 80%;
-          font-size: 12px;
+          font-size: 15px;
           display: block;
           margin: 10px auto;
-          font-weight: 300;
+          font-weight: 350;
         }
 
         /*sort and filter*/
