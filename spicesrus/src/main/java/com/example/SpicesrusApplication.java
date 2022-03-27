@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.domain.Ingredient;
 import com.example.domain.Product;
@@ -17,6 +18,7 @@ import com.example.domain.Step;
 import com.example.repo.IngredientRepository;
 import com.example.domain.Basket;
 import com.example.domain.BasketItem;
+import com.example.domain.Customer;
 import com.example.domain.Product;
 import com.example.domain.Recipe;
 import com.example.domain.Basket;
@@ -25,6 +27,7 @@ import com.example.domain.Product;
 import com.example.domain.Recipe;
 import com.example.repo.BasketItemRepository;
 import com.example.repo.BasketRepository;
+import com.example.repo.CustomerRepository;
 import com.example.repo.ProductRepository;
 import com.example.repo.RecipeRepository;
 import com.example.repo.StepRepository;
@@ -46,11 +49,16 @@ public class SpicesrusApplication implements ApplicationRunner {
 	private BasketItemRepository itemrepo;
 	@Autowired
 	private BasketRepository basketrepo;
+	@Autowired
+	private CustomerRepository custrepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpicesrusApplication.class, args);
 	}
 
+	@Autowired
+	private PasswordEncoder passe;
+	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
@@ -323,6 +331,26 @@ public class SpicesrusApplication implements ApplicationRunner {
 		i.setIngredient("1 tablespoon fresh lemon juice");
 		i.setRecipe(r);
 		ingredientrepo.save(i);
+		
+		Customer cust1 = new Customer();
+		cust1.setEmail("blank@gmail.com");
+		cust1.setFirstname("John");
+		cust1.setLastname("test");
+		cust1.setPassword(passe.encode("password1"));
+		custrepo.save(cust1);
+		
+		Customer cust2 = new Customer();
+		cust2.setEmail("testemail@gmail.com");
+		cust2.setFirstname("test1");
+		cust2.setLastname("test2");
+		cust2.setPassword(passe.encode("abc123"));
+		
+		custrepo.save(cust2);
+		
+		System.out.println(cust1);		
+		System.out.println(cust2);
+
+
 	}
 
 }
