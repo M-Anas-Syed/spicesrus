@@ -36,6 +36,7 @@ public class BasketController {
 	@RequestMapping("/basket")
 	public String basket(Model model) {
 		model.addAttribute("basket", basketrepo.findAll());
+		model.addAttribute("totalitems", itemrepo.count());
 		return "/basket";
 	}
 	

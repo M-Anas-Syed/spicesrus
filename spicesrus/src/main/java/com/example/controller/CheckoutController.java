@@ -34,7 +34,8 @@ public class CheckoutController {
 		basketrepo.save(basket3);
 		
 		model.addAttribute("basket", basket3);
-		
+		model.addAttribute("totalitems", itemrepo.count());
+
 		return "/checkout";
 	}
 	
