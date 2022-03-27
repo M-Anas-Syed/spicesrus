@@ -5,14 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Customer {
 	@Id
 	@GeneratedValue
 	private int user_id;
 	private String firstname;
 	private String lastname;
 	private String email;
-	private int password;
+	private String password;
 	
 	public int getId() {
 		return user_id;
@@ -35,10 +35,16 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
+	@Override
+	public String toString() {
+		return "Customer [user_id=" + user_id + ", firstname=" + firstname + ", lastname=" + lastname + ", email="
+				+ email + ", password=" + password + "]";
+	}
+	
 }

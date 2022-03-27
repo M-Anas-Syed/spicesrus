@@ -1,6 +1,8 @@
 <!---Jsp which displays the home page of the site and lists products that are sold--->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 
   <!DOCTYPE html>
@@ -119,6 +121,18 @@
         background: radial-gradient(circle at -1% 57.5%, rgb(19, 170, 82) 0%, rgb(0, 102, 43) 90%);
         box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
       }
+
+      .registerbutton{
+          text-decoration: none;
+          color: white;
+          text-transform: uppercase;
+          padding: 3px 13px;
+          font-size: 18px;
+          border-radius: 7px;
+          font-weight: 300;
+          background-image: linear-gradient( 115.7deg,  rgba(3,79,135,1) 6.2%, rgba(0,184,214,1) 112.9% );
+          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+        }
 
       .logoutbutton {
         text-decoration: none;
@@ -576,6 +590,26 @@
         font-size: 20px;
       }
 
+      .totalitems{
+          margin: 0;
+          position: absolute;
+          top: -12px;
+          right: -12px;
+          color: white;
+          background: black;
+          border-radius: 50%;
+          width: 18px;
+          height: 18px;
+          font-size: 12px;
+          text-align: center;
+        }
+
+      .welcomeuser{
+          margin: 6px 0px;
+          font-size: 14px;
+          font-weight: 300;
+        }
+
       section::after {
         content: "";
         display: table;
@@ -598,14 +632,19 @@
           </ul>
         </div>
         <div style="display: flex;gap: 20px;">
-          <a class="loginbutton" href="#">Login</a>
-          <a href="#">
+          <sec:authorize access="!isAuthenticated()">
+            <a class="loginbutton" href="/login-form">Login</a>
+            <a class="registerbutton" href="/register">Register</a>
+          </sec:authorize>
+          <sec:authorize access="isAuthenticated()">
+            <p class="welcomeuser">Welcome, <sec:authentication property="name"/></p>
+            <a class="logoutbutton" href="/logout-form">Logout</a>
+          </sec:authorize>
+          <a style="position: relative;" href="/basket">
             <img class="basket" src="<c:url value='/media/basket.svg'/>" alt="">
+            <p class="totalitems">${totalitems}</p>
           </a>
         </div>
-        <!--
-          <a class="logoutbutton" href="#">Logout</a>
-        -->
       </nav>
     </header>
 
@@ -695,6 +734,7 @@
                 <button type="submit" class="checkoutbtn">Checkout</button>
               </div>
             </div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
           </form>
 
         </div>
