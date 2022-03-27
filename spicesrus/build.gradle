@@ -18,9 +18,15 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 	
 	runtimeOnly 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.39' // jsps
 	runtimeOnly 'javax.servlet:jstl:1.2' // helpful JSP tags
+	
+	// Spring Security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.2.2.RELEASE'
+	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
