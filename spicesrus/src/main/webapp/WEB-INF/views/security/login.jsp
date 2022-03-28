@@ -333,8 +333,8 @@
 	<div class="formholder">
 	    <formheader>Login</formheader>
 		<form action="/myLogin" method="post">
-			<input type="text" name="username" placeholder="Username" /><br/>
-			<input type="password" name="password" placeholder="Password" /><br/>
+			<input type="text" name="username" placeholder="Username" required/><br/>
+			<input type="password" name="password" placeholder="Password" required/><br/>
 			<input type="submit" value="Sign In" /><br/>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
