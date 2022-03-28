@@ -392,6 +392,13 @@
         list-style-type: none;
         padding: 6px;
       }
+      
+      .signup{
+      	text-align: center;
+      	padding: 20px;
+      	border-top: 3px solid black;
+      	
+      }
 
       /*footer with pagination*/
       footer {
@@ -574,6 +581,13 @@
           </c:forEach>
         </sec:authorize> 
         </div>
+        
+        <sec:authorize access="!isAuthenticated()"> 
+        	<div class="signup">
+        		Sign up now to access more delicious recipes --> <a class="registerbutton" href="/register">Register</a><br><br>
+        		Already have an account with us? Just <a class="loginbutton" href="/login-form">Login</a> and take a look 
+        	</div>
+        </sec:authorize>
       </div>
 
 

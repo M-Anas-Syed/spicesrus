@@ -176,7 +176,7 @@
 	.products {
         max-width: 1000px;
         margin: 0 auto;
-        padding: 60px 0;
+        padding: 0px 60px 60px 0;
       }
 
 
@@ -375,6 +375,14 @@
           list-style-type: none;
           padding: 6px;
         }
+        
+      .signup{
+      	text-align: center;
+      	padding: 20px;
+      	border-bottom: 3px solid black;
+      	margin-bottom: 20px; 
+      	
+      }
 
         /*footer with pagination*/
         footer {
@@ -513,7 +521,18 @@
       </login>-->
 
         <!---link to login (doesn't exist yet)--->
+
         <div class="products">
+        <sec:authorize access="!isAuthenticated()">
+        <div class = "signup">
+        	Sign up now to get your first delivery 100% FREE <a class="registerbutton" href="/register">Register Now!</a>
+        </div>
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+        <div class = "signup">
+        	Get <a style="color:red";>20%</a> off your 5th order
+        </div>
+        </sec:authorize>
           <div class="sortsection">
             <!---will be used to sort and filter (might need to be changed from link)--->
             <div class="sorting">
