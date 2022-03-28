@@ -547,6 +547,7 @@
        	    </div>
         </div>
         <div class="reclist">
+        <sec:authorize access="isAuthenticated()">
           <c:forEach items="${dishes}" var="dish">
             <a href="/recipe=${dish.id}">
               <rec>
@@ -555,7 +556,23 @@
                   <recnm>${dish.name}</recnm>
                 </div>
               </rec>
+              </a>
           </c:forEach>
+        </sec:authorize>
+        <sec:authorize access="!isAuthenticated()">
+          <c:forEach items="${dishes}" var="dish">
+          <c:if test = "${dish.access eq 'Accountless'}">
+            <a href="/recipe=${dish.id}">
+              <rec>
+                <recimg><img src="<c:url value='/media/r${dish.id}.jpg'/>" width="250" height="220"></recimg>
+                <div class="recinfo">
+                  <recnm>${dish.name}</recnm>
+                </div>
+              </rec>
+            </a>
+          </c:if>
+          </c:forEach>
+        </sec:authorize> 
         </div>
       </div>
 

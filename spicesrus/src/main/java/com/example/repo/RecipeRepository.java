@@ -16,8 +16,9 @@ import com.example.domain.Recipe;
 public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
 	Iterable<Recipe> findAll(Sort sort);
-	
-
+		
+	@Query(value="select * from recipe r where r.access = :access", nativeQuery=true)
+	List<Recipe> findByAccess(@Param("access") String access);
 	
 	@Query(value="select * from recipe r where r.cuisine in :cuisine", nativeQuery=true)
 	List<Recipe> findByCuisine(@Param("cuisine") List<String> cuisine);

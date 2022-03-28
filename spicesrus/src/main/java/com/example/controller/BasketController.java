@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.domain.Basket;
 import com.example.domain.BasketItem;
+import com.example.domain.Customer;
 import com.example.domain.Product;
 import com.example.repo.BasketItemRepository;
 import com.example.repo.BasketRepository;
+import com.example.repo.CustomerRepository;
 import com.example.repo.ProductRepository;
 
 @Controller
@@ -30,11 +34,22 @@ public class BasketController {
 	private ProductRepository productrepo;
 	@Autowired
 	private BasketItemRepository itemrepo;
+	@Autowired
+	private CustomerRepository customerrepo;
 	
 	
 	
 	@RequestMapping("/basket")
 	public String basket(Model model) {
+		String username;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof UserDetails) {
+			  username = ((UserDetails)principal).getUsername();
+			} else {
+			  username = principal.toString();
+			}
+		Customer customer = customerrepo.findByEmail(username);
+		model.addAttribute("customer",customer);
 		model.addAttribute("basket", basketrepo.findAll());
 		model.addAttribute("totalitems", itemrepo.count());
 		return "/basket";
