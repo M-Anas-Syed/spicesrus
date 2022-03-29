@@ -114,15 +114,18 @@ public class CheckoutController {
 	
 	@PostMapping("/pay")
 	public String payment(String firstname, String lastname,String email, String phone, String address1, String address2, String city, String country, String postcode, String cardnumber, String cardHolderName, String cvv) {
+		Transaction transaction = new Transaction();
 		String username;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof UserDetails) {
 			  username = ((UserDetails)principal).getUsername();
+			  Customer customer = customerrepo.findByEmail(username);
+			  transaction.setCustomer(customer);
 			} else {
 			  username = principal.toString();
 			}
-		Customer customer = customerrepo.findByEmail(username);
-		Transaction transaction = new Transaction();
+		
+		
 		
 		Iterable<Basket> orgB = basketrepo.findAll();
 		
@@ -157,7 +160,7 @@ public class CheckoutController {
 		transaction.setCardHolderName(cardHolderName);
 		transaction.setCvv(Integer.parseInt(cvv));
 		transaction.setTransactionTotal(b.getTotal());
-		transaction.setCustomer(customer);
+		
 		
 		trepo.save(transaction);
 		
@@ -178,13 +181,6 @@ public class CheckoutController {
 	public void orderReceipt(Model model, HttpServletResponse response) throws DocumentException, IOException {
 		String username;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (principal instanceof UserDetails) {
-			  username = ((UserDetails)principal).getUsername();
-			} else {
-			  username = principal.toString();
-			}
-		Customer customer = customerrepo.findByEmail(username);
-		int ordernum = trepo.countTransactionsForUser(customer.getId());
 		
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -281,15 +277,22 @@ public class CheckoutController {
         cell.setColspan(3);
         cell.setHorizontalAlignment("right");
         info.addCell(cell);
-        
-        if(ordernum==1) {
-        	cell = new Cell("£"+String.valueOf(0));
-        }
-        else {
-        	cell = new Cell("£"+String.valueOf(3.50));
-        }
-        cell.setHorizontalAlignment("center");
-        info.addCell(cell);
+		if (principal instanceof UserDetails) {
+			  username = ((UserDetails)principal).getUsername();
+			  Customer customer = customerrepo.findByEmail(username);
+			  int ordernum = trepo.countTransactionsForUser(customer.getId());
+		        if(ordernum==1) {
+		        	cell = new Cell("£"+String.valueOf(0));
+		        }
+		        else {
+		        	cell = new Cell("£"+String.valueOf(3.50));
+		        }
+		        cell.setHorizontalAlignment("center");
+		        info.addCell(cell);
+			} else {
+			  username = principal.toString();
+			}
+
         
         cell = new Cell("Total");
         cell.setColspan(3);

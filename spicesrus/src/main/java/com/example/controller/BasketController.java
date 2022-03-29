@@ -48,15 +48,18 @@ public class BasketController {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof UserDetails) {
 			  username = ((UserDetails)principal).getUsername();
+			  Customer customer = customerrepo.findByEmail(username);
+			  int ordernum = trepo.countTransactionsForUser(customer.getId());
+			  model.addAttribute("ordernum", ordernum);
+			  model.addAttribute("customer",customer);
 			} else {
 			  username = principal.toString();
 			}
-		Customer customer = customerrepo.findByEmail(username);
-		int ordernum = trepo.countTransactionsForUser(customer.getId());
-		model.addAttribute("customer",customer);
+		
+		
 		model.addAttribute("basket", basketrepo.findAll());
 		model.addAttribute("totalitems", itemrepo.count());
-		model.addAttribute("ordernum", ordernum);
+		
 		return "/basket";
 	}
 	
