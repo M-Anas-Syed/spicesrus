@@ -891,6 +891,10 @@
                       <h1 style="text-align: center;font-size: 30px;font-weight: 300;">Your Order has been placed</h1>
                       <h2 style="font-size: 25px;text-align: center;">Thank you for shopping at Spices'R'Us</h2>
                       <a class="returnbtn" href="/reset">Return</a>
+                      <div style="border-top: 1px solid lightgray;width: 75%;margin: 0 auto;padding: 20px;">
+                          <p style="text-align: center;">Would you like to download your receipt?</p>
+                          <a style="margin: 0 auto;text-decoration: none;color: white;background: #ffa500;font-weight: 300;padding: 5px 10px;border-radius: 5px;display: block;width: fit-content;" href="/orderreceipt">Download Receipt</a>
+                      </div>
                     </div>
                 </div>
 
