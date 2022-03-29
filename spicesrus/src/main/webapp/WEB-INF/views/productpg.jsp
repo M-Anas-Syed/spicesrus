@@ -505,7 +505,6 @@
             </price>
 
             <descr>Flavours: ${spice.flavours}</descr>
-            <descr>${spice.description}</descr>
             <descr>History: ${spice.history}</descr>
             
             <div style="margin: 40px 0;">
