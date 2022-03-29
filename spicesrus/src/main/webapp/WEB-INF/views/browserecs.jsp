@@ -290,7 +290,7 @@
       }
 
       /*container to hold recipes*/
-      rec {
+      .rec {
         /*float: left;*/
         display: block;
         width: 250px;
@@ -307,10 +307,12 @@
       }
 
       .reclist {
-        margin: 35px 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+          margin: 35px 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 60px;
       }
 
       .recinfo {
@@ -391,6 +393,13 @@
         background-color: grey;
         list-style-type: none;
         padding: 6px;
+      }
+      
+      .signup{
+      	text-align: center;
+      	padding: 20px;
+      	border-top: 3px solid black;
+      	
       }
 
       /*footer with pagination*/
@@ -493,7 +502,7 @@
             <a class="registerbutton" href="/register">Register</a>
           </sec:authorize>
           <sec:authorize access="isAuthenticated()">
-            <p class="welcomeuser">Welcome, <sec:authentication property="name"/></p>
+            <p class="welcomeuser">Welcome, ${customer.firstname}</p>
             <a class="logoutbutton" href="/logout-form">Logout</a>
           </sec:authorize>
           <a style="position: relative;" href="/basket">
@@ -533,6 +542,7 @@
                   <div class="filterlabels">
                     <div ><input class="filteroptions" type="checkbox" name="indian" ><label>Indian</label></div>
                     <div ><input class="filteroptions" type="checkbox" name="italian" ><label>Italian</label></div>
+                    <div ><input class="filteroptions" type="checkbox" name="french" ><label>French</label></div>
                     <input type="submit" value="Apply"/>
                   </div>
                 </form:form>
@@ -547,6 +557,7 @@
        	    </div>
         </div>
         <div class="reclist">
+        <sec:authorize access="isAuthenticated()">
           <c:forEach items="${dishes}" var="dish">
             <a href="/recipe=${dish.id}">
               <rec>
@@ -555,8 +566,31 @@
                   <recnm>${dish.name}</recnm>
                 </div>
               </rec>
+              </a>
           </c:forEach>
+        </sec:authorize>
+        <sec:authorize access="!isAuthenticated()">
+          <c:forEach items="${dishes}" var="dish">
+          <c:if test = "${dish.access eq 'Accountless'}">
+            <a href="/recipe=${dish.id}">
+              <div class="rec">
+                <recimg><img src="<c:url value='/media/r${dish.id}.jpg'/>" width="250" height="220"></recimg>
+                <div class="recinfo">
+                  <recnm>${dish.name}</recnm>
+                </div>
+              </div>
+            </a>
+          </c:if>
+          </c:forEach>
+        </sec:authorize> 
         </div>
+        
+        <sec:authorize access="!isAuthenticated()"> 
+        	<div class="signup">
+        		Sign up now to access more delicious recipes --> <a class="registerbutton" href="/register">Register</a><br><br>
+        		Already have an account with us? Just <a class="loginbutton" href="/login-form">Login</a> and take a look 
+        	</div>
+        </sec:authorize>
       </div>
 
 

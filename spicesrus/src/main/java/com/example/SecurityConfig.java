@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			// where to go after successful login
 			.defaultSuccessUrl("/success-login",true)
 			// to show an error page if the authentication failed
-			.failureUrl("/login-form")
+			.failureUrl("/access-denied")
 			// everyone can access these requests
 			.permitAll()
 		.and().logout()

@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.domain.Basket;
 import com.example.domain.BasketItem;
+import com.example.domain.Customer;
 import com.example.repo.BasketItemRepository;
 import com.example.repo.BasketRepository;
+import com.example.repo.CustomerRepository;
 import com.example.repo.ProductRepository;
 import com.lowagie.text.Cell;
 import com.lowagie.text.Document;
@@ -50,15 +54,37 @@ public class CheckoutController {
 	private ProductRepository productrepo;
 	@Autowired
 	private BasketItemRepository itemrepo;
+	@Autowired
+	private CustomerRepository customerrepo;
 	
 	@RequestMapping("/checkoutpage")
 	public String checkout(Model model, String totalitems,Float subtotal, Float total,@RequestParam String id[],@RequestParam int quantity[]) {
+		String username;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof UserDetails) {
+			  username = ((UserDetails)principal).getUsername();
+			} else {
+			  username = principal.toString();
+			}
+		Customer customer = customerrepo.findByEmail(username);
 		
 		for(int i = 0; i < id.length; i++) {
 			Optional<BasketItem> it = itemrepo.findById(Integer.parseInt(id[i]));
 			it.get().setQuantity(quantity[i]);
 			itemrepo.save(it.get());
 		}
+	}
+
+
+	public String checkout(Model model, String totalitems,Float subtotal, Float total) {
+		String username;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof UserDetails) {
+			  username = ((UserDetails)principal).getUsername();
+			} else {
+			  username = principal.toString();
+			}
+		Customer customer = customerrepo.findByEmail(username);
 
 		
 		Iterable<Basket> b = basketrepo.findAll();
@@ -72,6 +98,7 @@ public class CheckoutController {
 		
 		model.addAttribute("basket", basket3);
 		model.addAttribute("totalitems", itemrepo.count());
+		model.addAttribute("customer",customer);
 
 		return "/checkout";
 	}

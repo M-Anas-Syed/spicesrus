@@ -474,7 +474,7 @@
               <a class="registerbutton" href="/register">Register</a>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
-              <p class="welcomeuser">Welcome, <sec:authentication property="name"/></p>
+              <p class="welcomeuser">Welcome, ${customer.firstname}</p>
               <a class="logoutbutton" href="/logout-form">Logout</a>
             </sec:authorize>
             <a style="position: relative;" href="/basket">
@@ -505,7 +505,6 @@
             </price>
 
             <descr>Flavours: ${spice.flavours}</descr>
-            <descr>${spice.description}</descr>
             <descr>History: ${spice.history}</descr>
             
             <div style="margin: 40px 0;">

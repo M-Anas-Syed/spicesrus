@@ -628,36 +628,34 @@
 
       <body>
 
-        <header>
-          <nav>
-            <a class="logotag" href="/">
-              <img class="logo" src="<c:url value='/media/spicesrus.png'/>" alt="spiceruslogo">
-            </a>
-            <div class="headerlinks">
-              <ul>
-                <li class="navoptions"><a href="/products">Products</a></li>
-                <li class="navoptions"><a href="/recipes">Recipes</a></li>
-              </ul>
-            </div>
-            <div style="display: flex;gap: 20px;">
-              <sec:authorize access="!isAuthenticated()">
-                <a class="loginbutton" href="/login-form">Login</a>
-                <a class="registerbutton" href="/register">Register</a>
-              </sec:authorize>
-              <sec:authorize access="isAuthenticated()">
-                <p class="welcomeuser">Welcome,
-                  <sec:authentication property="name" />
-                </p>
-                <a class="logoutbutton" href="/logout-form">Logout</a>
-              </sec:authorize>
-              <a style="position: relative;" href="/basket">
-                <img class="basket" src="<c:url value='/media/basket.svg'/>" alt="">
-                <p class="totalitems">${totalitems}</p>
-              </a>
-            </div>
-          </nav>
-        </header>
 
+    <header>
+      <nav>
+        <a class="logotag" href="/">
+          <img class="logo" src="<c:url value='/media/spicesrus.png'/>" alt="spiceruslogo">
+        </a>
+        <div class="headerlinks">
+          <ul>
+            <li class="navoptions"><a href="/products">Products</a></li>
+            <li class="navoptions"><a href="/recipes">Recipes</a></li>
+          </ul>
+        </div>
+        <div style="display: flex;gap: 20px;">
+          <sec:authorize access="!isAuthenticated()">
+            <a class="loginbutton" href="/login-form">Login</a>
+            <a class="registerbutton" href="/register">Register</a>
+          </sec:authorize>
+          <sec:authorize access="isAuthenticated()">
+            <p class="welcomeuser">Welcome, ${customer.firstname}</p>
+            <a class="logoutbutton" href="/logout-form">Logout</a>
+          </sec:authorize>
+          <a style="position: relative;" href="/basket">
+            <img class="basket" src="<c:url value='/media/basket.svg'/>" alt="">
+            <p class="totalitems">${totalitems}</p>
+          </a>
+        </div>
+      </nav>
+    </header>
         <section>
           <h1 class="baskettitle">Basket</h1>
 
