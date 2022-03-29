@@ -8,7 +8,7 @@ import com.example.domain.Transaction;
 
 
 public interface TransactionRepository extends CrudRepository<Transaction, Integer> {
-	@Query(value="SELECT COUNT(user_id) FROM transaction t WHERE t.user.id = :customerId", nativeQuery=true)
+	@Query(value="SELECT COUNT(customer_id) FROM transaction t WHERE t.customer_id", nativeQuery=true)
 	public int countTransactionsForUser(int customerId);
 
 }

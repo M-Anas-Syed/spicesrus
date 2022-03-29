@@ -725,10 +725,20 @@
 
                       </div>
                       <div class="checkoutinfo">
-                        <p style="font-weight: 300;">Delivery: </p>
+                          <c:choose>
+			    <c:when test = "${ordernum == 0}">
+                        <p style="font-weight: 300;">Delivery: (free with your first order)</p>
                         <div style="display: flex;">
                           <img src="<c:url value='/media/pound_black.svg'/>" alt="pound" style="width: 15px;">
-                          <p id="delivery">3.50</p>
+			      <p id="delivery">0</p>
+			    </c:when>
+			    <c:otherwise>
+                        <p style="font-weight: 300;">Delivery: (free with your first order)</p>
+                        <div style="display: flex;">
+                          <img src="<c:url value='/media/pound_black.svg'/>" alt="pound" style="width: 15px;">
+			      <p id="delivery">3.50</p>
+			    </c:otherwise>
+			  </c:choose>
                         </div>
                       </div>
                     </div>

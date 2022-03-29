@@ -24,6 +24,7 @@ import com.example.repo.BasketItemRepository;
 import com.example.repo.BasketRepository;
 import com.example.repo.CustomerRepository;
 import com.example.repo.ProductRepository;
+import com.example.repo.TransactionRepository;
 
 @Controller
 public class BasketController {
@@ -36,6 +37,8 @@ public class BasketController {
 	private BasketItemRepository itemrepo;
 	@Autowired
 	private CustomerRepository customerrepo;
+	@Autowired
+	private TransactionRepository trepo;
 	
 	
 	
@@ -49,9 +52,11 @@ public class BasketController {
 			  username = principal.toString();
 			}
 		Customer customer = customerrepo.findByEmail(username);
+		int ordernum = trepo.countTransactionsForUser(customer.getId());
 		model.addAttribute("customer",customer);
 		model.addAttribute("basket", basketrepo.findAll());
 		model.addAttribute("totalitems", itemrepo.count());
+		model.addAttribute("ordernum", ordernum);
 		return "/basket";
 	}
 	

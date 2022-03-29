@@ -94,7 +94,7 @@ public class CheckoutController {
 			it.get().setQuantity(quantity[i]);
 			itemrepo.save(it.get());
 		}
-		
+		int ordernum = trepo.countTransactionsForUser(customer.getId());
 		Iterable<Basket> b = basketrepo.findAll();
 		Basket basket3 = b.iterator().next();
 		
@@ -107,13 +107,21 @@ public class CheckoutController {
 		model.addAttribute("basket", basket3);
 		model.addAttribute("totalitems", itemrepo.count());
 		model.addAttribute("customer",customer);
+		model.addAttribute("ordernum",ordernum);
 
 		return "/checkout";
 	}
 	
 	@PostMapping("/pay")
 	public String payment(String firstname, String lastname,String email, String phone, String address1, String address2, String city, String country, String postcode, String cardnumber, String cardHolderName, String cvv) {
-
+		String username;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof UserDetails) {
+			  username = ((UserDetails)principal).getUsername();
+			} else {
+			  username = principal.toString();
+			}
+		Customer customer = customerrepo.findByEmail(username);
 		Transaction transaction = new Transaction();
 		
 		Iterable<Basket> orgB = basketrepo.findAll();
@@ -149,6 +157,7 @@ public class CheckoutController {
 		transaction.setCardHolderName(cardHolderName);
 		transaction.setCvv(Integer.parseInt(cvv));
 		transaction.setTransactionTotal(b.getTotal());
+		transaction.setCustomer(customer);
 		
 		trepo.save(transaction);
 		
@@ -167,7 +176,15 @@ public class CheckoutController {
 	
 	@RequestMapping("/orderreceipt")
 	public void orderReceipt(Model model, HttpServletResponse response) throws DocumentException, IOException {
-
+		String username;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof UserDetails) {
+			  username = ((UserDetails)principal).getUsername();
+			} else {
+			  username = principal.toString();
+			}
+		Customer customer = customerrepo.findByEmail(username);
+		int ordernum = trepo.countTransactionsForUser(customer.getId());
 		
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -265,7 +282,12 @@ public class CheckoutController {
         cell.setHorizontalAlignment("right");
         info.addCell(cell);
         
-        cell = new Cell("£"+String.valueOf(3.50));
+        if(ordernum==1) {
+        	cell = new Cell("£"+String.valueOf(0));
+        }
+        else {
+        	cell = new Cell("£"+String.valueOf(3.50));
+        }
         cell.setHorizontalAlignment("center");
         info.addCell(cell);
         
