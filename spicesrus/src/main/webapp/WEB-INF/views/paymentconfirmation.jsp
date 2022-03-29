@@ -106,7 +106,6 @@
                         transition: background-color 300ms ease-in-out;
                     }
 
-
                     .navoptions a:hover {
                         background-color: white;
                         color: #ffa500;
@@ -680,35 +679,6 @@
                         margin-bottom: 10px;
                     }
 
-                    .modal {
-                        display: none;
-                        /* Hidden by default */
-                        position: fixed;
-                        /* Stay in place */
-                        z-index: 1;
-                        /* Sit on top */
-                        left: 0;
-                        top: 0;
-                        width: 100%;
-                        /* Full width */
-                        height: 100%;
-                        /* Full height */
-                        overflow: auto;
-                        /* Enable scroll if needed */
-                        background-color: rgb(0, 0, 0);
-                        /* Fallback color */
-                        background-color: rgba(0, 0, 0, 0.4);
-                        /* Black w/ opacity */
-                    }
-
-                    /* Modal Content/Box */
-                    .modal-content {
-                        background-color: #fefefe;
-                        margin: 15% auto;
-                        border: 1px solid #888;
-                        width: 50%;
-                        border-radius: 10px;
-                    }
 
                     .returnbtn {
                         text-align: center;
@@ -771,167 +741,35 @@
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
                                 <p class="welcomeuser">Welcome,
-                                    ${customer.firstname}
+                                    <sec:authentication property="name" />
                                 </p>
                                 <a class="logoutbutton" href="/logout-form">Logout</a>
                             </sec:authorize>
                             <a style="position: relative;" href="/basket">
                                 <img class="basket" src="<c:url value='/media/basket.svg'/>" alt="">
-                                <p class="totalitems">${totalitems}</p>
                             </a>
                         </div>
                     </nav>
                 </header>
 
                 <section>
-                    <h1 class="baskettitle">Checkout</h1>
-                    <div style="display: flex;justify-content: space-evenly;">
-                        <form action="pay" modelAttribute="transaction" method="POST">
-                            <div style="margin: 40px 0;border-radius: 10px;overflow: hidden;">
-                                <button type="button" class="accordion">Customer Details</button>
-                                <div class="panel" style="max-height:478px;">
-                                    <div style="width: 600px;padding:20px;">
-                                        <div class="custdetails">
-                                            <label class="checkoutlabels">*First Name:</label>
-                                            <input class="custinput" path="firstname" name="firstname" type="text"></input>
-                                            <form:errors path="firstname" />
-                                        </div>
-                                        <div class="custdetails">
-                                            <label class="checkoutlabels">*Last Name:</label>
-                                            <input class="custinput" path="lastname" name="lastname" type="text"></input>
-                                            <form:errors path="lastname" />
-
-                                        </div>
-                                        <div class="custdetails">
-                                            <label class="checkoutlabels">*Email:</label>
-                                            <input class="custinput" path="email" name="email" type="text"></input>
-                                            <form:errors path="email" />
-
-                                        </div>
-                                        <div class="custdetails">
-                                            <label class="checkoutlabels">*Phone:</label>
-                                            <input class="custinput" path="phone" name="phone" type="text"></input>
-                                            <form:errors path="phone" />
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="button" class="accordion">Delivery Information</button>
-                                <div class="panel">
-                                    <div style="width: 600px;padding:20px;">
-                                        <div class="custdetails">
-                                            <label class="checkoutlabels">*Address line 1:</label>
-                                            <input class="custinput" path="address1" name="address1" type="text"></input>
-                                            <form:errors path="address" />
-
-                                        </div>
-                                        <div class="custdetails">
-                                            <label class="checkoutlabels">Address line 2:</label>
-                                            <input class="custinput" path="address2" name="address2"  type="text"></input>
-                                        </div>
-                                        <div class="custdetails">
-                                            <label class="checkoutlabels">*City:</label>
-                                            <input class="custinput" path="city" name="city" type="text"></input>
-                                            <form:errors path="city" />
-
-                                        </div>
-                                        <div class="custdetails"
-                                            style="display: flex;justify-content: space-between;flex-direction: row;">
-                                            <label>*Postcode:</label>
-                                            <input class="custinput" path="postcode" name="postcode" style="width: 35%;" type="text"></input>
-                                            <form:errors path="postcode" />
-
-                                            <label>*Country:</label>
-                                            <input class="custinput" path="country" name="country" style="width: 35%;" type="text"></input>
-                                            <form:errors path="country" />
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="button" class="accordion">Card Details</button>
-                                <div class="panel">
-                                    <div style="width: 600px;padding:20px;">
-                                        <div class="custdetails">
-                                            <label class="checkoutlabels">*Card Number:</label>
-                                            <input class="custinput" path="cardnumber" name="cardnumber" type="text"></input>
-                                            <form:errors path="cardnumber" />
-
-                                        </div>
-                                        <div class="custdetails">
-                                            <label class="checkoutlabels">*Cardholder Name:</label>
-                                            <input class="custinput" path="cardHolderName" name="cardHolderName" type="text"></input>
-                                            <form:errors path="cardHolderNumber" />
-
-                                        </div>
-                                        <div
-                                            style="display: flex;justify-content: space-between;padding: 10px 30px;font-size: 18px;font-weight: 400;">
-                                            <label style="margin-right: 5px;">*Expiry:</label>
-                                            <div style="max-width: fit-content;">
-                                                <input style="width: 20%;" placeholder="MM" min="1" max="12"
-                                                    type="number">
-                                                <input style="width: 30%;" placeholder="YYYY" min="2022" max="2030"
-                                                    type="number"></input>
-                                            </div>
-                                            <label style="margin-right: 5px;">*CVV:</label>
-                                            <input class="custinput" path="cvv" name="cvv" style="width: 35%;padding: 0;font-size: 15px;"
-                                                type="text"></input>
-                                            <form:errors path="cvv" />
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    style="margin: 40px auto;width: 50%;display: flex;justify-content: space-between;gap:20px;">
-                                    <a class="cancelbtn" href="/basket">Cancel</a>
-                                    <button type="submit" class="paybtn">Pay</button>
-                                </div>
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <div style="width: 100%; background: green;margin: 0;padding: 20px;color: white;font-size: 35px;">
+                                <p style="max-width: 1050px;margin: 0 auto;">Payment Successful !</p>
                             </div>
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                        </form>
-
-                        <div id="checkpanel" style="position: sticky; top: 100px; height: fit-content;margin: 40px 0;">
-                            <div class="checkout">
-                                <h2 style="text-align: center;border-bottom: 1px solid;padding-bottom: 30px;">Order
-                                    Summary</h2>
-                                <div>
-                                    <div class="checkoutinfo">
-                                        <p style="font-weight: 300;">Items: </p>
-                                        <p id="totalitems">${basket.totalitems}</p>
-                                    </div>
-                                    <div class="checkoutinfo">
-                                        <p style="font-weight: 300;">Subtotal: </p>
-                                        <div style="display: flex;">
-                                            <img src="<c:url value='/media/pound_black.svg'/>" alt="pound"
-                                                style="width: 15px;">
-                                            <p id="subtotal">${basket.subtotal}</p>
-                                        </div>
-
-                                    </div>
-                                    <div class="checkoutinfo">
-                                        <p style="font-weight: 300;">Delivery: </p>
-                                        <div style="display: flex;">
-                                            <img src="<c:url value='/media/pound_black.svg'/>" alt="pound"
-                                                style="width: 15px;">
-                                            <p id="delivery">3.50</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="checkoutinfo"
-                                    style="border-top: 1px solid;padding: 30px;padding-bottom: 0;margin: 20px 0;">
-                                    <h3 style="font-weight: 300;font-size: 25px;margin: 0;">Total</h3>
-                                    <div style="display: flex;">
-                                        <img src="<c:url value='/media/pound_black.svg'/>" alt="pound"
-                                            style="width: 15px;">
-                                        <p id="total" style="margin: 10px 0;">${basket.total}</p>
-                                    </div>
-                                </div>
+                            
+                            <h1 style="text-align: center;font-size: 30px;font-weight: 300;">Your Order has been placed
+                            </h1>
+                            <h2 style="font-size: 25px;text-align: center;">Thank you for shopping at Spices'R'Us</h2>
+                            <a class="returnbtn" href="/reset">Return</a>
+                            <div style="border-top: 1px solid lightgray;width: 75%;margin: 0 auto;padding: 20px;">
+                                <p style="text-align: center;">Would you like to download your receipt?</p>
+                                <a style="margin: 0 auto;text-decoration: none;color: white;background: #ffa500;font-weight: 300;padding: 5px 10px;border-radius: 5px;display: block;width: fit-content;"
+                                    href="/orderreceipt">Download Receipt</a>
                             </div>
-
                         </div>
                     </div>
-
-                   
-
                 </section>
                 <footer style="background-color: #f7bf4f;">
                     <div
