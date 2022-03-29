@@ -11,6 +11,9 @@ import java.awt.Color;
 import java.io.File;
 import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -83,7 +86,7 @@ public class CheckoutController {
 	
 	
 	@GetMapping("/orderreceipt")
-	public void orderReceipt(Model model, HttpServletResponse response) throws DocumentException, IOException {
+	public void orderReceipt(Model model, HttpServletResponse response) throws DocumentException, IOException, URISyntaxException {
 		
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -103,8 +106,14 @@ public class CheckoutController {
 		
 		Paragraph head = new Paragraph(currentDateTime, fontHeader);
         head.setAlignment(Paragraph.ALIGN_RIGHT);
-		
-		
+
+        
+        Path path = Paths.get("src/main/webapp/media/spicesrus.png");
+        
+        Image img = Image.getInstance(path.toAbsolutePath().toString());
+        img.scaleAbsolute(520, 150);
+        img.setAlignment(Paragraph.ALIGN_CENTER);
+        		
 		Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
 		fontTitle.setSize(18);
 
@@ -114,11 +123,15 @@ public class CheckoutController {
         Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA);
         fontParagraph.setSize(15);
         
-        Table info = new Table(3);
+        Table info = new Table(4);
         info.setBorderWidth(1);
         info.setPadding(5);
         
-        Cell cell = new Cell("Items");
+        Cell cell = new Cell("");
+        cell.setBackgroundColor(new Color( 255, 165, 0));
+        info.addCell(cell);
+        
+        cell = new Cell("Items");
         cell.setBackgroundColor(new Color( 255, 165, 0));
         info.addCell(cell);
         
@@ -135,6 +148,13 @@ public class CheckoutController {
         Iterable<BasketItem> i = itemrepo.findAll();
         
         for(BasketItem item: i) {
+        	path = Paths.get("src/main/webapp/media/"+item.getProduct().getId()+".png");
+        	Image spicepic = Image.getInstance(path.toAbsolutePath().toString());
+            spicepic.scaleAbsolute(50, 50);
+            cell = new Cell(spicepic);
+            cell.setHorizontalAlignment("center");
+        	info.addCell(cell);
+            
         	cell = new Cell(item.getProduct().getName());
         	info.addCell(cell);
         	
@@ -142,42 +162,44 @@ public class CheckoutController {
         	cell.setHorizontalAlignment("center");
         	info.addCell(cell);
         	
-        	cell = new Cell("Â£"+String.valueOf(item.getTotal_price()));
+        	cell = new Cell("£"+String.valueOf(item.getTotal_price()));
         	cell.setHorizontalAlignment("center");
         	info.addCell(cell);
         }
         
         cell = new Cell("Subtotal");
-        cell.setColspan(2);
+        cell.setColspan(3);
         cell.setHorizontalAlignment("right");
         info.addCell(cell);
         
         Iterable<Basket> bask = basketrepo.findAll();
 		Basket b = bask.iterator().next();
         
-        cell = new Cell("Â£"+String.valueOf(b.getSubtotal()));
+        cell = new Cell("£"+String.valueOf(b.getSubtotal()));
         cell.setHorizontalAlignment("center");
         info.addCell(cell);
         
         cell = new Cell("Delivery");
-        cell.setColspan(2);
+        cell.setColspan(3);
         cell.setHorizontalAlignment("right");
         info.addCell(cell);
         
-        cell = new Cell("Â£"+String.valueOf(3.50));
+        cell = new Cell("£"+String.valueOf(3.50));
         cell.setHorizontalAlignment("center");
         info.addCell(cell);
         
         cell = new Cell("Total");
-        cell.setColspan(2);
+        cell.setColspan(3);
         cell.setHorizontalAlignment("right");
         info.addCell(cell);
         
-        cell = new Cell("Â£"+String.valueOf(b.getTotal()));
+        cell = new Cell("£"+String.valueOf(b.getTotal()));
         cell.setHorizontalAlignment("center");
         info.addCell(cell);
-
+        
+        
         document.add(head);
+        document.add(img);
         document.add(title);
         document.add(info);
         document.close();
