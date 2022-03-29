@@ -3,9 +3,18 @@ package com.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.Valid;
+
 
 import java.awt.Color;
 import java.io.File;
@@ -13,17 +22,23 @@ import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.domain.Basket;
 import com.example.domain.BasketItem;
+import com.example.domain.Transaction;
+import com.example.domain.TransactionItems;
 import com.example.repo.BasketItemRepository;
 import com.example.repo.BasketRepository;
 import com.example.repo.ProductRepository;
+import com.example.repo.TransactionItemsRepository;
+import com.example.repo.TransactionRepository;
 import com.lowagie.text.Cell;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -47,6 +62,11 @@ public class CheckoutController {
 	private ProductRepository productrepo;
 	@Autowired
 	private BasketItemRepository itemrepo;
+	@Autowired
+	private TransactionRepository trepo;
+	@Autowired
+	private TransactionItemsRepository tirepo;
+	
 	
 	@RequestMapping("/checkoutpage")
 	public String checkout(Model model, String totalitems,Float subtotal, Float total,@RequestParam String id[],@RequestParam int quantity[]) {
@@ -73,6 +93,50 @@ public class CheckoutController {
 		return "/checkout";
 	}
 	
+	@PostMapping("/pay")
+	public String payment(String firstname, String lastname,String email, String phone, String address1, String address2, String city, String country, String postcode, String cardnumber, String cardHolderName, String cvv) {
+
+		Transaction transaction = new Transaction();
+		
+		Iterable<Basket> orgB = basketrepo.findAll();
+		
+		Basket b = orgB.iterator().next();
+		
+		List<BasketItem> bi = b.getItems();
+		
+		for(int i = 0; i < b.getItems().size(); i++) {
+			TransactionItems ti = new TransactionItems();
+			ti.setItemName(bi.get(i).getProduct().getName());
+			ti.setItemPrice(bi.get(i).getTotal_price());
+			ti.setItemQuantity(bi.get(i).getQuantity());
+			
+			tirepo.save(ti);
+			
+			transaction.getTransactionItems().add(ti);
+			trepo.save(transaction);
+		}
+		
+		
+		transaction.setFirstname(firstname);
+		transaction.setLastname(lastname);
+		transaction.setEmail(email);
+		transaction.setPhone(Long.parseLong(phone));
+		transaction.setAddress1(address1);
+		transaction.setAddress2(address2);
+		transaction.setCity(city);
+		transaction.setCountry(country);
+		transaction.setPostcode(postcode);
+		transaction.setCardnumber(Long.parseLong(cardnumber));
+		transaction.setCardHolderName(cardHolderName);
+		transaction.setCvv(Integer.parseInt(cvv));
+		transaction.setTransactionTotal(b.getTotal());
+		
+		trepo.save(transaction);
+		
+		return "/paymentconfirmation";
+		
+	}
+	
 	@RequestMapping("/reset")
 	public String reset() {
 		
@@ -82,7 +146,7 @@ public class CheckoutController {
 	}
 	
 	
-	@GetMapping("/orderreceipt")
+	@RequestMapping("/orderreceipt")
 	public void orderReceipt(Model model, HttpServletResponse response) throws DocumentException, IOException {
 		
         response.setContentType("application/pdf");
