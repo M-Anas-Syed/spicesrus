@@ -58,7 +58,7 @@ public class CheckoutController {
 	private CustomerRepository customerrepo;
 	
 	@RequestMapping("/checkoutpage")
-	public String checkout(Model model, String totalitems,Float subtotal, Float total,@RequestParam String id[],@RequestParam int quantity[]) {
+	public String checkout(Model model, String totalitems,Float subtotal, Float total, @RequestParam String id[],@RequestParam int quantity[]) {
 		String username;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof UserDetails) {
@@ -73,19 +73,6 @@ public class CheckoutController {
 			it.get().setQuantity(quantity[i]);
 			itemrepo.save(it.get());
 		}
-	}
-
-
-	public String checkout(Model model, String totalitems,Float subtotal, Float total) {
-		String username;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (principal instanceof UserDetails) {
-			  username = ((UserDetails)principal).getUsername();
-			} else {
-			  username = principal.toString();
-			}
-		Customer customer = customerrepo.findByEmail(username);
-
 		
 		Iterable<Basket> b = basketrepo.findAll();
 		Basket basket3 = b.iterator().next();

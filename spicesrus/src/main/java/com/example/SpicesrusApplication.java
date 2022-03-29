@@ -151,6 +151,24 @@ public class SpicesrusApplication implements ApplicationRunner {
 		p.setHistory("Originated from North America, where they grow in the wild in Central Mexico and have for centuries been cultivated by the peoples of Mexico. The peppers were later introduced to the Old World, to Spain in the 16th century, as part of the Columbian Exchange.");
 		productrepo.save(p);
 		
+		p = new Product();
+		p.setPrice(3);
+		p.setName("Oregano");
+		p.setRegion("Asia");
+		p.setSpicelvl(2);
+		p.setFlavours("earthy but not aggressively woodsy");
+		p.setHistory("It was first used by the Greeks");
+		productrepo.save(p);
+		
+		p = new Product();
+		p.setPrice(7);
+		p.setName("Chilli powder");
+		p.setRegion("North America");
+		p.setSpicelvl(4);
+		p.setFlavours("aromatic and savory spices in the blend create the flavor profile known as Tex-Mexy");
+		p.setHistory("Chili powder was invented in Texas; by whom is a matter of some dispute. A German immigrant named William Gebhardt or a man named DeWitt Clinton Pendery");
+		productrepo.save(p);
+		
 		
 		Optional<Product> product;
 		r = new Recipe();
@@ -631,6 +649,8 @@ public class SpicesrusApplication implements ApplicationRunner {
 		i = new Ingredient();
 		i.setIngredient("2 tablespoons chili powder");
 		i.setRecipe(r);
+		product = productrepo.findById(11);
+		i.setProduct(product.get());
 		ingredientrepo.save(i);
 		i = new Ingredient();
 		i.setIngredient("1 1/2 teaspoons kosher salt");
@@ -655,8 +675,8 @@ public class SpicesrusApplication implements ApplicationRunner {
 		i = new Ingredient();
 		i.setIngredient("1/2 teaspoon dried oregano");
 		i.setRecipe(r);
-		//product = productrepo.findById(9);
-		//i.setProduct(product.get());
+		product = productrepo.findById(10);
+		i.setProduct(product.get());
 		ingredientrepo.save(i);
 		i = new Ingredient();
 		i.setIngredient("1/4 teaspoon black pepper");
