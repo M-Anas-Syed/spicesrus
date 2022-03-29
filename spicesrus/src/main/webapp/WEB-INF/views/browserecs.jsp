@@ -543,6 +543,8 @@
                     <div ><input class="filteroptions" type="checkbox" name="indian" ><label>Indian</label></div>
                     <div ><input class="filteroptions" type="checkbox" name="italian" ><label>Italian</label></div>
                     <div ><input class="filteroptions" type="checkbox" name="french" ><label>French</label></div>
+                    <div ><input class="filteroptions" type="checkbox" name="american" ><label>American</label></div>
+                    <div ><input class="filteroptions" type="checkbox" name="mexican" ><label>Mexican</label></div>
                     <input type="submit" value="Apply"/>
                   </div>
                 </form:form>

@@ -202,7 +202,7 @@ public class MainController {
 	
 	//show the recipes page
 	@RequestMapping("/recipes")
-	public String homepage(Model model, String indian, String italian, String french, String RSearch) {
+	public String homepage(Model model, String indian, String italian, String french, String american, String RSearch) {
 		String username;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof UserDetails) {
@@ -223,6 +223,9 @@ public class MainController {
 		}
 		if(french != null) {
 			cuisine.add("french");
+		}
+		if(french != null) {
+			cuisine.add("american");
 		}
 		if(!cuisine.isEmpty()) {
 			model.addAttribute("dishes", reciperepo.findByCuisine(cuisine));

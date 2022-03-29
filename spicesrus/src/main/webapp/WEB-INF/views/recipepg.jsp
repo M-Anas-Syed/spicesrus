@@ -179,16 +179,32 @@
         float: left;
       	font-size:75px;
       	width: 60%;
+      	border-bottom: 3px solid black;
       }
       time{
         float: left;
         font-size: 20px;
         width: 60%;
+        padding: 10px 0;
       }
       serving{
         float: left;
         font-size: 20px;
         width: 60%;
+        padding: 10px 0;
+      }
+      difficulty{
+        float: left;
+        font-size: 20px;
+        width: 60%;
+        padding: 10px 0;
+        border-bottom: 3px solid black;
+      }
+      cuisine{
+        float: left;
+        font-size: 20px;
+        width: 60%;
+        padding: 10px 0;
       }
       	
       item{
@@ -199,8 +215,8 @@
       
       steps{
       	margin: 20px;
-      	float: left;
-        width: auto;
+      	float: right;
+        width: 58%;
         background-color: white;
         padding: 20px 20px;
         border: 10px;
@@ -209,7 +225,7 @@
       ingredients{
       	margin-top: 20px;
         float: left;
-        width: auto;
+        width: 38%;
         background-color: white;
         padding: 5px 20px;
         border: 10px
@@ -368,12 +384,17 @@
     </header>
 
     <section>
+    	<div>
         <recipeimage>  
 	       <img class = recipeimg src="<c:url value='/media/r${recipe.id}.jpg'/>" width="400" height="400">
 	    </recipeimage>
 	       <name>${recipe.name}</name>
 	       <time>${recipe.time}<br></time>
 	       <serving>Serves: ${recipe.serving}</serving>
+	       <cuisine>Cuisine:  ${recipe.cuisine}</cuisine>
+	       <difficulty>Difficulty: ${recipe.difficulty}</difficulty>
+	    </div>
+	    <div style="width:100%;float:left;">
 	       <ingredients>
 	       <sectiontitle>Ingredients</sectiontitle>
 	       	<c:forEach items="${recipe.ingredients}" var="ingredient">
@@ -388,6 +409,7 @@
              	<item><br>${step.step}<br></item>
            </c:forEach>
            </steps>
+         </div>
            <products>
            Links to the spices in this recipe
            <c:forEach items="${recipe.ingredients}" var="ingredient">

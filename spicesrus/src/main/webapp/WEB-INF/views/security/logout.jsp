@@ -327,7 +327,7 @@
       <section>
 	<div class="formholder">
 	    <formheader>Logout</formheader>
-		<p style="font-size:20px;">Are You sure you want to logout?</p>
+		<p style="font-size:20px;">Are you sure you want to logout?</p>
     	    <a class="logoutbutton" href="/logout">Logout</a>
 	</div>
       </section>
