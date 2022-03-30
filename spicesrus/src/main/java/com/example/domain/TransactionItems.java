@@ -12,7 +12,7 @@ public class TransactionItems {
 	public int transactionItem_id;
 	public String itemName;
 	public int itemQuantity;
-	public int itemPrice;
+	public float itemPrice;
 	
 	@Override
 	public String toString() {
@@ -37,10 +37,11 @@ public class TransactionItems {
 	public void setItemQuantity(int itemQuantity) {
 		this.itemQuantity = itemQuantity;
 	}
-	public int getItemPrice() {
+	public float getItemPrice() {
 		return itemPrice;
 	}
-	public void setItemPrice(int itemPrice) {
+	public void setItemPrice(float itemPrice) {
 		this.itemPrice = itemPrice;
 	}
+	
 }

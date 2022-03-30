@@ -17,14 +17,16 @@ public class BasketItem {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Product product;
 	private int quantity;
-	private int total_price;
+	private float total_price;
 
 
-	public int getTotal_price() {
+	
+
+	public float getTotal_price() {
 		return total_price;
 	}
 
-	public void setTotal_price(int total_price) {
+	public void setTotal_price(float total_price) {
 		this.total_price = total_price;
 	}
 

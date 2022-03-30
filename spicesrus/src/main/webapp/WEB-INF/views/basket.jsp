@@ -675,7 +675,8 @@
                               <span style="font-size: 12px;position: absolute;bottom: -10px;">(selected amount)</span>
                               <img src="<c:url value='/media/pound_black.svg'/>" alt="pound" style="width: 15px;">
                               <span class="itemprice" style="display: none;">${item.product.price}</span>
-                              <p class="productprice" style="font-size: 17px;margin: 0;">${item.total_price}</p>
+                              <!-- <p class="productprice" style="font-size: 17px;margin: 0;">${item.total_price}</p> -->
+                              <input style="max-width: 50%;border: navajowhite;font-size: 17px;" type="text" value="${item.total_price}" class="productprice" path="total_price" name="total_price">
                             </div>
                           </div>
                         </div>
@@ -807,7 +808,7 @@
 
         let total = 0;
         for (let i of pprice) {
-          total += parseFloat(i.innerHTML);
+          total += parseFloat(i.value);
         }
 
         subtotal.innerHTML = total.toFixed(2);
@@ -829,7 +830,7 @@
               let num = parseInt(quantity[mnumIndex].value);
               num -= 5;
               quantity[mnumIndex].value = num;
-              prodprice[mnumIndex].innerHTML = (parseFloat(originalprice[mnumIndex].innerHTML) * parseFloat(quantity[mnumIndex].value)) / 100;
+              prodprice[mnumIndex].value = (parseFloat(originalprice[mnumIndex].innerHTML) * parseFloat(quantity[mnumIndex].value)) / 100;
 
             }
             if (parseInt(quantity[mnumIndex].value) < 0) {
@@ -839,7 +840,7 @@
             total = 0;
 
             for (let i of document.getElementsByClassName('productprice')) {
-              total += parseFloat(i.innerHTML);
+              total += parseFloat(i.value);
             }
 
             subtotal.innerHTML = total.toFixed(2);
@@ -857,12 +858,12 @@
             let num = parseInt(quantity[pnumIndex].value);
             num += 5;
             quantity[pnumIndex].value = num;
-            prodprice[pnumIndex].innerHTML = (parseFloat(originalprice[pnumIndex].innerHTML) * parseFloat(quantity[pnumIndex].value)) / 100;
+            prodprice[pnumIndex].value = (parseFloat(originalprice[pnumIndex].innerHTML) * parseFloat(quantity[pnumIndex].value)) / 100;
 
             total = 0;
 
             for (let i of document.getElementsByClassName('productprice')) {
-              total += parseFloat(i.innerHTML);
+              total += parseFloat(i.value);
             }
 
             subtotal.innerHTML = total.toFixed(2);
