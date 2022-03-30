@@ -79,22 +79,26 @@ public class CheckoutController {
 
 	
 	@RequestMapping("/checkoutpage")
-	public String checkout(Model model, String totalitems,Float subtotal, Float total, @RequestParam String id[],@RequestParam int quantity[]) {
+	public String checkout(Model model, String totalitems,Float subtotal, Float total, @RequestParam String id[],@RequestParam int quantity[], @RequestParam String total_price[]) {
 		String username;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof UserDetails) {
 			  username = ((UserDetails)principal).getUsername();
+			  Customer customer = customerrepo.findByEmail(username);
+			  int ordernum = trepo.countTransactionsForUser(customer.getId());
+			  model.addAttribute("customer",customer);
+			  model.addAttribute("ordernum",ordernum);
+
 			} else {
 			  username = principal.toString();
 			}
-		Customer customer = customerrepo.findByEmail(username);
 		
 		for(int i = 0; i < id.length; i++) {
 			Optional<BasketItem> it = itemrepo.findById(Integer.parseInt(id[i]));
 			it.get().setQuantity(quantity[i]);
+			it.get().setTotal_price(Float.parseFloat(total_price[i]));
 			itemrepo.save(it.get());
 		}
-		int ordernum = trepo.countTransactionsForUser(customer.getId());
 		Iterable<Basket> b = basketrepo.findAll();
 		Basket basket3 = b.iterator().next();
 		
@@ -106,8 +110,7 @@ public class CheckoutController {
 		
 		model.addAttribute("basket", basket3);
 		model.addAttribute("totalitems", itemrepo.count());
-		model.addAttribute("customer",customer);
-		model.addAttribute("ordernum",ordernum);
+
 
 		return "/checkout";
 	}
@@ -256,7 +259,7 @@ public class CheckoutController {
         	cell.setHorizontalAlignment("center");
         	info.addCell(cell);
         	
-        	cell = new Cell("£"+String.valueOf(item.getTotal_price()));
+        	cell = new Cell("Â£"+String.valueOf(item.getTotal_price()));
         	cell.setHorizontalAlignment("center");
         	info.addCell(cell);
         }
@@ -269,7 +272,7 @@ public class CheckoutController {
         Iterable<Basket> bask = basketrepo.findAll();
 		Basket b = bask.iterator().next();
         
-        cell = new Cell("£"+String.valueOf(b.getSubtotal()));
+        cell = new Cell("Â£"+String.valueOf(b.getSubtotal()));
         cell.setHorizontalAlignment("center");
         info.addCell(cell);
         
@@ -282,15 +285,18 @@ public class CheckoutController {
 			  Customer customer = customerrepo.findByEmail(username);
 			  int ordernum = trepo.countTransactionsForUser(customer.getId());
 		        if(ordernum==1) {
-		        	cell = new Cell("£"+String.valueOf(0));
+		        	cell = new Cell("Â£"+String.valueOf(0));
 		        }
 		        else {
-		        	cell = new Cell("£"+String.valueOf(3.50));
+		        	cell = new Cell("Â£"+String.valueOf(3.50));
 		        }
 		        cell.setHorizontalAlignment("center");
 		        info.addCell(cell);
 			} else {
 			  username = principal.toString();
+			  cell = new Cell("Â£"+String.valueOf(3.50));
+			  cell.setHorizontalAlignment("center");
+		      info.addCell(cell);
 			}
 
         
@@ -299,7 +305,7 @@ public class CheckoutController {
         cell.setHorizontalAlignment("right");
         info.addCell(cell);
         
-        cell = new Cell("£"+String.valueOf(b.getTotal()));
+        cell = new Cell("Â£"+String.valueOf(b.getTotal()));
         cell.setHorizontalAlignment("center");
         info.addCell(cell);
         
