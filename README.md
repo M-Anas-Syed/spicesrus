@@ -36,4 +36,6 @@ Step 3 - Tick the correct file and then press import.
 
 Step 4 - Once the project is imported, right click on it -> configure -> add gradle nature.
 
-# Muhammad Anas Afzal Syed, Commits made under names: M A A Syed (maas6) & Anas (2436370s@student.gla.ac.uk)
+
+
+Muhammad Anas Afzal Syed, Commits made under names: M A A Syed (maas6) & Anas (2436370s@student.gla.ac.uk)
