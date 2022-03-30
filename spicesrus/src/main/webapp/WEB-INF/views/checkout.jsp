@@ -793,24 +793,24 @@
                                     <div style="width: 600px;padding:20px;">
                                         <div class="custdetails">
                                             <label class="checkoutlabels">*First Name:</label>
-                                            <input class="custinput" path="firstname" name="firstname" type="text"></input>
+                                            <input class="custinput" path="firstname" name="firstname" type="text" required></input>
                                             <form:errors path="firstname" />
                                         </div>
                                         <div class="custdetails">
                                             <label class="checkoutlabels">*Last Name:</label>
-                                            <input class="custinput" path="lastname" name="lastname" type="text"></input>
+                                            <input class="custinput" path="lastname" name="lastname" type="text" required></input>
                                             <form:errors path="lastname" />
 
                                         </div>
                                         <div class="custdetails">
                                             <label class="checkoutlabels">*Email:</label>
-                                            <input class="custinput" path="email" name="email" type="text"></input>
+                                            <input class="custinput" path="email" name="email" type="email" required></input>
                                             <form:errors path="email" />
 
                                         </div>
                                         <div class="custdetails">
                                             <label class="checkoutlabels">*Phone:</label>
-                                            <input class="custinput" path="phone" name="phone" type="text"></input>
+                                            <input class="custinput" path="phone" name="phone" type="number" required></input>
                                             <form:errors path="phone" />
 
                                         </div>
@@ -821,7 +821,7 @@
                                     <div style="width: 600px;padding:20px;">
                                         <div class="custdetails">
                                             <label class="checkoutlabels">*Address line 1:</label>
-                                            <input class="custinput" path="address1" name="address1" type="text"></input>
+                                            <input class="custinput" path="address1" name="address1" type="text" required></input>
                                             <form:errors path="address" />
 
                                         </div>
@@ -831,18 +831,18 @@
                                         </div>
                                         <div class="custdetails">
                                             <label class="checkoutlabels">*City:</label>
-                                            <input class="custinput" path="city" name="city" type="text"></input>
+                                            <input class="custinput" path="city" name="city" type="text" required></input>
                                             <form:errors path="city" />
 
                                         </div>
                                         <div class="custdetails"
                                             style="display: flex;justify-content: space-between;flex-direction: row;">
                                             <label>*Postcode:</label>
-                                            <input class="custinput" path="postcode" name="postcode" style="width: 35%;" type="text"></input>
+                                            <input class="custinput" path="postcode" name="postcode" style="width: 35%;" type="text" required></input>
                                             <form:errors path="postcode" />
 
                                             <label>*Country:</label>
-                                            <input class="custinput" path="country" name="country" style="width: 35%;" type="text"></input>
+                                            <input class="custinput" path="country" name="country" style="width: 35%;" type="text" required></input>
                                             <form:errors path="country" />
 
                                         </div>
@@ -853,13 +853,13 @@
                                     <div style="width: 600px;padding:20px;">
                                         <div class="custdetails">
                                             <label class="checkoutlabels">*Card Number:</label>
-                                            <input class="custinput" path="cardnumber" name="cardnumber" type="text"></input>
+                                            <input class="custinput" path="cardnumber" name="cardnumber" type="number" required></input>
                                             <form:errors path="cardnumber" />
 
                                         </div>
                                         <div class="custdetails">
                                             <label class="checkoutlabels">*Cardholder Name:</label>
-                                            <input class="custinput" path="cardHolderName" name="cardHolderName" type="text"></input>
+                                            <input class="custinput" path="cardHolderName" name="cardHolderName" type="text" required></input>
                                             <form:errors path="cardHolderNumber" />
 
                                         </div>
@@ -868,13 +868,13 @@
                                             <label style="margin-right: 5px;">*Expiry:</label>
                                             <div style="max-width: fit-content;">
                                                 <input style="width: 50%;" placeholder="MM" min="1" max="12"
-                                                    type="number">
+                                                    type="number" required>
                                                 <input style="width: 70%;" placeholder="YYYY" min="2022" max="2030"
-                                                    type="number"></input>
+                                                    type="number" required></input>
                                             </div>
                                             <label style="margin-right: 5px;">*CVV:</label>
                                             <input class="custinput" path="cvv" name="cvv" style="width: 35%;padding: 0;font-size: 15px;"
-                                                type="text"></input>
+                                                type="number" required></input>
                                             <form:errors path="cvv" />
 
                                         </div>
