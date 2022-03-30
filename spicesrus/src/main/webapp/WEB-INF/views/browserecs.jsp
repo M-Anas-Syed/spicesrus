@@ -474,6 +474,21 @@
           font-size: 14px;
           font-weight: 300;
         }
+        
+      .sortsection input[type=text] {
+		  padding: 6px;
+		  border: none;
+		  font-size: 17px;
+		  border: 1px solid black;
+		}
+
+      .sortsection input[type=submit] {
+        background-color: #006400;
+        border: none;
+        color: #fff;
+        font-size:15px;
+        padding:7px 7px;
+        cursor: pointer;
 
       section::after {
         content: "";
@@ -551,10 +566,10 @@
               </div>
 
             </div>
-	    <div style="float:right;">
+	    	<div style="float:right;">
                 <form:form action="/recipes" method="GET">
        			<input type="text" name="RSearch"/>
-       			<input type="submit" value="search"/>
+       			<input type="submit" value="Search"/>
        		</form:form>
        	    </div>
         </div>

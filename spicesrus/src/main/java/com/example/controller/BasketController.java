@@ -56,7 +56,6 @@ public class BasketController {
 			  username = principal.toString();
 			}
 		
-		
 		model.addAttribute("basket", basketrepo.findAll());
 		model.addAttribute("totalitems", itemrepo.count());
 		

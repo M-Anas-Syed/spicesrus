@@ -466,6 +466,22 @@
           font-size: 14px;
           font-weight: 300;
         }
+        
+      .sortsection input[type=text] {
+		  padding: 6px;
+		  border: none;
+		  font-size: 17px;
+		  border: 1px solid black;
+		}
+
+      .sortsection input[type=submit] {
+        background-color: #006400;
+        border: none;
+        color: #fff;
+        font-size:15px;
+        padding:7px 7px;
+        cursor: pointer;
+
 
         section::after {
           content: "";

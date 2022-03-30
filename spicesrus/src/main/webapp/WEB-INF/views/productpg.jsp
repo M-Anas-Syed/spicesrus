@@ -526,7 +526,8 @@
 
           </div>
         </div>
-        <div class="reclist">
+        <div style="width:90%;margin:auto;border-bottom: 3px solid black;font-size:30px;text-align:center;">Links to recipes using this spice</div>
+        <div class="reclist" style="width:90%;margin:auto;">
           <c:forEach items="${recipes}" var="dish">
             <a href="/recipe=${dish.id}">
               <rec>
