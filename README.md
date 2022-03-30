@@ -1,33 +1,39 @@
 # GitLab repository for CO2201 Group Projects
 
-## Please update this readme file with installation instructions as soon as is possible
+## Installation instructions 
 
-Open spring boot, at the top there will be a tab called window , click it. 
+**Method 1 - Using Spring tool suite**
 
-Then click show view -> other-> Git -> Git Repositories
+Step 1 - First copy the clone url from gitlab and create an empty folder on your device.
 
-Then click on the option to clone a repository 
+Step 2 - Open spring boot, at the top there will be a tab called window , click it. 
 
-Then paste the url and enter your username and password.
+Step 3 - Then click show view -> other-> Git -> Git Repositories.
 
-Then select the main branch.
+Step 4 - Then click on the option to clone a repository in the bottom left corner.
 
-After that you’ll see the project name and the branch beside it. 
+Step 5 - Then paste the url and enter your username and password.
 
-Click on it, then go to working tree -> and right click on spicesrus 
+Step 6 - Then select the main branch.
 
-Then click import project
+Step 7 - After that click on the browse button and select the empty folder created in the first step and click finish. 
 
-Once the project is imported, right click on it -> configure -> add gradle nature
+Step 8 - Then click on the repository, then go to working tree -> and right click on spicesrus.
+
+Step 9 - Then click import project and click finish.
+
+Step 10 - Once the project is imported, right click on it -> configure -> add gradle nature.
 
 OR
 
-Clone the repo to a local directory in command line
+**Method 2 - Using command line**
 
-Then in spring boot file -> import -> existing files into workplace
+Step 1 - Clone the repo to a local directory in command line.
 
-Tick the correct file and then press import
+Step 2 - Then in spring boot file -> import -> existing files into workplace.
 
-Once the project is imported, right click on it -> configure -> add gradle nature
+Step 3 - Tick the correct file and then press import.
+
+Step 4 - Once the project is imported, right click on it -> configure -> add gradle nature.
 
 # Muhammad Anas Afzal Syed, Commits made under names: M A A Syed (maas6) & Anas (2436370s@student.gla.ac.uk)
