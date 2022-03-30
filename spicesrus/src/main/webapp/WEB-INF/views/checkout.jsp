@@ -867,9 +867,9 @@
                                             style="display: flex;justify-content: space-between;padding: 10px 30px;font-size: 18px;font-weight: 400;">
                                             <label style="margin-right: 5px;">*Expiry:</label>
                                             <div style="max-width: fit-content;">
-                                                <input style="width: 20%;" placeholder="MM" min="1" max="12"
+                                                <input style="width: 50%;" placeholder="MM" min="1" max="12"
                                                     type="number">
-                                                <input style="width: 30%;" placeholder="YYYY" min="2022" max="2030"
+                                                <input style="width: 70%;" placeholder="YYYY" min="2022" max="2030"
                                                     type="number"></input>
                                             </div>
                                             <label style="margin-right: 5px;">*CVV:</label>
