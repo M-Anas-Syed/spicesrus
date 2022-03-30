@@ -907,14 +907,22 @@
                                         </div>
 
                                     </div>
-                                    <div class="checkoutinfo">
-                                        <p style="font-weight: 300;">Delivery: </p>
-                                        <div style="display: flex;">
-                                            <img src="<c:url value='/media/pound_black.svg'/>" alt="pound"
-                                                style="width: 15px;">
-                                            <p id="delivery">3.50</p>
-                                        </div>
-                                    </div>
+                                   <div class="checkoutinfo">
+                          <c:choose>
+			    <c:when test = "${ordernum == 0}">
+                        <p style="font-weight: 300;">Delivery: (free with your first order)</p>
+                        <div style="display: flex;">
+                          <img src="<c:url value='/media/pound_black.svg'/>" alt="pound" style="width: 15px;">
+			      <p id="delivery">0</p>
+			    </c:when>
+			    <c:otherwise>
+                        <p style="font-weight: 300;">Delivery: </p>
+                        <div style="display: flex;">
+                          <img src="<c:url value='/media/pound_black.svg'/>" alt="pound" style="width: 15px;"/>
+			      <p id="delivery">3.50</p></div>
+			    </c:otherwise>
+			  </c:choose>
+                        </div>
                                 </div>
                                 <div class="checkoutinfo"
                                     style="border-top: 1px solid;padding: 30px;padding-bottom: 0;margin: 20px 0;">
